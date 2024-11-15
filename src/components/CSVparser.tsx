@@ -14,6 +14,8 @@ function parseData(input: string[]) {
     }
   });
 
+  // this doesnt get the BRs so it is kinda useless... need to get the data differently.
+
   return newArray;
 }
 
