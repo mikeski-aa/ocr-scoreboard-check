@@ -1,6 +1,10 @@
-import { SyntheticEvent, useState } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 
-function ImageUploader() {
+function ImageUploader({
+  otherState,
+}: {
+  otherState: Dispatch<SetStateAction<string>>;
+}) {
   const [selectedImage, setSelected] = useState<string>("");
 
   const handleImageUpload = (e: SyntheticEvent) => {
@@ -9,6 +13,7 @@ function ImageUploader() {
     if (target.files) {
       const image = target.files[0];
       setSelected(URL.createObjectURL(image));
+      otherState(URL.createObjectURL(image));
     }
   };
 

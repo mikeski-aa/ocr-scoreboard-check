@@ -1,16 +1,16 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import ImageUploader from "./components/imageUploader";
+import ImageUploader from "./components/ImageUploader";
+import TextRecognition from "./components/ImageRecognition";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [selectedImage, setSelected] = useState<string>("");
 
   return (
     <>
       <div className="container">Hello world</div>
-      <ImageUploader />
+      <ImageUploader otherState={setSelected} />
+      <TextRecognition selectedImage={selectedImage} />
     </>
   );
 }
