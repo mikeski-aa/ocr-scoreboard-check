@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-papaparse": "^4.4.0",
     "tesseract.js": "^5.1.1"
   },
   "devDependencies": {
