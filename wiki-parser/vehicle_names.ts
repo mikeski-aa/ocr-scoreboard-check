@@ -1,5 +1,48 @@
 import * as cheerio from "cheerio";
 
+const nations = [
+  {
+    urlName: "USA_aircraft",
+    country: "USA",
+  },
+  {
+    urlName: "Britain_aircraft",
+    country: "Britain",
+  },
+  {
+    urlName: "Germany_aircraft",
+    country: "Germany",
+  },
+  {
+    urlName: "USSR_aircraft",
+    country: "USSR",
+  },
+  {
+    urlName: "China_aircraft",
+    country: "China",
+  },
+  {
+    urlName: "Japan_aircraft",
+    country: "Japan",
+  },
+  {
+    urlName: "Italy_aircraft",
+    country: "Italy",
+  },
+  {
+    urlName: "France_aircraft",
+    country: "France",
+  },
+  {
+    urlName: "Sweden_aircraft",
+    country: "Sweden",
+  },
+  {
+    urlName: "Israel_aircraft",
+    country: "Israel",
+  },
+];
+
 // returns array of all vehicles from vehicle list
 async function getVehicleListForNation(targeturl: string, countryname: string) {
   const url = `https://wiki.warthunder.com/Category:${targeturl}`;
@@ -69,16 +112,23 @@ async function getSpecificDetails(vehicleName) {
   }
 }
 
-async function test() {
-  const vehicles = await getVehicleListForNation("USA_aircraft", "USA");
+async function getVehiclesAndRatingsForEachNation() {
   const detailedArray: any = [];
 
-  vehicles?.forEach(async (vehicle) => {
-    const newItem = await getSpecificDetails(vehicle);
-    detailedArray.push(newItem);
+  nations.forEach(async (nation) => {
+    const vehicles = await getVehicleListForNation(
+      nation.urlName,
+      nation.country
+    );
+
+    vehicles?.forEach(async (vehicle) => {
+      const newItem = await getSpecificDetails(vehicle);
+      detailedArray.push(newItem);
+    });
   });
 
+  console.log("detailed array is: ");
   console.log(detailedArray);
 }
 
-test();
+getVehiclesAndRatingsForEachNation();
