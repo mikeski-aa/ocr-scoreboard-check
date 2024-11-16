@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 
+// returns array of all vehicles from vehicle list
 async function getVehicleListForNation(targeturl: string, countryname: string) {
   const url = `https://wiki.warthunder.com/Category:${targeturl}`;
 
@@ -32,6 +33,12 @@ async function getVehicleListForNation(targeturl: string, countryname: string) {
   }
 }
 
-getVehicleListForNation("USA_aircraft", "USA");
+// converts empty spaces to underscores
+function urlNameConvert(name: string) {
+  const splitName = name.split(" ");
+  let joinName = splitName.join("_");
 
-export default getVehicleListForNation;
+  return joinName;
+}
+
+getVehicleListForNation("USA_aircraft", "USA");
