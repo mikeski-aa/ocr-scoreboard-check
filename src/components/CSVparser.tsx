@@ -15,7 +15,7 @@ function parseData(input: string[]) {
   });
 
   // this doesnt get the BRs so it is kinda useless... need to get the data differently.
-
+  // use the original parser to get list of planes and BRs
   return newArray;
 }
 
@@ -38,7 +38,7 @@ function CSVReader() {
         <>
           <div>
             <button type="button" {...getRootProps()}>
-              Browse file
+              Add CSV file
             </button>
             <div>{acceptedFile && acceptedFile.name}</div>
             <button {...getRemoveFileProps()}>Remove</button>
