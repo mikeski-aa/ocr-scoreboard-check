@@ -28,6 +28,7 @@ async function getVehicleListForNation(targeturl: string, countryname: string) {
     }
     console.log("Total number of aircrafts to parse: " + array.length);
     console.log(array);
+    return array;
   } catch (error) {
     console.log(error);
   }
@@ -41,4 +42,43 @@ function urlNameConvert(name: string) {
   return joinName;
 }
 
-getVehicleListForNation("USA_aircraft", "USA");
+// get specific plane battle rating
+async function getSpecificDetails(vehicleName) {
+  const formattedName = urlNameConvert(vehicleName);
+
+  const url = `https://wiki.warthunder.com/${formattedName}`;
+
+  try {
+    const response = await fetch(url, { method: "GET" });
+    const text: any = await response.text();
+
+    const $ = cheerio.load(text, { decodeEntities: false });
+
+    const rating = $(
+      "#mw-content-text > div.mw-parser-output > div.specs_card_main > div.specs_card_main_info > div.general_info_2 > div.general_info_br > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+    ).html();
+
+    const vehicle = {
+      name: vehicleName,
+      rating: rating,
+    };
+
+    console.log(vehicle);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function test() {
+  const vehicles = await getVehicleListForNation("USA_aircraft", "USA");
+  const detailedArray: any = [];
+
+  vehicles?.forEach(async (vehicle) => {
+    const newItem = await getSpecificDetails(vehicle);
+    detailedArray.push(newItem);
+  });
+
+  console.log(detailedArray);
+}
+
+test();
