@@ -12,7 +12,7 @@ function App() {
       <div className="container">Hello world</div>
       <ImageUploader otherState={setSelected} />
       <TextRecognition selectedImage={selectedImage} />
-      <CSVReader></CSVReader>
+      {/* <CSVReader></CSVReader> */}
     </>
   );
 }
