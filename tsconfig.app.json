@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "src/**/*.ts"]
+  "include": ["src", "src/**/*.ts", "wiki-parser"]
 }

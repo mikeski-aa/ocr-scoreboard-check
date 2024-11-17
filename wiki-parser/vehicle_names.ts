@@ -89,7 +89,7 @@ function urlNameConvert(name: string) {
 }
 
 // get specific plane battle rating
-async function getSpecificDetails(vehicleName) {
+async function getSpecificDetails(vehicleName: string) {
   const formattedName = urlNameConvert(vehicleName);
 
   const url = `https://wiki.warthunder.com/${formattedName}`;
@@ -119,61 +119,37 @@ async function getSpecificDetails(vehicleName) {
 async function getVehiclesAndRatingsForEachNation() {
   const detailedArray: any = [];
 
-  nations.forEach(async (nation) => {
+  for (let x = 0; x < nations.length; x++) {
     const vehicles = await getVehicleListForNation(
-      nation.urlName,
-      nation.country
+      nations[x].urlName,
+      nations[x].country
     );
-    vehicles?.forEach(async (vehicle) => {
-      if (
-        vehicle === "MQ-1" ||
-        vehicle === "Orion" ||
-        vehicle === "Wing Loong I"
-      ) {
+
+    const promises: any = vehicles?.map(async (item) => {
+      if (item === "MQ-1" || item === "Orion" || item === "Wing Loong I") {
         return;
       }
 
-      const newItem = await getSpecificDetails(vehicle);
-      detailedArray.push(newItem);
+      const newItem = await getSpecificDetails(item);
+      return newItem;
     });
-  });
 
-  console.log("detailed array is: ");
-  console.log(detailedArray);
-}
+    const results = await Promise.all(promises);
 
-// for single nation function
-async function produceDetailedArray() {
-  const detailedArray: any = [];
-
-  const vehicles = await getVehicleListForNation("Sweden_aircraft", "Sweden");
-
-  // this needs to be resolved as promises otherwise we create empty CSV
-  const promises: any = vehicles?.map(async (vehicle) => {
-    if (
-      vehicle === "MQ-1" ||
-      vehicle === "Orion" ||
-      vehicle === "Wing Loong I"
-    ) {
-      return;
+    let counter = 0;
+    for (let x = 0; x < results.length; x++) {
+      detailedArray.push(results[x]);
+      counter += 1;
+      console.log(counter);
     }
-
-    const newItem = await getSpecificDetails(vehicle);
-    return newItem;
-  });
-
-  const results = await Promise.all(promises);
-
-  results.forEach((item) => {
-    detailedArray.push(item);
-  });
+  }
 
   return detailedArray;
 }
 
 // save to csv
 async function saveToCSV() {
-  const detailedArray: any = await produceDetailedArray();
+  const detailedArray: any = await getVehiclesAndRatingsForEachNation();
   console.log("detaield array is ");
   console.log(detailedArray);
   const csvWriter = createObjectCsvWriter({
