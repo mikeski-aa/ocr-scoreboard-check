@@ -28,14 +28,14 @@ const filterParsedResults = (
 const fixWords = (input: string) => {
   const wordArray = input.split("");
 
-  if (wordArray[0] === "O") {
+  if (wordArray[0] === "O" || wordArray[0] === "35") {
     wordArray.splice(0, 1);
-    wordArray.join(" ");
+    const joined = wordArray.join("");
+    console.log(joined);
   } else {
-    wordArray.join(" ");
+    const joined = wordArray.join("");
+    console.log(joined);
   }
-
-  console.log(wordArray);
 };
 
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
