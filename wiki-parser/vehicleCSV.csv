@@ -114,7 +114,6 @@ Ki-43-II (USA);2.7
 Ki-61-Ib (USA);3.7
 Kingcobra (USA);4.0
 Lanovski's P-47M-1-RE;5.7
-;
 O3U-1;1.3
 OS2U-1;1.0
 OS2U-3;1.0
@@ -160,9 +159,9 @@ P-63C-5;4.0
 PB4Y-2;4.7
 PBJ-1H;3.7
 PBJ-1J;3.7
-"PBM-1 ""Mariner""";2.0
-"PBM-3 ""Mariner""";3.0
-"PBM-5A ""Mariner""";3.7
+PBM-1 Mariner;2.0
+PBM-3 Mariner;3.0
+PBM-5A Mariner;3.7
 PBY-5 Catalina;1.3
 PBY-5A Catalina;1.7
 PV-2D;3.7
@@ -466,7 +465,7 @@ Me 410 B-2/U4;3.0
 Me 410 B-6/R3;5.0
 MiG-15bis (Germany);8.3
 MiG-19S (Germany);9.3
-"MiG-21 ""Lazur-M"" (Germany)";11.0
+MiG-21 Lazur-M (Germany);11.0
 MiG-21 SPS-K (Germany);9.7
 MiG-21bis-SAU (Germany);11.0
 MiG-21MF (Germany);10.7
@@ -535,7 +534,7 @@ IL-2 M-82;2.7
 IL-2-37;2.7
 IL-28;8.0
 IL-28Sh;8.0
-"IL-2M ""Avenger""";3.3
+IL-2M Avenger;3.3
 IL-2M (1943);3.3
 IL-2M type 3;3.3
 IL-4;2.7
