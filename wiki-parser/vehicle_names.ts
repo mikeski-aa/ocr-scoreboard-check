@@ -158,6 +158,8 @@ async function saveToCSV() {
       { id: "name", title: "NAME" },
       { id: "rating", title: "RATING" },
     ],
+    headerIdDelimiter: ";",
+    fieldDelimiter: ";",
   });
 
   csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
