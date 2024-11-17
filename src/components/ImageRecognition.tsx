@@ -1,14 +1,12 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Tesseract from "tesseract.js";
 import { resourceLimits } from "worker_threads";
-import { fixWords } from "../utils/nameFilters";
+import { eliminateO, eliminateSigns } from "../utils/nameFilters";
+import LoadingModal from "./LoadingModal";
 
 // filter the results
 // might need to move this elsewhere
-const filterParsedResults = (
-  input: Tesseract.RecognizeResult,
-  setState: Dispatch<SetStateAction<string[]>>
-) => {
+const filterParsedResults = (input: Tesseract.RecognizeResult) => {
   let arrayText = [];
   for (let x = 0; x < input.data.lines.length; x++) {
     // all player data starts with 0 0 0 0 0 indicating the player scores at the start of the game
@@ -21,31 +19,35 @@ const filterParsedResults = (
     }
   }
   console.log(arrayText);
-  setState(arrayText);
 
   return arrayText;
 };
 
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [recognizedText, setRecognizedText] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const recognizeText = async () => {
       if (selectedImage) {
+        setLoading(true);
         const result = await Tesseract.recognize(selectedImage);
-
+        setLoading(false);
         console.log(result.data);
 
-        const wordArray = filterParsedResults(result, setRecognizedText);
+        const wordArray = filterParsedResults(result);
 
         wordArray.forEach((word) => {
-          fixWords(word);
+          eliminateSigns(word);
         });
+
+        setRecognizedText(wordArray);
       }
     };
     recognizeText();
   }, [selectedImage]);
   return (
     <div>
+      <LoadingModal state={loading} />
       <h2>Recognized Text:</h2>
       <ul>
         {recognizedText.map((item: string, index: number) => (
