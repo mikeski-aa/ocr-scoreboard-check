@@ -19,4 +19,32 @@ const fixWords = (input: string) => {
   }
 };
 
-export { fixWords };
+const eliminateSigns = (input: string) => {
+  const regex: RegExp = /^[^a-zA-Z]$/;
+  const splitWord = input.split("");
+
+  if (regex.test(splitWord[0]) || regex.test(splitWord[1])) {
+    splitWord.splice(0, 2);
+    const rejoined = splitWord.join("");
+    return rejoined;
+  } else {
+    return input;
+  }
+};
+
+// elminates O that OCR can accidentally put when mis-recognising
+const eliminateO = (input: string) => {
+  const splitWord = input.split("");
+  const possibleWords = ["Osprey Mk IV", "O3U-1", "OS2U-1", "OS2U-2"];
+
+  if (splitWord[0] === "O" && possibleWords.includes(input)) {
+    return input;
+  } else {
+    splitWord.splice(0, 1);
+    const rejoined = splitWord.join("");
+    console.log(rejoined);
+    return rejoined;
+  }
+};
+
+export { fixWords, eliminateO, eliminateSigns };
