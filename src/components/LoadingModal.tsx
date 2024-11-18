@@ -1,4 +1,4 @@
-import spinner from "../assets/gears-spinner.svg";
+import spinner from "../assets/gear-spinner (1).svg";
 import "../styles/modalstyle.css";
 
 function LoadingModal({ state }: { state: boolean }) {

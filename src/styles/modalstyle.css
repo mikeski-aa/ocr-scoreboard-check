@@ -5,6 +5,7 @@
   top: 0;
   left: 0;
   z-index: 10;
+  backdrop-filter: blur(10px);
 }
 
 .modalContainer {
@@ -27,4 +28,10 @@
 .loadingImg {
   width: 70px;
   height: 70px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

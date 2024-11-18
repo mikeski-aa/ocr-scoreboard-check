@@ -18,12 +18,20 @@ function ImageUploader({
   };
 
   return (
-    <div>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => handleImageUpload(e)}
-      />
+    <div className="imageUploader">
+      <div className="buttonWrapper">
+        <label htmlFor="uploadBtn" className="UploadFakeBtn">
+          Upload
+        </label>
+        <input
+          id="uploadBtn"
+          className="hiddenInput"
+          type="file"
+          accept="image/*"
+          onChange={(e) => handleImageUpload(e)}
+        />
+      </div>
+
       {selectedImage && (
         <img src={selectedImage} alt="selected" className="previewImg" />
       )}

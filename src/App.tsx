@@ -7,10 +7,10 @@ function App() {
   const [selectedImage, setSelected] = useState<string>("");
 
   return (
-    <>
+    <div className="mainContent">
       <ImageUploader otherState={setSelected} />
       <TextRecognition selectedImage={selectedImage} />
-    </>
+    </div>
   );
 }
 

@@ -29,12 +29,15 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [maxRating, setMaxRating] = useState<number>();
   const [minRating, setMinRating] = useState<number>();
+  const [display, setDisplay] = useState<boolean>(false);
+
   useEffect(() => {
     const recognizeText = async () => {
       if (selectedImage) {
         setLoading(true);
         const result = await Tesseract.recognize(selectedImage);
         setLoading(false);
+        setDisplay(true);
         console.log(result.data);
 
         const wordArray = filterParsedResults(result);
@@ -60,16 +63,20 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   return (
     <div>
       <LoadingModal state={loading} />
-      <h2>Recognized Text:</h2>
-      <h4>Max rating: {maxRating}</h4>
-      <h4>Min rating: {minRating}</h4>
-      <ul>
-        {recognizedText.map((item: any, index: number) => (
-          <li key={index}>
-            Name: {item.NAME} Rating: {item.RATING}
-          </li>
-        ))}
-      </ul>
+      {display ? (
+        <>
+          <h4>
+            Rating range: {maxRating} - {minRating}
+          </h4>
+          <ul>
+            {recognizedText.map((item: any, index: number) => (
+              <li key={index}>
+                {item.NAME} {item.RATING}
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
     </div>
   );
 };
