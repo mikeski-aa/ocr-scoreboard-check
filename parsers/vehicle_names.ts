@@ -1,7 +1,5 @@
 import * as cheerio from "cheerio";
-import * as fs from "fs";
 import { createObjectCsvWriter } from "csv-writer";
-import { CsvWriter } from "csv-writer/src/lib/csv-writer";
 
 const nations = [
   {
@@ -164,8 +162,6 @@ async function saveToCSV() {
 
   csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
 }
-
-saveToCSV();
 
 // getVehiclesAndRatingsForEachNation();
 
