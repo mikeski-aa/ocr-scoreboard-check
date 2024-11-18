@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Tesseract from "tesseract.js";
 import { resourceLimits } from "worker_threads";
-import { eliminateO, eliminateSigns } from "../utils/nameFilters";
+import { eliminateO, eliminateSigns, stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
+import CSVcheck from "../utils/CSVcheck";
 
 // filter the results
 // might need to move this elsewhere
@@ -36,11 +37,16 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
         const wordArray = filterParsedResults(result);
 
-        wordArray.forEach((word) => {
-          eliminateSigns(word);
-        });
+        const filteredArray: string[] = [];
 
-        setRecognizedText(wordArray);
+        // filter the words
+        for (let x = 0; x < wordArray.length; x++) {
+          filteredArray.push(stackedElims(wordArray[x]));
+        }
+
+        setRecognizedText(filteredArray);
+
+        const loadedCSV = await CSVcheck(["I"]);
       }
     };
     recognizeText();

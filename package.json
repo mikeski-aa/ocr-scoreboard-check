@@ -18,7 +18,8 @@
     "react-dom": "^18.3.1",
     "react-papaparse": "^4.4.0",
     "tesseract.js": "^5.1.1",
-    "tslib": "^2.8.1"
+    "tslib": "^2.8.1",
+    "vite-plugin-static-copy": "^2.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
 import spinner from "../assets/gears-spinner.svg";
+import "../styles/modalstyle.css";
 
 function LoadingModal({ state }: { state: boolean }) {
   // dont render modal
