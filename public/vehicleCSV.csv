@@ -470,9 +470,9 @@ MiG-21 SPS-K (Germany);9.7
 MiG-21bis-SAU (Germany);11.0
 MiG-21MF (Germany);10.7
 MiG-23BN (Germany);9.7
-MiG-23MF (Germany);11.0
-MiG-23MLA (Germany);11.7
-MiG-29 (Germany);12.7
+MiG-23MF;11.0
+MiG-23MLA;11.7
+MiG-29;12.7
 MiG-29G (Germany);13.0
 P-47D (Germany);4.3
 P-47D-16-RE (Germany);3.7
@@ -931,9 +931,9 @@ Marcolin's C.R.42 CN;1.3
 MiG-15bis (Italy);8.3
 MiG-17PF (Italy);8.7
 MiG-21bis-SAU (Italy);11.0
-MiG-21MF (Italy);10.7
+MiG-21MF;10.7
 MiG-23MF (Italy);11.0
-MiG-29 (Italy);12.7
+MiG-29;12.7
 P-47D-30 (Italy);5.0
 P.108A serie 2;2.3
 P.108B serie 1;3.3

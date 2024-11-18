@@ -3,7 +3,7 @@ import Tesseract from "tesseract.js";
 import { resourceLimits } from "worker_threads";
 import { eliminateO, eliminateSigns, stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
-import CSVcheck from "../utils/CSVcheck";
+import CSVcheck, { IVehicleData } from "../utils/CSVcheck";
 
 // filter the results
 // might need to move this elsewhere
@@ -25,8 +25,10 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
 };
 
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
-  const [recognizedText, setRecognizedText] = useState<any>([]);
+  const [recognizedText, setRecognizedText] = useState<any>([,]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [maxRating, setMaxRating] = useState<number>();
+  const [minRating, setMinRating] = useState<number>();
   useEffect(() => {
     const recognizeText = async () => {
       if (selectedImage) {
@@ -44,9 +46,13 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           filteredArray.push(stackedElims(wordArray[x]));
         }
 
-        setRecognizedText(filteredArray);
+        const checkedWithCSV = await CSVcheck(filteredArray);
 
-        const loadedCSV = await CSVcheck(filteredArray);
+        setRecognizedText(checkedWithCSV.wholeArray);
+        setMaxRating(checkedWithCSV.maxrating);
+        setMinRating(checkedWithCSV.minrating);
+        console.log("CSV CHECKED");
+        console.log(checkedWithCSV);
       }
     };
     recognizeText();
@@ -55,9 +61,13 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     <div>
       <LoadingModal state={loading} />
       <h2>Recognized Text:</h2>
+      <h4>Max rating: {maxRating}</h4>
+      <h4>Min rating: {minRating}</h4>
       <ul>
-        {recognizedText.map((item: string, index: number) => (
-          <li key={index}>{item}</li>
+        {recognizedText.map((item: any, index: number) => (
+          <li key={index}>
+            Name: {item.NAME} Rating: {item.RATING}
+          </li>
         ))}
       </ul>
     </div>
