@@ -46,7 +46,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
         setRecognizedText(filteredArray);
 
-        const loadedCSV = await CSVcheck(["I"]);
+        const loadedCSV = await CSVcheck(filteredArray);
       }
     };
     recognizeText();
