@@ -30,6 +30,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [minRating, setMinRating] = useState<number>();
   const [display, setDisplay] = useState<boolean>(false);
   const [value, setValue] = useState<number>();
+  const [numberDetected, setNumberDetected] = useState<number>(0);
+  const [actualParsed, setActualParsed] = useState<number>(0);
 
   useEffect(() => {
     const recognizeText = async () => {
@@ -49,9 +51,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           filteredArray.push(stackedElims(wordArray[x]));
         }
 
+        setNumberDetected(filteredArray.length);
         const checkedWithCSV = await CSVcheck(filteredArray);
 
         setRecognizedText(checkedWithCSV.wholeArray);
+        setActualParsed(checkedWithCSV.wholeArray.length);
         setMaxRating(checkedWithCSV.maxrating);
         setMinRating(checkedWithCSV.minrating);
         console.log("CSV CHECKED");
@@ -70,21 +74,30 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
       <LoadingModal state={loading} />
       {display ? (
         <>
-          <h4>
-            Rating range: {maxRating} - {minRating}
-          </h4>
           <div className="sideBySide">
             <div className="detectedPlanes">
               <h4>Detected planes:</h4>
-              <ul>
-                {recognizedText.map((item: any, index: number) => (
-                  <li key={index}>
-                    {item.NAME} {item.RATING}
-                  </li>
-                ))}
-              </ul>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Rating</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recognizedText.map((item: any, index: number) => (
+                    <tr key={index}>
+                      <td>{item.NAME}</td>
+                      <td>{item.RATING}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
             <div className="inputDiv">
+              <h4>
+                Rating range: {maxRating} - {minRating}
+              </h4>
               <label>Input your BR</label>
               <input
                 type="number"
@@ -92,6 +105,15 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
                 onChange={(e) => handleInputChange(e)}
                 value={value}
               ></input>
+              <div className="parsedCompare">
+                Items recognised: {numberDetected}
+              </div>
+              <div>Items parsed: {actualParsed}</div>
+              <div className="parsePercent">
+                {(Math.round((actualParsed / numberDetected) * 100) / 100) *
+                  100}
+                % of items succesfully parsed
+              </div>
             </div>
           </div>
         </>

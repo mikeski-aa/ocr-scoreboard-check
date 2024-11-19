@@ -68,3 +68,16 @@ h4 {
   padding: 0;
   text-align: center;
 }
+
+table {
+  margin-top: 25px;
+  border-collapse: collapse;
+  border: 2px solid #b10dff;
+  text-align: center;
+}
+
+th,
+td {
+  border: 2px solid #b10dff;
+  padding: 3px;
+}

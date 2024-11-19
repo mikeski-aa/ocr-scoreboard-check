@@ -63,9 +63,21 @@ const convertPossibleWrongName = (input: string) => {
   return input;
 };
 
+const convertPossibleBracketError = (input: string) => {
+  const possibleWords: string[] = ["B-25)-1"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "B-25J-1";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return convertPossibleWrongName(
-    eliminateSigns(eliminateO(eliminateP(input)))
+  return convertPossibleBracketError(
+    convertPossibleWrongName(eliminateSigns(eliminateO(eliminateP(input))))
   );
 }
 
