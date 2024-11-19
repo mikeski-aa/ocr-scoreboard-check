@@ -1,9 +1,8 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 import Tesseract from "tesseract.js";
-import { resourceLimits } from "worker_threads";
-import { eliminateO, eliminateSigns, stackedElims } from "../utils/nameFilters";
+import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
-import CSVcheck, { IVehicleData } from "../utils/CSVcheck";
+import CSVcheck from "../utils/CSVcheck";
 
 // filter the results
 // might need to move this elsewhere
@@ -30,6 +29,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [maxRating, setMaxRating] = useState<number>();
   const [minRating, setMinRating] = useState<number>();
   const [display, setDisplay] = useState<boolean>(false);
+  const [value, setValue] = useState<number>();
 
   useEffect(() => {
     const recognizeText = async () => {
@@ -60,6 +60,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     };
     recognizeText();
   }, [selectedImage]);
+
+  const handleInputChange = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    setValue(+target.value);
+  };
   return (
     <div>
       <LoadingModal state={loading} />
@@ -68,6 +73,15 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           <h4>
             Rating range: {maxRating} - {minRating}
           </h4>
+          <div className="inputDiv">
+            <label>Input your BR</label>
+            <input
+              type="number"
+              className="brInput"
+              onChange={(e) => handleInputChange(e)}
+              value={value}
+            ></input>
+          </div>
           <ul>
             {recognizedText.map((item: any, index: number) => (
               <li key={index}>
