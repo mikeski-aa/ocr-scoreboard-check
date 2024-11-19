@@ -192,6 +192,7 @@ async function parseSavedFile() {
 // 3. need to check duplicates vs original list and fix it there too.
 
 async function filterSavedFile(vehicles: any) {
+  let currentVehicles = vehicles;
   const regex =
     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|Great Britain|Israel|Italy)\)/g;
 
@@ -201,18 +202,24 @@ async function filterSavedFile(vehicles: any) {
 
   console.log(filteredBracket);
 
-  let bannedArray: any = [];
-  // check duplicates in bracket results
+  let toDelete = [];
+  let matchCounter = 0;
+  console.log("hello");
+
+  // this for loop checks wtih original for matches and suggests what items are duplicates that can be replaced
   for (let x = 0; x < filteredBracket.length; x++) {
-    let splitName = filteredBracket[x].NAME.split(" (");
-    console.log(splitName[0]);
-    let result = checkBannedWord(splitName[0], bannedArray);
-    bannedArray = result.array;
+    const splitName = filteredBracket[x].NAME.split(" (");
+
+    const testF = currentVehicles.filter(
+      (item: any) => item.NAME === splitName[0]
+    );
+    console.log(testF);
+    if (testF.length > 0) {
+      matchCounter += 1;
+    }
   }
 
-  console.log(filteredBracket.length);
-  console.log(bannedArray.length);
-  console.log(bannedArray);
+  console.log(matchCounter);
 
   // now in filteredBracket we need to check for duplicates and print them.
   // const tempArray = [];
@@ -236,28 +243,8 @@ async function filterSavedFile(vehicles: any) {
   // console.log(tempArray[0].items);
 }
 
-function checkBannedWord(word: string, array: string[]) {
-  console.log(word);
-  console.log(array[0]);
-  if (array.includes(word)) {
-    console.log("word already present");
-    const returnObject = {
-      duplicate: true,
-      array: array,
-    };
-    return returnObject;
-  } else {
-    array.push(word);
-    console.log("new banned word added");
-    const returnObject = {
-      duplicate: false,
-      array: array,
-    };
-    return returnObject;
-  }
-}
-
 parseSavedFile();
+console.log("ite ms ".includes("ite"));
 
 // const testArr = ["test", "xd", "best"];
 // checkBannedWord("test", testArr);
