@@ -6,6 +6,18 @@ import TextRecognition from "./components/ImageRecognition";
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
 
+  // TO DO:
+  // CSV re-parser.
+  // CSV items need to be reparsed to remove duplicate
+  // for example F-84G-21-RE exists in Italy, China and USA. All 3 are the same plane with same rating.
+  // These needs to be consolidated into one plane i.e F-84G-21-RE.
+  // Check needs to include that the BR matches as some countries have higher / lower BR aircraft.
+
+  // Parsing image change.
+  // Not all plane items will be on line index 6 as it is current coded.
+  // Longer plane names - i.e those with spaces will go over that line limit and will not be identified resulting
+  // in lower overall place identified %.
+
   return (
     <div className="mainContent">
       <h4>Tell me the BR</h4>
