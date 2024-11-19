@@ -212,6 +212,7 @@ async function filterSavedFile(vehicles: any) {
 
   console.log(filteredBracket.length);
   console.log(bannedArray.length);
+  console.log(bannedArray);
 
   // now in filteredBracket we need to check for duplicates and print them.
   // const tempArray = [];
