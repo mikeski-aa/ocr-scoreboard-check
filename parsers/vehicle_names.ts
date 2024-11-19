@@ -190,25 +190,30 @@ async function filterSavedFile(vehicles: any) {
   const regex =
     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|Great Britain|Israel|Italy)\)/g;
 
-  const filtered = vehicles.filter((item: any) => item.NAME.match(regex));
-  console.log(filtered);
+  const filteredBracket = vehicles.filter((item: any) =>
+    item.NAME.match(regex)
+  );
 
-  // now in filtered we need to check for duplicates and print them.
+  // now in filteredBracket we need to check for duplicates and print them.
   const tempArray = [];
-  for (let x = 0; x < filtered.length; x++) {
-    const splitName = filtered[x].NAME.split("(");
-    const secondFilter = filtered.filter(
+  for (let x = 0; x < filteredBracket.length; x++) {
+    const splitName = filteredBracket[x].NAME.split("(");
+    const secondFilter = filteredBracket.filter(
       (item: any) =>
         item.NAME.split("(")[0] === splitName[0] &&
-        item.RATING === filtered[x].RATING &&
-        item.NAME != filtered[x].NAME
+        item.RATING === filteredBracket[x].RATING &&
+        item.NAME != filteredBracket[x].NAME
     );
     if (secondFilter.length != 0) {
-      tempArray.push(secondFilter);
+      const pushedObj = {
+        name: splitName[0],
+        items: [secondFilter],
+      };
+      tempArray.push(pushedObj);
     }
   }
 
-  console.log(tempArray);
+  console.log(tempArray[0].items);
 }
 
 parseSavedFile();
