@@ -1,4 +1,5 @@
 import * as cheerio from "cheerio";
+import { createObjectCsvWriter } from "csv-writer";
 import fs from "fs";
 import path from "node:path";
 import Papa from "papaparse";
