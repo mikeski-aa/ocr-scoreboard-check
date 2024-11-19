@@ -1,5 +1,11 @@
 import * as cheerio from "cheerio";
-import { createObjectCsvWriter } from "csv-writer";
+import fs from "fs";
+import path from "node:path";
+import Papa from "papaparse";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const nations = [
   {
@@ -162,6 +168,24 @@ async function saveToCSV() {
 
   csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
 }
+
+async function parseSavedFile() {
+  const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
+  const csvString = fs.readFileSync(filePath, "utf8");
+
+  Papa.parse(csvString, {
+    header: true,
+    delimiter: ";",
+    complete: (results) => {
+      console.log("parsed");
+      console.log(results.data);
+    },
+  });
+}
+
+async function filterSavedFile(file:)
+
+
 
 // getVehiclesAndRatingsForEachNation();
 

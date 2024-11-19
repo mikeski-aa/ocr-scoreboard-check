@@ -14,6 +14,7 @@
     "@types/node": "^22.9.0",
     "cheerio": "^1.0.0",
     "csv-writer": "^1.6.0",
+    "papaparse": "^5.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-papaparse": "^4.4.0",
