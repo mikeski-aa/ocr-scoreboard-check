@@ -73,22 +73,27 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           <h4>
             Rating range: {maxRating} - {minRating}
           </h4>
-          <div className="inputDiv">
-            <label>Input your BR</label>
-            <input
-              type="number"
-              className="brInput"
-              onChange={(e) => handleInputChange(e)}
-              value={value}
-            ></input>
+          <div className="sideBySide">
+            <div className="detectedPlanes">
+              <h4>Detected planes:</h4>
+              <ul>
+                {recognizedText.map((item: any, index: number) => (
+                  <li key={index}>
+                    {item.NAME} {item.RATING}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="inputDiv">
+              <label>Input your BR</label>
+              <input
+                type="number"
+                className="brInput"
+                onChange={(e) => handleInputChange(e)}
+                value={value}
+              ></input>
+            </div>
           </div>
-          <ul>
-            {recognizedText.map((item: any, index: number) => (
-              <li key={index}>
-                {item.NAME} {item.RATING}
-              </li>
-            ))}
-          </ul>
         </>
       ) : null}
     </div>
