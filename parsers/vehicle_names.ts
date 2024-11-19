@@ -186,6 +186,11 @@ async function parseSavedFile() {
   });
 }
 
+// let's think how we can break this down
+// 1. we need to find everything with nations in brackets
+// 2. we should check if there are any duplicates in the bracket results i.e A6M2 (USA) and A6M2 (CHINA)
+// 3. need to check duplicates vs original list and fix it there too.
+
 async function filterSavedFile(vehicles: any) {
   const regex =
     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|Great Britain|Israel|Italy)\)/g;
@@ -194,29 +199,67 @@ async function filterSavedFile(vehicles: any) {
     item.NAME.match(regex)
   );
 
-  // now in filteredBracket we need to check for duplicates and print them.
-  const tempArray = [];
+  console.log(filteredBracket);
+
+  let bannedArray: any = [];
+  // check duplicates in bracket results
   for (let x = 0; x < filteredBracket.length; x++) {
-    const splitName = filteredBracket[x].NAME.split("(");
-    const secondFilter = filteredBracket.filter(
-      (item: any) =>
-        item.NAME.split("(")[0] === splitName[0] &&
-        item.RATING === filteredBracket[x].RATING &&
-        item.NAME != filteredBracket[x].NAME
-    );
-    if (secondFilter.length != 0) {
-      const pushedObj = {
-        name: splitName[0],
-        items: [secondFilter],
-      };
-      tempArray.push(pushedObj);
-    }
+    let splitName = filteredBracket[x].NAME.split(" (");
+    console.log(splitName[0]);
+    let result = checkBannedWord(splitName[0], bannedArray);
+    bannedArray = result.array;
   }
 
-  console.log(tempArray[0].items);
+  console.log(filteredBracket.length);
+  console.log(bannedArray.length);
+
+  // now in filteredBracket we need to check for duplicates and print them.
+  // const tempArray = [];
+  // for (let x = 0; x < filteredBracket.length; x++) {
+  //   const splitName = filteredBracket[x].NAME.split("(");
+  //   const secondFilter = filteredBracket.filter(
+  //     (item: any) =>
+  //       item.NAME.split("(")[0] === splitName[0] &&
+  //       item.RATING === filteredBracket[x].RATING &&
+  //       item.NAME != filteredBracket[x].NAME
+  //   );
+  //   if (secondFilter.length != 0) {
+  //     const pushedObj = {
+  //       name: splitName[0],
+  //       items: [secondFilter],
+  //     };
+  //     tempArray.push(pushedObj);
+  //   }
+  // }
+
+  // console.log(tempArray[0].items);
+}
+
+function checkBannedWord(word: string, array: string[]) {
+  console.log(word);
+  console.log(array[0]);
+  if (array.includes(word)) {
+    console.log("word already present");
+    const returnObject = {
+      duplicate: true,
+      array: array,
+    };
+    return returnObject;
+  } else {
+    array.push(word);
+    console.log("new banned word added");
+    const returnObject = {
+      duplicate: false,
+      array: array,
+    };
+    return returnObject;
+  }
 }
 
 parseSavedFile();
+
+// const testArr = ["test", "xd", "best"];
+// checkBannedWord("test", testArr);
 
 // getVehiclesAndRatingsForEachNation();
 
