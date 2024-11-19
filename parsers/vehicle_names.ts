@@ -174,19 +174,44 @@ async function parseSavedFile() {
   const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
   const csvString = fs.readFileSync(filePath, "utf8");
 
-  Papa.parse(csvString, {
+  await Papa.parse(csvString, {
     header: true,
     delimiter: ";",
     complete: (results) => {
       console.log("parsed");
       console.log(results.data);
+      filterSavedFile(results.data);
+      return results.data;
     },
   });
 }
 
-async function filterSavedFile(file:)
+async function filterSavedFile(vehicles: any) {
+  const regex =
+    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|Great Britain|Israel|Italy)\)/g;
 
+  const filtered = vehicles.filter((item: any) => item.NAME.match(regex));
+  console.log(filtered);
 
+  // now in filtered we need to check for duplicates and print them.
+  const tempArray = [];
+  for (let x = 0; x < filtered.length; x++) {
+    const splitName = filtered[x].NAME.split("(");
+    const secondFilter = filtered.filter(
+      (item: any) =>
+        item.NAME.split("(")[0] === splitName[0] &&
+        item.RATING === filtered[x].RATING &&
+        item.NAME != filtered[x].NAME
+    );
+    if (secondFilter.length != 0) {
+      tempArray.push(secondFilter);
+    }
+  }
+
+  console.log(tempArray);
+}
+
+parseSavedFile();
 
 // getVehiclesAndRatingsForEachNation();
 
