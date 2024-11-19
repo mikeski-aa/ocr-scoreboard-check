@@ -75,9 +75,40 @@ const convertPossibleBracketError = (input: string) => {
   return input;
 };
 
+const convertPossibleSwiss = (input: string) => {
+  const possibleWords: string[] = ["QHunter"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Hunter F.58 (Germany)";
+    }
+  }
+
+  return input;
+};
+
+const eliminateCross = (input: string) => {
+  const splitWord = input.split("");
+
+  if (splitWord[0] != "F") {
+    return input;
+  } else if (splitWord[1] === "E") {
+    splitWord.splice(0, 2);
+    const rejoined = splitWord.join("");
+    console.log(rejoined);
+    return rejoined;
+  } else {
+    return input;
+  }
+};
+
 function stackedElims(input: string) {
-  return convertPossibleBracketError(
-    convertPossibleWrongName(eliminateSigns(eliminateO(eliminateP(input))))
+  return eliminateCross(
+    convertPossibleSwiss(
+      convertPossibleBracketError(
+        convertPossibleWrongName(eliminateSigns(eliminateO(eliminateP(input))))
+      )
+    )
   );
 }
 
