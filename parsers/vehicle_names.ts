@@ -183,8 +183,8 @@ async function parseSavedFile() {
     header: true,
     delimiter: ";",
     complete: (results) => {
-      console.log("parsed");
-      console.log(results.data);
+      console.log("parsed successfully");
+      // console.log(results.data);
       // filteredSavedFile only works on .name and .rating,
       //needs to be changed to .NAME and .RATING to be used with
       // parsed data
@@ -268,15 +268,26 @@ async function checkDuplicateWithDifferentNations(vehicles: any) {
     const splitName = findBracket[x].NAME.split(" (");
     const duplicates = currentVehicles.filter(
       (item: any) =>
-        item.NAME.split(" (")[0] === splitName[0] &&
-        item.RATING === findBracket[x].RATING
+        !(
+          item.NAME.split(" (")[0] === splitName[0] &&
+          item.RATING === findBracket[x].RATING
+        )
     );
+    const replacementItem = {
+      NAME: splitName[0],
+      RATING: findBracket[x].RATING,
+    };
 
-    duplicates.push(splitName[0]);
-    console.log(duplicates);
+    duplicates.push(replacementItem);
+    currentVehicles = duplicates;
   }
 
-  console.log(findBracket);
+  // purely for logging to see diff
+  console.log("current vehicles & original length compare");
+  console.log(currentVehicles.length);
+  console.log(vehicles.length);
+
+  return currentVehicles;
 }
 
 parseSavedFile();
