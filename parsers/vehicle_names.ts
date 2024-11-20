@@ -192,9 +192,9 @@ async function parseSavedFile() {
 // 3. need to check duplicates vs original list and fix it there too.
 
 async function filterSavedFile(vehicles: any) {
-  let currentVehicles = vehicles;
+  let currentVehicles = [...vehicles];
   const regex =
-    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|Great Britain|Israel|Italy)\)/g;
+    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
 
   const filteredBracket = vehicles.filter((item: any) =>
     item.NAME.match(regex)
@@ -202,49 +202,47 @@ async function filterSavedFile(vehicles: any) {
 
   console.log(filteredBracket);
 
-  let toDelete = [];
-  let matchCounter = 0;
-  console.log("hello");
+  // what I want to do next is split the ().
+  // then let's go through original array and find every item that has a bracket, but only exists once.
+  // we can then edit and remove the pointless bracket.
 
-  // this for loop checks wtih original for matches and suggests what items are duplicates that can be replaced
   for (let x = 0; x < filteredBracket.length; x++) {
     const splitName = filteredBracket[x].NAME.split(" (");
 
-    const testF = currentVehicles.filter(
-      (item: any) => item.NAME === splitName[0]
+    const singleMatch: any = currentVehicles.filter(
+      (item: any) =>
+        item.NAME.includes(splitName[0]) &&
+        item.RATING === filteredBracket[x].RATING
     );
-    console.log(testF);
-    if (testF.length > 0) {
-      matchCounter += 1;
+
+    console.log("single match format");
+    console.log(singleMatch);
+
+    // if filteres length is 1, it means that no other instance of this exists and the brackets are redundant.
+    if (singleMatch.length === 1) {
+      // console.log(singleMatch);
+      currentVehicles = currentVehicles.filter(
+        (item) => item.NAME != singleMatch[0].NAME
+      );
+      currentVehicles.push({
+        NAME: splitName[0],
+        RATING: filteredBracket[x].RATING,
+      });
     }
   }
 
-  console.log(matchCounter);
+  // purely for logging purposes
 
-  // now in filteredBracket we need to check for duplicates and print them.
-  // const tempArray = [];
-  // for (let x = 0; x < filteredBracket.length; x++) {
-  //   const splitName = filteredBracket[x].NAME.split("(");
-  //   const secondFilter = filteredBracket.filter(
-  //     (item: any) =>
-  //       item.NAME.split("(")[0] === splitName[0] &&
-  //       item.RATING === filteredBracket[x].RATING &&
-  //       item.NAME != filteredBracket[x].NAME
-  //   );
-  //   if (secondFilter.length != 0) {
-  //     const pushedObj = {
-  //       name: splitName[0],
-  //       items: [secondFilter],
-  //     };
-  //     tempArray.push(pushedObj);
-  //   }
-  // }
+  for (let y = 0; y < currentVehicles.length; y++) {
+    console.log(currentVehicles[y]);
+  }
 
-  // console.log(tempArray[0].items);
+  console.log("current vehicles & original length compare");
+  console.log(currentVehicles.length);
+  console.log(vehicles.length);
 }
 
 parseSavedFile();
-console.log("ite ms ".includes("ite"));
 
 // const testArr = ["test", "xd", "best"];
 // checkBannedWord("test", testArr);
@@ -292,3 +290,40 @@ console.log("ite ms ".includes("ite"));
 //   country: "Israel",
 // },
 // ];
+
+/////////////////////////////////////////////////
+// this for loop checks wtih original for matches and suggests what items are duplicates that can be replaced
+// for (let x = 0; x < filteredBracket.length; x++) {
+//   const splitName = filteredBracket[x].NAME.split(" (");
+
+//   const testF = currentVehicles.filter(
+//     (item: any) => item.NAME === splitName[0]
+//   );
+//   console.log(testF);
+//   if (testF.length > 0) {
+//     matchCounter += 1;
+//   }
+// }
+
+// console.log(matchCounter);
+
+// now in filteredBracket we need to check for duplicates and print them.
+// const tempArray = [];
+// for (let x = 0; x < filteredBracket.length; x++) {
+//   const splitName = filteredBracket[x].NAME.split("(");
+//   const secondFilter = filteredBracket.filter(
+//     (item: any) =>
+//       item.NAME.split("(")[0] === splitName[0] &&
+//       item.RATING === filteredBracket[x].RATING &&
+//       item.NAME != filteredBracket[x].NAME
+//   );
+//   if (secondFilter.length != 0) {
+//     const pushedObj = {
+//       name: splitName[0],
+//       items: [secondFilter],
+//     };
+//     tempArray.push(pushedObj);
+//   }
+// }
+
+// console.log(tempArray[0].items);
