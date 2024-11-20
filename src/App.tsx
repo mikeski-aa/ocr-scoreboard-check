@@ -18,6 +18,8 @@ function App() {
   // Longer plane names - i.e those with spaces will go over that line limit and will not be identified resulting
   // in lower overall place identified %.
 
+  // there are 5 results that are parsed with "" markers. These are easy to manually fix but I should add a filter to remove them
+
   return (
     <div className="mainContent">
       <h4>Tell me the BR</h4>

@@ -132,7 +132,11 @@ async function getVehiclesAndRatingsForEachNation() {
 
     const promises: any = vehicles?.map(async (item) => {
       if (item === "MQ-1" || item === "Orion" || item === "Wing Loong I") {
-        return;
+        let newItem = {
+          name: item,
+          rating: "10.7",
+        };
+        return newItem;
       }
 
       const newItem = await getSpecificDetails(item);
@@ -154,11 +158,12 @@ async function getVehiclesAndRatingsForEachNation() {
 
 // save to csv
 async function saveToCSV() {
-  const detailedArray: any = await getVehiclesAndRatingsForEachNation();
+  let detailedArray: any = await getVehiclesAndRatingsForEachNation();
   console.log("detaield array is ");
   console.log(detailedArray);
+  detailedArray = await filterSavedFile(detailedArray);
   const csvWriter = createObjectCsvWriter({
-    path: "./wiki-parser/vehicleCSV.csv",
+    path: "./public/vehicleCSVnew.csv",
     header: [
       { id: "name", title: "NAME" },
       { id: "rating", title: "RATING" },
@@ -196,8 +201,8 @@ async function filterSavedFile(vehicles: any) {
   const regex =
     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
 
-  const filteredBracket = vehicles.filter((item: any) =>
-    item.NAME.match(regex)
+  const filteredBracket = currentVehicles.filter((item: any) =>
+    item.name.match(regex)
   );
 
   console.log(filteredBracket);
@@ -207,12 +212,12 @@ async function filterSavedFile(vehicles: any) {
   // we can then edit and remove the pointless bracket.
 
   for (let x = 0; x < filteredBracket.length; x++) {
-    const splitName = filteredBracket[x].NAME.split(" (");
+    const splitName = filteredBracket[x].name.split(" (");
 
     const singleMatch: any = currentVehicles.filter(
       (item: any) =>
-        item.NAME.includes(splitName[0]) &&
-        item.RATING === filteredBracket[x].RATING
+        item.name.includes(splitName[0]) &&
+        item.rating === filteredBracket[x].rating
     );
 
     console.log("single match format");
@@ -222,11 +227,11 @@ async function filterSavedFile(vehicles: any) {
     if (singleMatch.length === 1) {
       // console.log(singleMatch);
       currentVehicles = currentVehicles.filter(
-        (item) => item.NAME != singleMatch[0].NAME
+        (item) => item.name != singleMatch[0].name
       );
       currentVehicles.push({
-        NAME: splitName[0],
-        RATING: filteredBracket[x].RATING,
+        name: splitName[0],
+        rating: filteredBracket[x].rating,
       });
     }
   }
@@ -240,56 +245,12 @@ async function filterSavedFile(vehicles: any) {
   console.log("current vehicles & original length compare");
   console.log(currentVehicles.length);
   console.log(vehicles.length);
+
+  return currentVehicles;
 }
 
-parseSavedFile();
-
-// const testArr = ["test", "xd", "best"];
-// checkBannedWord("test", testArr);
-
-// getVehiclesAndRatingsForEachNation();
-
-// [{
-//   urlName: "USA_aircraft",
-//   country: "USA",
-// },
-// {
-//   urlName: "Britain_aircraft",
-//   country: "Britain",
-// },
-// {
-//   urlName: "Germany_aircraft",
-//   country: "Germany",
-// },
-// {
-//   urlName: "USSR_aircraft",
-//   country: "USSR",
-// },
-// {
-//   urlName: "China_aircraft",
-//   country: "China",
-// },
-// {
-//   urlName: "Japan_aircraft",
-//   country: "Japan",
-// },
-// {
-//   urlName: "Italy_aircraft",
-//   country: "Italy",
-// },
-// {
-//   urlName: "France_aircraft",
-//   country: "France",
-// },
-// {
-//   urlName: "Sweden_aircraft",
-//   country: "Sweden",
-// },
-// {
-//   urlName: "Israel_aircraft",
-//   country: "Israel",
-// },
-// ];
+// parseSavedFile();
+saveToCSV();
 
 /////////////////////////////////////////////////
 // this for loop checks wtih original for matches and suggests what items are duplicates that can be replaced
