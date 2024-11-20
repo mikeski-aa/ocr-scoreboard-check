@@ -76,7 +76,7 @@ const convertPossibleBracketError = (input: string) => {
 };
 
 const convertPossibleSwiss = (input: string) => {
-  const possibleWords: string[] = ["QHunter"];
+  const possibleWords: string[] = ["QHunter", "Hunter £58"];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
@@ -114,13 +114,41 @@ const fixMirageError = (input: string) => {
   return input;
 };
 
+const fixYSerror = (input: string) => {
+  const possibleWords: string[] = ["GI91YS"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "G.91 YS";
+    }
+  }
+
+  return input;
+};
+
+const fixSuError = (input: string) => {
+  const possibleWords: string[] = ["Su-2 Mv-5"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Su-2 MV-5";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return fixMirageError(
-    eliminateCross(
-      convertPossibleSwiss(
-        convertPossibleBracketError(
-          convertPossibleWrongName(
-            eliminateSigns(eliminateO(eliminateP(input)))
+  return fixSuError(
+    fixYSerror(
+      fixMirageError(
+        eliminateCross(
+          convertPossibleSwiss(
+            convertPossibleBracketError(
+              convertPossibleWrongName(
+                eliminateSigns(eliminateO(eliminateP(input)))
+              )
+            )
           )
         )
       )
