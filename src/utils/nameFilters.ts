@@ -80,7 +80,7 @@ const convertPossibleSwiss = (input: string) => {
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
-      return "Hunter F.58 (Germany)";
+      return "Hunter F.58";
     }
   }
 
@@ -102,11 +102,27 @@ const eliminateCross = (input: string) => {
   }
 };
 
+const fixMirageError = (input: string) => {
+  const possibleWords: string[] = ["Mirage IlIC"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Mirage IIIC";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return eliminateCross(
-    convertPossibleSwiss(
-      convertPossibleBracketError(
-        convertPossibleWrongName(eliminateSigns(eliminateO(eliminateP(input))))
+  return fixMirageError(
+    eliminateCross(
+      convertPossibleSwiss(
+        convertPossibleBracketError(
+          convertPossibleWrongName(
+            eliminateSigns(eliminateO(eliminateP(input)))
+          )
+        )
       )
     )
   );

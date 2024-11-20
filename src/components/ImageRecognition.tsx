@@ -8,30 +8,70 @@ import CSVcheck from "../utils/CSVcheck";
 // might need to move this elsewhere
 const filterParsedResults = (input: Tesseract.RecognizeResult) => {
   let arrayText = [];
+  let counter = 0;
   for (let x = 0; x < input.data.lines.length; x++) {
     // all player data starts with 0 0 0 0 0 indicating the player scores at the start of the game
     if (input.data.lines[x].text.includes("0 0")) {
+      counter += 1;
       // the word data we are looking for is at index 6 of the words array within results
       if (input.data.lines[x].words[6].text.length != 1) {
         // we want to filter anything that has one word results - these normally indicate player has not loaded and the OCR has not been able to read the value.
-        // let symbols = ["iil", "+", "A!", "Ai)", "yl", "Al"];
-
         arrayText.push(input.data.lines[x].words[6].text);
         console.log(input.data.lines[x].words[7].text);
+
+        if (!testFunc(input.data.lines[x].words[7].text)) {
+          let newWord =
+            input.data.lines[x].words[6].text +
+            " " +
+            input.data.lines[x].words[7].text;
+          arrayText.push(newWord);
+        }
+
+        if (input.data.lines[x].words[7].text === "109") {
+          let newTripleWord =
+            input.data.lines[x].words[6].text +
+            " " +
+            input.data.lines[x].words[7].text +
+            " " +
+            input.data.lines[x].words[8].text;
+          arrayText.push(newTripleWord);
+        }
       }
     }
   }
-  console.log(arrayText);
 
-  return arrayText;
+  return { arrayText: arrayText, itemsCounted: counter };
 };
 
+// this function tests for common OCR misinterpretations
+function testFunc(input: string) {
+  let symbols = [
+    "iil",
+    "+",
+    "A!",
+    "Ai)",
+    "yl",
+    "Al",
+    "+",
+    "Ai)",
+    "4",
+    "®",
+    "[4",
+    "L4",
+  ];
+  const containsSymbol = symbols.some((symbol) => input === symbol);
+
+  console.log(containsSymbol);
+  return containsSymbol;
+}
+
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
-  const [recognizedText, setRecognizedText] = useState<any>([,]);
+  const [recognizedText, setRecognizedText] = useState<any>([
+    { NAME: "placeholder", RATING: "0" },
+  ]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [maxRating, setMaxRating] = useState<number>();
-  const [minRating, setMinRating] = useState<number>();
   const [display, setDisplay] = useState<boolean>(false);
+  const [possibleItems, setPossibleItems] = useState<number>(0);
   const [value, setValue] = useState<number>();
   const [numberDetected, setNumberDetected] = useState<number>(0);
   const [actualParsed, setActualParsed] = useState<number>(0);
@@ -45,8 +85,9 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         setDisplay(true);
         console.log(result.data);
 
-        const wordArray = filterParsedResults(result);
-
+        const filterParse = filterParsedResults(result);
+        const wordArray = filterParse.arrayText;
+        setPossibleItems(filterParse.itemsCounted);
         const filteredArray: string[] = [];
 
         // filter the words
@@ -69,8 +110,6 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         });
         setRecognizedText(sortedArray);
         setActualParsed(checkedWithCSV.wholeArray.length);
-        setMaxRating(checkedWithCSV.maxrating);
-        setMinRating(checkedWithCSV.minrating);
         console.log("CSV CHECKED");
         console.log(checkedWithCSV);
       }
@@ -107,9 +146,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
                 </tbody>
               </table>
             </div>
+
             <div className="inputDiv">
               <h4>
-                Rating range: {maxRating} - {minRating}
+                Rating range: {recognizedText[0].RATING} -{" "}
+                {recognizedText[recognizedText.length - 1].RATING}
               </h4>
               <label>Input your BR</label>
               <input
@@ -119,12 +160,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
                 value={value}
               ></input>
               <div className="parsedCompare">
-                Items detected: {numberDetected}
+                Items detected: {possibleItems}
               </div>
               <div>Items parsed: {actualParsed}</div>
               <div className="parsePercent">
-                {(Math.round((actualParsed / numberDetected) * 100) / 100) *
-                  100}
+                {(Math.round((actualParsed / possibleItems) * 100) / 100) * 100}
                 % of items succesfully parsed
               </div>
             </div>
