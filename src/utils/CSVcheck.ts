@@ -46,8 +46,8 @@ async function CSVcheck(inputArray: string[]) {
 
   console.log(OrderedNumbers.sort());
 
-  const maxRating = OrderedNumbers[OrderedNumbers.length - 1];
-  const minRating = OrderedNumbers[0];
+  const maxRating = OrderedNumbers[0];
+  const minRating = OrderedNumbers[OrderedNumbers.length - 1];
   console.log(newArray);
 
   const ratingResults = {

@@ -14,7 +14,10 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
       // the word data we are looking for is at index 6 of the words array within results
       if (input.data.lines[x].words[6].text.length != 1) {
         // we want to filter anything that has one word results - these normally indicate player has not loaded and the OCR has not been able to read the value.
+        // let symbols = ["iil", "+", "A!", "Ai)", "yl", "Al"];
+
         arrayText.push(input.data.lines[x].words[6].text);
+        console.log(input.data.lines[x].words[7].text);
       }
     }
   }
@@ -53,8 +56,18 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
         setNumberDetected(filteredArray.length);
         const checkedWithCSV = await CSVcheck(filteredArray);
+        let sortedArray = checkedWithCSV.wholeArray.sort((a: any, b: any) => {
+          if (+a.RATING < +b.RATING) {
+            return 1;
+          }
 
-        setRecognizedText(checkedWithCSV.wholeArray);
+          if (+b.RATING < +a.RATING) {
+            return -1;
+          }
+
+          return 0;
+        });
+        setRecognizedText(sortedArray);
         setActualParsed(checkedWithCSV.wholeArray.length);
         setMaxRating(checkedWithCSV.maxrating);
         setMinRating(checkedWithCSV.minrating);
