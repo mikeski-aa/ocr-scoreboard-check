@@ -103,11 +103,33 @@ const eliminateCross = (input: string) => {
 };
 
 const fixMirageError = (input: string) => {
-  const possibleWords: string[] = ["Mirage IlIC"];
+  const possibleWords: string[] = [
+    "Mirage IlIC",
+    "Mirage IIC",
+    "Mirage IlC",
+    "Mirage lIC",
+  ];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
       return "Mirage IIIC";
+    }
+  }
+
+  return input;
+};
+
+const fixNewMirageErrors = (input: string) => {
+  const possibleWords: string[] = [
+    "Mirage IlIE",
+    "Mirage IIE",
+    "Mirage IlE",
+    "Mirage lIE",
+  ];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Mirage IIIE";
     }
   }
 
@@ -180,17 +202,19 @@ const eliminateHarrierError = (input: string) => {
 };
 
 function stackedElims(input: string) {
-  return eliminateHarrierError(
-    eliminateK(
-      fixMigError(
-        fixSuError(
-          fixYSerror(
-            fixMirageError(
-              eliminateCross(
-                convertPossibleSwiss(
-                  convertPossibleBracketError(
-                    convertPossibleWrongName(
-                      eliminateSigns(eliminateO(eliminateP(input)))
+  return fixNewMirageErrors(
+    eliminateHarrierError(
+      eliminateK(
+        fixMigError(
+          fixSuError(
+            fixYSerror(
+              fixMirageError(
+                eliminateCross(
+                  convertPossibleSwiss(
+                    convertPossibleBracketError(
+                      convertPossibleWrongName(
+                        eliminateSigns(eliminateO(eliminateP(input)))
+                      )
                     )
                   )
                 )
