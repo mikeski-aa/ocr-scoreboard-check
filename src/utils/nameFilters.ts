@@ -138,15 +138,62 @@ const fixSuError = (input: string) => {
   return input;
 };
 
+const fixMigError = (input: string) => {
+  const possibleWords: string[] = [`MIG-21 "Lazur-M"`, `MiG-21 "Lazur-M"`];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "MiG-21 Lazur-M";
+    }
+  }
+
+  return input;
+};
+
+const eliminateK = (input: string) => {
+  const splitWord = input.split("");
+
+  if (splitWord[0] != "k") {
+    return input;
+  } else {
+    splitWord.splice(0, 1);
+    const rejoined = splitWord.join("");
+    console.log(rejoined);
+    return rejoined;
+  }
+};
+
+const eliminateHarrierError = (input: string) => {
+  const possibleWords: string[] = [
+    "Sea Harrier FRS.L",
+    "Sea Harrier FRS.I",
+    "Sea Harrier FRS.l",
+  ];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Sea Harrier FRS.1";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return fixSuError(
-    fixYSerror(
-      fixMirageError(
-        eliminateCross(
-          convertPossibleSwiss(
-            convertPossibleBracketError(
-              convertPossibleWrongName(
-                eliminateSigns(eliminateO(eliminateP(input)))
+  return eliminateHarrierError(
+    eliminateK(
+      fixMigError(
+        fixSuError(
+          fixYSerror(
+            fixMirageError(
+              eliminateCross(
+                convertPossibleSwiss(
+                  convertPossibleBracketError(
+                    convertPossibleWrongName(
+                      eliminateSigns(eliminateO(eliminateP(input)))
+                    )
+                  )
+                )
               )
             )
           )

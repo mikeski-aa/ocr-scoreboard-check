@@ -4,6 +4,15 @@ import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
 
+function checkLongerName(input: any) {
+  if (!testFunc(input.words[7].text)) {
+    let newWord = input.words[6].text + " " + input.words[7].text;
+    return newWord;
+  } else {
+    return "";
+  }
+}
+
 // filter the results
 // might need to move this elsewhere
 const filterParsedResults = (input: Tesseract.RecognizeResult) => {
@@ -19,17 +28,11 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
         arrayText.push(input.data.lines[x].words[6].text);
         console.log(input.data.lines[x].words[7].text);
 
-        if (!testFunc(input.data.lines[x].words[7].text)) {
-          let newWord =
-            input.data.lines[x].words[6].text +
-            " " +
-            input.data.lines[x].words[7].text;
-          arrayText.push(newWord);
-        }
-
         if (
           input.data.lines[x].words[7].text === "109" ||
-          input.data.lines[x].words[7].text === "Phantom"
+          input.data.lines[x].words[7].text === "Phantom" ||
+          input.data.lines[x].words[7].text === "IDS" ||
+          input.data.lines[x].words[7].text === "Harrier"
         ) {
           let newTripleWord =
             input.data.lines[x].words[6].text +
@@ -38,6 +41,10 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
             " " +
             input.data.lines[x].words[8].text;
           arrayText.push(newTripleWord);
+        } else {
+          if (checkLongerName(input.data.lines[x]) != "") {
+            arrayText.push(checkLongerName(input.data.lines[x]));
+          }
         }
       }
     }
@@ -61,6 +68,7 @@ function testFunc(input: string) {
     "®",
     "[4",
     "L4",
+    "Fy",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
@@ -124,6 +132,23 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     const target = e.target as HTMLInputElement;
     setValue(+target.value);
   };
+
+  const calculateTier = () => {
+    if (value) {
+      if (+recognizedText[0].RATING > +value) {
+        console.log("uptier detected");
+        let difference = +recognizedText[0].RATING - +value;
+        let rounded = Math.round(difference * 100) / 100;
+        return `Uptier detected: +${rounded}`;
+      } else {
+        console.log("downtier detected");
+        let difference =
+          +value - +recognizedText[recognizedText.length - 1].RATING;
+        let rounded = Math.round(difference * 100) / 100;
+        return `Downtier detected: -${rounded}`;
+      }
+    }
+  };
   return (
     <div>
       <LoadingModal state={loading} />
@@ -162,6 +187,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
                 onChange={(e) => handleInputChange(e)}
                 value={value}
               ></input>
+              <div className="relativeBR">{calculateTier()}</div>
               <div className="parsedCompare">
                 Items detected: {possibleItems}
               </div>
