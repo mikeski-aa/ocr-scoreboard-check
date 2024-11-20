@@ -176,7 +176,7 @@ async function saveToCSV() {
 }
 
 async function parseSavedFile() {
-  const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
+  const filePath = path.resolve(__dirname, "../public/vehicleCSVnew.csv");
   const csvString = fs.readFileSync(filePath, "utf8");
 
   await Papa.parse(csvString, {
@@ -185,7 +185,10 @@ async function parseSavedFile() {
     complete: (results) => {
       console.log("parsed");
       console.log(results.data);
-      filterSavedFile(results.data);
+      // filteredSavedFile only works on .name and .rating,
+      //needs to be changed to .NAME and .RATING to be used with
+      // parsed data
+      checkDuplicateWithDifferentNations(results.data);
       return results.data;
     },
   });
@@ -196,6 +199,8 @@ async function parseSavedFile() {
 // 2. we should check if there are any duplicates in the bracket results i.e A6M2 (USA) and A6M2 (CHINA)
 // 3. need to check duplicates vs original list and fix it there too.
 
+// this function can be used when parsing the file directly after getting all info.
+// what this function does is it checks for redundant bracketed names and removes them.
 async function filterSavedFile(vehicles: any) {
   let currentVehicles = [...vehicles];
   const regex =
@@ -249,42 +254,30 @@ async function filterSavedFile(vehicles: any) {
   return currentVehicles;
 }
 
-// parseSavedFile();
-saveToCSV();
+async function checkDuplicateWithDifferentNations(vehicles: any) {
+  let currentVehicles = [...vehicles];
+  const regex =
+    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
 
-/////////////////////////////////////////////////
-// this for loop checks wtih original for matches and suggests what items are duplicates that can be replaced
-// for (let x = 0; x < filteredBracket.length; x++) {
-//   const splitName = filteredBracket[x].NAME.split(" (");
+  const findBracket = currentVehicles.filter((item: any) =>
+    item.NAME.match(regex)
+  );
 
-//   const testF = currentVehicles.filter(
-//     (item: any) => item.NAME === splitName[0]
-//   );
-//   console.log(testF);
-//   if (testF.length > 0) {
-//     matchCounter += 1;
-//   }
-// }
+  // now for each item we want to find uniques:
+  for (let x = 0; x < findBracket.length; x++) {
+    const splitName = findBracket[x].NAME.split(" (");
+    const duplicates = currentVehicles.filter(
+      (item: any) =>
+        item.NAME.split(" (")[0] === splitName[0] &&
+        item.RATING === findBracket[x].RATING
+    );
 
-// console.log(matchCounter);
+    duplicates.push(splitName[0]);
+    console.log(duplicates);
+  }
 
-// now in filteredBracket we need to check for duplicates and print them.
-// const tempArray = [];
-// for (let x = 0; x < filteredBracket.length; x++) {
-//   const splitName = filteredBracket[x].NAME.split("(");
-//   const secondFilter = filteredBracket.filter(
-//     (item: any) =>
-//       item.NAME.split("(")[0] === splitName[0] &&
-//       item.RATING === filteredBracket[x].RATING &&
-//       item.NAME != filteredBracket[x].NAME
-//   );
-//   if (secondFilter.length != 0) {
-//     const pushedObj = {
-//       name: splitName[0],
-//       items: [secondFilter],
-//     };
-//     tempArray.push(pushedObj);
-//   }
-// }
+  console.log(findBracket);
+}
 
-// console.log(tempArray[0].items);
+parseSavedFile();
+// saveToCSV();
