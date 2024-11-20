@@ -162,6 +162,19 @@ async function saveToCSV() {
   console.log("detaield array is ");
   console.log(detailedArray);
   detailedArray = await filterSavedFile(detailedArray);
+  detailedArray = await checkDuplicateWithDifferentNations(detailedArray);
+  detailedArray = replaceQuotes(detailedArray);
+  detailedArray = detailedArray.sort((a: any, b: any) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+
+    if (b.name < a.name) {
+      return 1;
+    }
+
+    return 0;
+  });
   const csvWriter = createObjectCsvWriter({
     path: "./public/vehicleCSVnew.csv",
     header: [
@@ -188,7 +201,7 @@ async function parseSavedFile() {
       // filteredSavedFile only works on .name and .rating,
       //needs to be changed to .NAME and .RATING to be used with
       // parsed data
-      checkDuplicateWithDifferentNations(results.data);
+      replaceQuotes(results.data);
       return results.data;
     },
   });
@@ -260,22 +273,22 @@ async function checkDuplicateWithDifferentNations(vehicles: any) {
     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
 
   const findBracket = currentVehicles.filter((item: any) =>
-    item.NAME.match(regex)
+    item.name.match(regex)
   );
 
   // now for each item we want to find uniques:
   for (let x = 0; x < findBracket.length; x++) {
-    const splitName = findBracket[x].NAME.split(" (");
+    const splitName = findBracket[x].name.split(" (");
     const duplicates = currentVehicles.filter(
       (item: any) =>
         !(
-          item.NAME.split(" (")[0] === splitName[0] &&
-          item.RATING === findBracket[x].RATING
+          item.name.split(" (")[0] === splitName[0] &&
+          item.rating === findBracket[x].rating
         )
     );
     const replacementItem = {
-      NAME: splitName[0],
-      RATING: findBracket[x].RATING,
+      name: splitName[0],
+      rating: findBracket[x].rating,
     };
 
     duplicates.push(replacementItem);
@@ -290,5 +303,24 @@ async function checkDuplicateWithDifferentNations(vehicles: any) {
   return currentVehicles;
 }
 
-parseSavedFile();
-// saveToCSV();
+function replaceQuotes(vehicles: any) {
+  const currentVehicles = vehicles;
+
+  const filtered = currentVehicles.filter((item: any) =>
+    item.name.includes('"')
+  );
+
+  const quotelessList = currentVehicles.filter(
+    (item: any) => !item.name.includes('"')
+  );
+
+  for (let x = 0; x < filtered.length; x++) {
+    filtered[x].name = filtered[x].name.replace(/"/g, "");
+    quotelessList.push(filtered[x]);
+  }
+
+  return quotelessList;
+}
+
+// parseSavedFile();
+saveToCSV();

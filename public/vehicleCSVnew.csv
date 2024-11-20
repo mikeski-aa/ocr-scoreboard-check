@@ -10,23 +10,18 @@ A-26C-45;5.3
 A-26C-45DT;5.3
 A-36;2.7
 A-4B;8.7
-A-4E Early;8.7
 A-6E TRAM;10.7
 A-7D;10.3
 A-7E;10.7
 A-7K;11.3
 A2D-1;7.0
-A6M2 (USA);3.7
 AD-2;5.7
-AD-4;6.0
 AM-1;5.7
 AU-1;5.7
 AV-8A;9.7
 AV-8B (NA);11.3
-AV-8B Plus;13.0
 AV-8C;9.7
 B-10B;1.3
-B-17E;4.7
 B-17E/L;5.0
 B-17G-60-VE;5.3
 B-18A;1.3
@@ -38,13 +33,10 @@ B-29A-BN;7.0
 B-34;3.3
 B-57A;8.3
 B-57B;8.3
-Bf 109 F-4 (USA);4.0
 BF2C-1;1.0
 Bong's P-38J-15;4.3
 Bostwick's P-47M-1-RE;5.7
 BTD-1;4.0
-F-100D;9.3
-F-104A;9.3
 F-104C;9.3
 F-105D;10.3
 F-111A;10.7
@@ -54,22 +46,17 @@ F-14B;13.0
 F-15A;13.0
 F-15C MSIP II;13.7
 F-16A;12.7
-F-16A ADF;12.7
 F-16C;13.7
 F-20A;12.7
 F-4C Phantom II;10.3
 F-4E Phantom II;11.3
 F-4J Phantom II;12.0
 F-4S Phantom II;12.0
-F-5A;10.7
 F-5C;10.7
-F-5E;11.0
 F-80A-5;7.0
 F-80C-10;7.7
 F-82E;5.3
 F-84B-26;7.0
-F-84F;8.3
-F-84G-21-RE;7.7
 F-86A-5;8.0
 F-86F-2;8.7
 F-86F-25;8.3
@@ -89,27 +76,21 @@ F4D-1;9.0
 F4F-3;2.3
 F4F-4;3.0
 F4U-1A;2.7
-F4U-1A (USMC);3.0
 F4U-1C;4.7
 F4U-1D;3.0
 F4U-4;4.3
 F4U-4B;5.7
 F4U-4B VMF-214;5.7
-F6F-5;3.3
-F6F-5N;4.3
 F7F-1;6.3
 F7F-3;6.3
 F8F-1;4.7
-F8F-1B;6.3
 F8U-2;10.3
 F9F-2;8.0
 F9F-5;8.0
 F9F-8;8.3
 FJ-4B;8.7
 FJ-4B VMF-232;8.7
-Fw 190 A-8 (USA);5.0
 Galer's F3F-2;1.3
-Ki-43-II (USA);2.7
 Lanovski's P-47M-1-RE;5.7
 MQ-1;10.7
 O3U-1;1.3
@@ -132,11 +113,8 @@ P-39N-0;2.7
 P-39Q-5;2.7
 P-400;2.0
 P-40C;2.3
-P-40E-1;2.7
 P-40E-1 TD;2.7
 P-40F-10;2.7
-P-43A-1;2.7
-P-47D-22-RE;3.7
 P-47D-25;4.3
 P-47D-28;5.0
 P-47N-15;4.7
@@ -144,24 +122,18 @@ P-51;3.7
 P-51A;3.0
 P-51C-10;3.7
 P-51D-10;4.3
-P-51D-20-NA;4.0
 P-51D-30;5.0
 P-51D-5;4.0
 P-51H-5-NA;6.3
 P-59A;5.7
 P-61A-11;3.7
 P-61C-1;4.0
-P-63A-10;4.0
-P-63A-5;3.3
-P-63C-5;4.0
-PB4Y-2;4.7
 PBJ-1H;3.7
 PBJ-1J;3.7
-PBM-1 Mariner2.0
-PBM-3 Mariner3.0
-PBM-5A Mariner3.7
+"PBM-1 ""Mariner""";2.0
+"PBM-3 ""Mariner""";3.0
+"PBM-5A ""Mariner""";3.7
 PBY-5 Catalina;1.3
-PBY-5A Catalina;1.7
 PV-2D;3.7
 Rasmussen's P-36A;1.3
 SB2C-1C;3.0
@@ -170,7 +142,6 @@ SB2U-2;1.0
 SB2U-3;1.7
 SBD-3;2.0
 SOC-1;1.3
-Spitfire LF Mk IXc (USA);5.7
 TBD-1;1.0
 TBF-1C;1.7
 Thach's F2A-1;2.0
@@ -188,14 +159,12 @@ Beaufighter Mk VIc;3.0
 Beaufighter Mk X;3.0
 Beaufort Mk VIII;1.7
 Blenheim Mk IV;1.3
-Boomerang Mk I (Great Britain);3.0
 Brigand B 1;4.0
 Buccaneer S.1;8.7
 Buccaneer S.2;9.3
 Buccaneer S.2B;10.7
 Canberra B (I) Mk 6;8.3
 Canberra B Mk 2;8.3
-D.520 (Great Britain);3.0
 F-111C;11.7
 F-4J(UK) Phantom II;12.0
 Firebrand TF Mk IV;3.7
@@ -209,7 +178,6 @@ Gladiator Mk IIF;1.3
 Gladiator Mk IIS;1.3
 Halifax B Mk IIIa;4.0
 Hampden Mk I;1.7
-Hampden TB Mk I;1.7
 Harrier GR.1;9.7
 Harrier GR.3;9.7
 Harrier GR.7;12.3
@@ -218,14 +186,12 @@ Hornet Mk.III;6.0
 Hunter F.1;9.0
 Hunter F.6;9.7
 Hunter FGA.9;9.3
-Hurricane Mk I/L;2.3
 Hurricane Mk IIB/Trop;2.3
 Hurricane Mk IV;2.0
 Hurricane Mk.I/L FAA M;2.3
 Jaguar GR.1;9.7
 Jaguar GR.1A;10.7
 Jaguar IS;11.3
-JAS39C (Great Britain);13.7
 Javelin F.(A.W.) Mk.9;8.3
 Lancaster B Mk I;5.3
 Lancaster B Mk III;5.3
@@ -261,7 +227,6 @@ Sea Venom FAW 20;7.7
 Sea Vixen F.A.W. Mk.2;9.0
 Seafire F Mk XVII;5.3
 Seafire FR 47;5.7
-Seafire LF Mk.III;5.0
 Shackleton MR.Mk.2;6.0
 Spitfire F Mk 22;6.7
 Spitfire F Mk 24;6.7
@@ -276,7 +241,6 @@ Spitfire Mk Ia;3.0
 Spitfire Mk IIa;3.0
 Spitfire Mk IIb;3.7
 Spitfire Mk Vb;4.0
-Spitfire Mk Vb/trop;3.7
 Spitfire Mk Vc;5.0
 Spitfire Mk Vc/trop;4.7
 Spitfire Mk.IIa Venture I;3.0
@@ -290,7 +254,6 @@ Swift F.7;8.7
 Swordfish Mk I;1.0
 Swordfish Mk II;1.0
 Tempest Mk II;6.0
-Tempest Mk V;5.7
 Tempest Mk V (Vickers P);3.7
 Tornado F.3;12.0
 Tornado F.3 Late;13.3
@@ -303,7 +266,6 @@ V-156-B1;1.0
 Vampire F.B.5;8.0
 Venom FB.4;8.7
 Walrus Mk.I;1.0
-Wellington Mk Ic;2.3
 Wellington Mk Ic/L;2.7
 Wellington Mk III;3.0
 Wellington Mk X;3.3
@@ -322,27 +284,19 @@ Bf 109 E-4;3.0
 Bf 109 E-7/U2;3.0
 Bf 109 F-1;2.7
 Bf 109 F-2;3.0
-Bf 109 F-4;4.0
 Bf 109 F-4/trop;4.0
 Bf 109 G-10;5.7
 Bf 109 G-14;5.3
-Bf 109 G-2;4.3
 Bf 109 G-2/trop;4.3
-Bf 109 G-6;4.7
 Bf 109 K-4;5.7
 Bf 109 Z-1;4.7
 Bf 110 C-6;3.0
 Bf 110 C-7;2.7
 Bf 110 F-2;3.0
 Bf 110 G-2;3.7
-Bf 110 G-4;3.7
 BV 138 C-1;1.7
 BV 155 B-1;3.7
 BV 238;3.7
-C. 200 serie 3 (Germany);2.3
-C. 200 serie 7 (Germany);2.3
-C. 202 (Germany);3.0
-CR.42 (Germany);1.3
 Do 17 E-1;1.0
 Do 17 Z-2;1.7
 Do 17 Z-7;1.3
@@ -357,35 +311,25 @@ Do 217 N-2;2.7
 Do 335 A-0;4.7
 Do 335 A-1;4.3
 Do 335 B-2;5.7
-F-104G (Germany);11.0
-F-84F (Germany);8.3
-F-86K (Germany);9.0
 FFA P-16;9.0
 Flegel's Bf 109 A;1.3
 Fw 189 A-1;2.3
 Fw 190 A-1;3.0
 Fw 190 A-4;4.0
-Fw 190 A-5;4.7
 Fw 190 A-5/U12;4.7
 Fw 190 A-5/U14;4.0
 Fw 190 A-5/U2;4.0
-Fw 190 A-8;5.0
 Fw 190 C;5.0
 Fw 190 D-12;5.0
 Fw 190 D-13;5.0
-Fw 190 D-9;5.0
 Fw 190 F-8;5.0
 Fw 200 C-1;2.0
-G.50 AS serie 7 (Germany);1.7
-G.50 serie 2 (Germany);1.7
-G.91 R/4 (Germany);8.7
 He 100 D-1;1.7
 He 111 H-16;3.0
 He 111 H-3;2.0
 He 111 H-6;2.7
 He 112 A-0;1.7
 He 112 B-0;2.0
-He 112 B-1/U2 (Germany);2.0
 He 112 B-2/U2;2.0
 He 112 V-5;1.3
 He 115 C-1;1.3
@@ -399,27 +343,17 @@ He 51 B-2/H;1.0
 He 51 C-1;1.0
 He 51 C-1/L;1.0
 Ho 229 V3;7.0
-Hs 123 A-1;1.0
-Hs 129 B-2;2.3
-Hs 129 B-2 (Romania);2.3
 Hs 129 B-3;2.0
-IL-2 (1942) (Germany);3.0
-IL-28 (Germany);8.0
 Ju 188 A-2;5.3
 Ju 288 C;6.0
 Ju 388 J;4.3
 Ju 87 B-2;1.0
-Ju 87 D-3;2.0
 Ju 87 D-5;3.3
 Ju 87 G-1;1.3
 Ju 87 G-2;1.7
-Ju 87 R-2;1.3
 Ju 87 R-2 Libya;1.3
 Ju 88 A-1;2.0
-Ju 88 A-4;3.0
 Ju 88 C-6;2.3
-La-5FN (Germany);3.7
-Marcolin's C.R.42 CN (Germany);1.3
 Me 163 B;8.0
 Me 163 B-0;8.7
 Me 262 A-1/U4;6.3
@@ -437,61 +371,36 @@ Me 410 B-1;3.7
 Me 410 B-1/U2;4.3
 Me 410 B-2/U4;3.0
 Me 410 B-6/R3;5.0
-MiG-15bis (Germany);8.3
-MiG-21bis-SAU (Germany);11.0
-MiG-21MF (Germany);10.7
-MiG-23MF (Germany);11.0
-MiG-29 (Germany);12.7
-P-47D (Germany);4.3
-S.M.79 AS (Germany);2.3
-S.M.79 B (Germany);2.3
-S.M.79 bis/T.M (Germany);2.3
-S.M.79 serie 1 (Germany);1.7
-S.M.79 serie 8 (Germany);2.0
 Ta 152 C-3;6.3
 Ta 152 H-1;6.0
 Ta 154 A-1;4.3
-Tempest Mk V (Germany);5.7
-Wellington Mk Ic (Germany);2.3
-Yak-1B (Germany);3.0
 Ar-2;2.3
-B-25J-30 (USSR);4.0
 BB-1;1.3
 Be-6;5.0
 BI;6.7
 DB-3B;2.7
 Dolgushin's La-7;4.7
 Eremin's Yak-3(e);4.0
-Fw 190 D-9 (USSR);5.0
 Golovachev's Yak-9M;3.7
-Hampden TB Mk I (USSR);1.7
 I-15 M-22;1.0
 I-15 M-25;1.0
 I-15 WR;1.0
-I-153 M-62;2.3
 I-153P;2.7
-I-15bis;1.0
-I-16 type 10;2.0
 I-16 type 18;2.3
 I-16 type 24;2.7
 I-16 type 27;3.3
 I-16 type 28;3.3
-I-16 type 5;1.3
 I-180S;3.0
 I-185 (M-71);4.3
 I-185 (M-82);3.7
 I-225;5.0
 I-29;3.0
 I-301;3.0
-IL-10;5.0
-IL-10 (1946);5.0
 IL-2 (1941);2.3
-IL-2 (1942);3.0
 IL-2 M-82;2.7
 IL-2-37;2.7
-IL-28;8.0
 IL-28Sh;8.0
-IL-2M Avenger;3.3
+"IL-2M ""Avenger""";3.3
 IL-2M (1943);3.3
 IL-2M type 3;3.3
 IL-4;2.7
@@ -499,16 +408,13 @@ IL-8 (1944);3.7
 ITP (M-1);4.0
 KOR-1;1.3
 Krasnolutsky's I-15bis;1.0
-La-11;5.3
 La-15;8.0
 La-174;8.0
 La-200;7.7
 La-5;3.0
 La-5F;3.3
-La-5FN;3.7
 La-7;4.7
 La-7B-20;5.0
-La-9;6.0
 LaGG-3-11;2.0
 LaGG-3-23;2.3
 LaGG-3-34;2.3
@@ -518,12 +424,10 @@ LaGG-3-66;2.7
 LaGG-3-8;2.0
 MBR-2-M-34;1.0
 MiG-15;8.0
-MiG-15bis;8.3
 MiG-15bis ISh;8.0
 MiG-17;8.7
 MiG-17AS;9.0
 MiG-19PT;9.3
-MiG-21bis;11.0
 MiG-21F-13;9.3
 MiG-21PFM;9.3
 MiG-21S (R-13-300);9.7
@@ -533,19 +437,11 @@ MiG-23ML;11.7
 MiG-23MLD;11.7
 MiG-27K;11.3
 MiG-27M;11.3
-MiG-29;12.7
 MiG-29SMT;13.3
 MiG-3-15;2.3
 MiG-3-15 (BK);2.3
 MiG-3-34;2.7
-MiG-9;7.3
-MiG-9 (l);7.3
 Orion;10.7
-P-40E-1 (USSR);2.7
-P-63A-10 (USSR);4.0
-P-63A-5 (USSR);3.3
-P-63C-5 (USSR);4.0
-PBY-5A Catalina (USSR);1.7
 Pe-2-1;3.3
 Pe-2-110;3.7
 Pe-2-205;3.7
@@ -562,7 +458,6 @@ Po-2M;1.0
 SB 2M-100;1.0
 SB 2M-103;2.0
 SB 2M-103 MV-3;1.7
-SB 2M-103U;2.3
 SB 2M-103U MV-3;2.3
 SB 2M-105;2.7
 Su-11;7.3
@@ -571,7 +466,6 @@ Su-17M4;11.3
 Su-2 (M-82);2.7
 Su-2 MV-5;1.7
 Su-2 TSS-1;2.0
-Su-22M3;11.3
 Su-24M;11.3
 Su-25;10.3
 Su-25BM;11.3
@@ -596,19 +490,14 @@ Tu-1;5.3
 Tu-14T;8.0
 Tu-2;4.7
 Tu-2S;5.3
-Tu-2S-44;5.3
-Tu-2S-59;5.7
-Tu-4;8.0
 Yak-1;2.3
 Yak-141;12.7
 Yak-15;6.7
 Yak-15P;6.3
 Yak-17;6.7
-Yak-1B;3.0
 Yak-2 KABB;2.3
 Yak-23;8.7
 Yak-28B;9.3
-Yak-3;4.3
 Yak-3 (VK-107);5.7
 Yak-30D;8.7
 Yak-38;9.3
@@ -621,7 +510,6 @@ Yak-7B;2.7
 Yak-9;3.0
 Yak-9B;3.0
 Yak-9K;4.0
-Yak-9P;5.0
 Yak-9T;4.0
 Yak-9U;4.7
 Yak-9UT;5.7
@@ -634,26 +522,11 @@ Yer-2 (M-105R) TAT;3.7
 Zhukovsky's I-153-M62;2.3
 A-29;2.0
 A-5C;10.7
-A6M2 (China);3.7
-B-25J-30 (China);4.0
 CW-21;2.7
 D.510C;1.3
-F-104A (China);9.3
-F-5A (China);10.7
-F-5E (China);11.0
-F-84G-21-RE (China);7.7
-F-86F-30 (China);8.3
-F-86F-40 (China);9.0
-Gladiator Mk I (China);1.0
 H-5;8.0
 H-81A-2;2.3
 Hawk III;1.0
-Hs 123 A-1 (China);1.0
-I-153 M-62 (China);2.3
-I-15bis (China);1.0
-I-16 type 10 (China);2.0
-I-16 type 5 (China);1.3
-IL-10 (1946) (China);5.0
 J-10A;13.7
 J-11;13.0
 J-11A;13.7
@@ -667,36 +540,17 @@ J-8B;11.3
 J-8F;13.0
 JF-17;13.3
 JH-7A;12.3
-Ki-27 otsu (China);2.0
-Ki-44-II hei (China);3.7
-Ki-61-I otsu (China);3.7
-Ki-84 ko (China);5.3
-La-11 (China);5.3
-La-9 (China);6.0
 Martin 139WC;1.3
-MiG-9 (China);7.3
-MiG-9 (l) (China);7.3
 Mosquito FB.Mk.26;3.7
-P-40E-1 (China);2.7
-P-43A-1 (China);2.7
-P-47D-30 (China);5.0
-P-51C-11-NT (China);3.7
-P-51D-20 (China);4.0
 P-66;2.3
-P1Y1 mod. 11 (China);3.3
-PB4Y-2 (China);4.7
 Q-5 early;9.3
 Q-5A;9.7
 Q-5L;9.7
-SB 2M-103U (China);2.3
 Shenyang F-5;9.3
-Tu-2S-44 (China);5.3
-Tu-4 (China);8.0
 V-11;1.3
 V-12D;2.3
 Wing Loong I;10.7
 A5M4;1.3
-A6M2;3.7
 A6M2 mod. 11;3.7
 A6M2-N;2.3
 A6M3;4.0
@@ -711,14 +565,12 @@ A7He1;2.0
 A7M1 (NK9H);5.0
 A7M2;5.3
 Aichi E13A1;1.3
-B-17E (Japan);4.7
 B5N2;1.3
 B6N1 Model 11;1.7
 B6N2 Model 12;2.3
 B6N2a Model 12Ko;2.3
 B7A2;3.7
 B7A2 (Homare 23);3.7
-Bf 109 E-7 (Japan);3.0
 D3A1;1.3
 D4Y1;2.0
 D4Y2;2.3
@@ -733,11 +585,7 @@ F-16AJ;12.7
 F-4EJ ADTW;11.0
 F-4EJ Kai Phantom II;12.3
 F-4EJ Phantom II;11.0
-F-86F-30 (Japan);8.3
-F-86F-40 (Japan);9.0
 F1M2;1.0
-F4U-1A (Japan);3.0
-Fw 190 A-5 (Japan);4.7
 G4M1;2.7
 G5N1;4.3
 G8N1;6.0
@@ -766,15 +614,12 @@ Ki-109;2.0
 Ki-200;8.7
 Ki-21-I hei;2.0
 Ki-21-Ia;1.7
-Ki-27 otsu;2.0
 Ki-27 otsu Tachiarai;2.0
 Ki-32;1.3
 Ki-43-I;2.7
-Ki-43-II;2.7
 Ki-43-III otsu;4.0
 Ki-44-I;2.7
 Ki-44-I 34;2.7
-Ki-44-II hei;3.7
 Ki-44-II otsu;3.0
 Ki-45 hei;2.3
 Ki-45 ko;2.7
@@ -787,14 +632,12 @@ Ki-49-IIb;3.7
 Ki-49-IIb/L;3.7
 Ki-61-I hei;4.7
 Ki-61-I ko;3.3
-Ki-61-I otsu;3.7
 Ki-61-I tei;4.3
 Ki-61-II Otsu Kai;4.7
 Ki-67-I Ko;4.3
 Ki-67-I otsu;4.7
 Ki-83;6.0
 Ki-84 hei;6.3
-Ki-84 ko;5.3
 Ki-84 otsu;5.7
 Ki-87;5.7
 Ki-94-II;6.0
@@ -804,8 +647,6 @@ N1K1;2.3
 N1K1-Ja;5.3
 N1K2-J;6.0
 N1K2-Ja;6.0
-P-51C-11-NT (Japan);3.7
-P1Y1 mod. 11;3.3
 R2Y2 Kai V1;8.0
 R2Y2 Kai V2;8.0
 R2Y2 Kai V3;8.0
@@ -815,17 +656,10 @@ Tada's Ki-61-I hei;4.7
 AMX;10.7
 AMX A-1A;11.3
 Ariete (Fighter);9.3
-AV-8B Plus (Italy);13.0
 B.R.20DR;1.7
 B.R.20M M1;1.7
 Ba.65 (K.14) L;1.3
-Bf 109 F-4 (Italy);4.0
-Bf 109 G-2 (Italy);4.3
-Bf 110 G-4 (Italy);3.7
 Breda 88 (P.XI);1.7
-C. 200 serie 3;2.3
-C. 200 serie 7;2.3
-C. 202;3.0
 C. 202D;3.0
 C. 202EC;4.0
 C. 205 serie 1;3.7
@@ -835,40 +669,18 @@ CL-13 Mk.4;8.3
 CR.32;1.0
 CR.32 bis;1.7
 CR.32 quater;1.0
-CR.42;1.3
-F-104G (Italy);11.0
 F-104S;11.3
 F-104S.ASA;12.0
-F-16A ADF (Italy);12.7
-F-84F (Italy);8.3
-F-84G-21-RE (Italy);7.7
-F-86K (Italy);9.0
 F.C.20 Bis;2.0
-G.50 AS serie 7;1.7
-G.50 serie 2;1.7
 G.55 serie 1;5.0
 G.55 sottoserie 0;4.3
 G.55S;5.0
 G.56;6.3
 G.91 pre-serie;8.3
 G.91 R/1;8.7
-G.91 R/4;8.7
 G.91 Y;9.0
 G.91 YS;9.3
-He 112 B-1/U2;2.0
-Hs 129 B-2 (Romania) (Italy);2.3
 IAR-81C;2.7
-IL-10 (Italy);5.0
-IL-28 (Italy);8.0
-Ju 87 D-3 (Italy);2.0
-Ju 87 R-2 (Italy);1.3
-Marcolin's C.R.42 CN;1.3
-MiG-15bis (Italy);8.3
-MiG-21bis-SAU (Italy);11.0
-MiG-21MF (Italy);10.7
-MiG-23MF (Italy);11.0
-MiG-29 (Italy);12.7
-P-47D-30 (Italy);5.0
 P.108A serie 2;2.3
 P.108B serie 1;3.3
 P.108B serie 2;3.7
@@ -884,25 +696,12 @@ Ro.43;1.3
 Ro.44;1.0
 Ro.57 Quadriarma;2.7
 S.81;1.3
-S.M.79 AS;2.3
-S.M.79 B;2.3
-S.M.79 bis/T.M;2.3
-S.M.79 serie 1;1.7
-S.M.79 serie 8;2.0
 Sagittario 2;9.3
 SM.91;3.7
 SM.92;4.0
-Spitfire Mk Vb/trop (Italy);3.7
-Su-22M3 (Italy);11.3
 Tornado ADV;12.0
-Tornado IDS (1995) (Italy);11.7
-Tornado IDS (Italy);11.3
-Tu-2S-59 (Italy);5.7
-Vampire FB 52A;8.0
-Yak-9P (Italy);5.0
 Z.1007 bis serie 3;2.7
 Z.1007 bis serie 5;3.0
-AD-4 (France);6.0
 Alpha Jet E;8.7
 B-26C;4.7
 Br.693AB2;1.7
@@ -912,21 +711,11 @@ D.371 H.S.9;1.3
 D.373;1.0
 D.500;1.0
 D.501;1.3
-D.520;3.0
 Etendard IVM;9.0
-F-100D (France);9.3
-F-104G (France);11.0
 F-6C-10-NA;3.7
-F-84F (France);8.3
-F-84F (IAF);8.3
-F-86K (France);9.0
 F.222.2;2.3
 F4U-7;6.0
-F6F-5 (France);3.3
-F6F-5N (France);4.3
-F8F-1B (France);6.3
 GL.832HY;1.3
-Gladiator Mk I (France);1.0
 H-75A-1;1.7
 H-75A-4;2.3
 Jaguar A;10.7
@@ -942,14 +731,12 @@ M.B.162;5.0
 M.B.174A-3;2.7
 M.B.175T;3.3
 M.D.450B Barougan;7.7
-M.D.450B Ouragan;7.7
 M.D.452 IIA;8.0
 M.D.452 IIC;8.3
 M.S.405C1;2.0
 M.S.406C1;2.0
 M.S.410;2.3
 Martin 167-A3;2.0
-Meteor F Mk.8 (France);8.0
 Milan;9.7
 Mirage 2000-5F;13.7
 Mirage 2000C-S4;12.3
@@ -962,13 +749,9 @@ Mirage F1C-200;12.0
 Mirage F1CT;12.0
 Mirage IIIC;10.0
 Mirage IIIE;10.7
-Mystere IVA;8.7
 N.C.223.3;3.0
 NC.900;5.0
-P-47D-22-RE (France);3.7
-P-63C-5 (France);4.0
 Pallier's D.510;1.3
-PB4Y-2 (France);4.7
 Potez 630;2.3
 Potez 631;2.3
 Potez 633;1.7
@@ -977,8 +760,6 @@ S.O.4050 Vautour IIB;9.0
 S.O.4050 Vautour IIN;9.0
 S.O.4050 Vautour IIN (late);8.3
 S.O.8000 Narval;5.7
-Seafire LF Mk.III (France);5.0
-Spitfire FR Mk XIVe (France);5.7
 Super Etendard;10.3
 Super Mystere B2;9.0
 Super Mystere B2 (YouTube Cup);9.0
@@ -987,7 +768,6 @@ V.G.33C-1;2.7
 Vautour IIA IDF/AF;9.0
 VB.10-02;4.7
 VB.10C-1;4.0
-Yak-3 (France);4.3
 A21A-3;4.3
 A21RB;6.7
 A28B;8.0
@@ -1001,9 +781,6 @@ B17B;1.3
 B18A;2.7
 B18B;4.0
 B3C;1.3
-Bf 109 G-2 (Sweden);4.3
-Bf 109 G-6 (Sweden);4.7
-Hurricane Mk I/L (Sweden);2.3
 Iacobi's J8A;1.0
 J11;1.3
 J20;2.0
@@ -1027,9 +804,6 @@ J9 Early;2.3
 JA37C;11.3
 JA37D;12.0
 JAS39A;13.0
-JAS39C;13.7
-Ju 88 A-4 (Sweden);3.0
-MiG-21bis (Sweden);11.0
 Mörkö-Morane;2.3
 S17BS;1.0
 Saab J35XS;11.0
@@ -1039,34 +813,24 @@ SK60B;7.0
 T 2;1.0
 T18B;4.3
 T18B (57);4.3
-Vampire FB 52A (Sweden);8.0
 VL Myrsky II;2.3
 VL Pyörremyrsky;4.3
-A-4E (Israel);8.7
-A-4E Early (M) (Israel);8.7
 Ayit;9.3
-B-17G (Israel);5.3
 Baz;13.0
 Baz Meshupar;13.7
 F-16C Barak II;13.7
 F-16D Barak II;13.7
-F-84F (Israel);8.3
 Kfir C.2;11.7
 Kfir C.7;12.0
 Kfir Canard;11.0
 Kurnass;11.3
 Kurnass 2000;12.3
-M.D.450B Ouragan (Israel);7.7
-Mystere IVA (Israel);8.7
 Nesher;10.0
 Netz;12.7
-P-51D-20-NA (Israel);4.0
 Sa'ar;9.0
 Sakeen;3.3
 Sambad;9.0
 Shahak;10.0
-Vautour IIA (Israel);9.0
-Vautour IIN (Israel);9.0
 F-14A IRIAF;12.7
 Ki-61-Ib;3.7
 Kingcobra;4.0
@@ -1095,7 +859,7 @@ Hawk H-75A-2;2.7
 Hunter F.58;9.7
 Lim-5P;8.7
 MiG-19S;9.3
-MiG-21 Lazur-M11.0
+"MiG-21 ""Lazur-M""";11.0
 MiG-21 SPS-K;9.7
 MiG-23BN;9.7
 MiG-23MLA;11.7
@@ -1164,3 +928,117 @@ Meteor NF.13;7.7
 Spitfire Mk IXc;4.3
 Spitfire Mk.IX;5.7
 Weizman's Spitfire LF Mk.IXe;5.7
+Fw 190 A-8;5.0
+Ki-43-II;2.7
+Spitfire LF Mk IXc;5.7
+Boomerang Mk I;3.0
+D.520;3.0
+JAS39C;13.7
+C. 200 serie 3;2.3
+C. 200 serie 7;2.3
+C. 202;3.0
+CR.42;1.3
+G.50 AS serie 7;1.7
+G.50 serie 2;1.7
+G.91 R/4;8.7
+He 112 B-1/U2;2.0
+IL-2;3.0
+La-5FN;3.7
+Marcolin's C.R.42 CN;1.3
+P-47D;4.3
+S.M.79 AS;2.3
+S.M.79 B;2.3
+S.M.79 bis/T.M;2.3
+S.M.79 serie 1;1.7
+S.M.79 serie 8;2.0
+Tempest Mk V;5.7
+Wellington Mk Ic;2.3
+Yak-1B;3.0
+Fw 190 D-9;5.0
+Hampden TB Mk I;1.7
+P-63A-10;4.0
+P-63A-5;3.3
+PBY-5A Catalina;1.7
+A6M2;3.7
+B-25J-30;4.0
+F-104A;9.3
+F-5A;10.7
+F-5E;11.0
+Hs 123 A-1;1.0
+I-153 M-62;2.3
+I-15bis;1.0
+I-16 type 10;2.0
+I-16 type 5;1.3
+Ki-27 otsu;2.0
+Ki-44-II hei;3.7
+Ki-61-I otsu;3.7
+Ki-84 ko;5.3
+La-11;5.3
+La-9;6.0
+MiG-9;7.3
+P-40E-1;2.7
+P-43A-1;2.7
+P-51D-20;4.0
+P1Y1 mod. 11;3.3
+SB 2M-103U;2.3
+Tu-2S-44;5.3
+Tu-4;8.0
+B-17E;4.7
+Bf 109 E-7;3.0
+F-86F-30;8.3
+F-86F-40;9.0
+F4U-1A;3.0
+Fw 190 A-5;4.7
+P-51C-11-NT;3.7
+AV-8B Plus;13.0
+Bf 109 F-4;4.0
+Bf 110 G-4;3.7
+F-16A ADF;12.7
+F-84G-21-RE;7.7
+Hs 129 B-2;2.3
+IL-10;5.0
+IL-28;8.0
+Ju 87 D-3;2.0
+Ju 87 R-2;1.3
+MiG-15bis;8.3
+MiG-21bis-SAU;11.0
+MiG-21MF;10.7
+MiG-23MF;11.0
+MiG-29;12.7
+P-47D-30;5.0
+Spitfire Mk Vb/trop;3.7
+Su-22M3;11.3
+Tornado IDS;11.7
+Tornado IDS;11.3
+Tu-2S-59;5.7
+Yak-9P;5.0
+AD-4;6.0
+F-100D;9.3
+F-104G;11.0
+F-86K;9.0
+F6F-5;3.3
+F6F-5N;4.3
+F8F-1B;6.3
+Gladiator Mk I;1.0
+Meteor F Mk.8;8.0
+P-47D-22-RE;3.7
+P-63C-5;4.0
+PB4Y-2;4.7
+Seafire LF Mk.III;5.0
+Spitfire FR Mk XIVe;5.7
+Yak-3;4.3
+Bf 109 G-2;4.3
+Bf 109 G-6;4.7
+Hurricane Mk I/L;2.3
+Ju 88 A-4;3.0
+MiG-21bis;11.0
+Vampire FB 52A;8.0
+A-4E;8.7
+A-4E Early;8.7
+B-17G;5.3
+F-84F;8.3
+M.D.450B Ouragan;7.7
+Mystere IVA;8.7
+P-51D-20-NA;4.0
+Vautour IIA;9.0
+Vautour IIN;9.0
