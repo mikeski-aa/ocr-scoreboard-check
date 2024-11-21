@@ -56,6 +56,7 @@ AV-8A;9.7
 AV-8B (NA);11.3
 AV-8B Plus;13.0
 AV-8C;9.7
+AV-8S;9.7
 Aichi E13A1;1.3
 Alpha Jet A;8.7
 Alpha Jet E;8.7
@@ -117,6 +118,7 @@ Beaufighter Mk X;3.0
 Beaufort Mk VIII;1.7
 Bf 109 B-1;1.3
 Bf 109 C-1;1.7
+Bf 109 C-1 (WT Mobile);1.7
 Bf 109 E-1;2.3
 Bf 109 E-3;2.3
 Bf 109 E-4;3.0
@@ -224,11 +226,14 @@ F-105D;10.3
 F-111A;10.7
 F-111C;11.7
 F-111F;11.7
+F-117;8.7
 F-14A Early;12.7
 F-14A IRIAF;12.7
 F-14B;13.0
 F-15A;13.0
 F-15C MSIP II;13.7
+F-15E;13.7
+F-15I Ra’am;13.7
 F-15J;13.0
 F-15J(M);13.7
 F-16A;12.7
@@ -249,7 +254,7 @@ F-4EJ Kai Phantom II;12.3
 F-4EJ Phantom II;11.0
 F-4F;11.0
 F-4F Early;10.7
-F-4F KWS LV;13.3
+F-4F KWS LV;13.0
 F-4J Phantom II;12.0
 F-4J(UK) Phantom II;12.0
 F-4S Phantom II;12.0
@@ -389,6 +394,7 @@ He 112 V-5;1.3
 He 115 C-1;1.3
 He 162 A-1;6.0
 He 162 A-2;6.0
+He 177 A-3;6.0
 He 177 A-5;6.0
 He 219 A-7;4.3
 He 51 A-1;1.0
@@ -490,6 +496,8 @@ J8A;1.0
 J9 Early;2.3
 JA37C;11.3
 JA37D;12.0
+JA37DI;13.0
+JA37DI F21;13.0
 JAS39A;13.0
 JAS39C;13.7
 JAS39EBS HU C;13.7
@@ -678,10 +686,12 @@ MiG-3-15 (BK);2.3
 MiG-3-34;2.7
 MiG-9;7.3
 Milan;9.7
+Mirage 2000-5Ei;13.7
 Mirage 2000-5F;13.7
 Mirage 2000C-S4;12.3
 Mirage 2000C-S5;12.3
 Mirage 2000D-R1;12.3
+Mirage 2000D-RMV;12.7
 Mirage 4000;13.0
 Mirage 5BA;10.3
 Mirage 5F;10.0
@@ -909,6 +919,7 @@ Su-2 MV-5;1.7
 Su-2 TSS-1;2.0
 Su-22M3;11.3
 Su-22M4;11.3
+Su-22M4 WTD61;11.3
 Su-22UM3K;11.3
 Su-24M;11.3
 Su-25;10.3
@@ -918,6 +929,7 @@ Su-25SM3;12.3
 Su-25T;11.7
 Su-27;13.0
 Su-27SM;13.7
+Su-34;13.3
 Su-39;11.7
 Su-6;4.0
 Su-6 (AM-42);4.7
@@ -959,6 +971,7 @@ Tornado ADV;12.0
 Tornado F.3;12.0
 Tornado F.3 Late;13.3
 Tornado GR.1;11.7
+Tornado GR.4;12.3
 Tornado IDS;11.7
 Tornado IDS;11.3
 Tornado IDS ASSTA1;11.7

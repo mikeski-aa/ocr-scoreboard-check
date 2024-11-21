@@ -189,7 +189,7 @@ async function saveToCSV() {
 }
 
 async function parseSavedFile() {
-  const filePath = path.resolve(__dirname, "../public/vehicleCSVnew.csv");
+  const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
   const csvString = fs.readFileSync(filePath, "utf8");
 
   await Papa.parse(csvString, {
@@ -201,7 +201,8 @@ async function parseSavedFile() {
       // filteredSavedFile only works on .name and .rating,
       //needs to be changed to .NAME and .RATING to be used with
       // parsed data
-      replaceQuotes(results.data);
+      // replaceQuotes(results.data);
+
       return results.data;
     },
   });
