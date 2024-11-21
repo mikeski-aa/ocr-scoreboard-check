@@ -201,19 +201,51 @@ const eliminateHarrierError = (input: string) => {
   return input;
 };
 
+const eliminateTornadoError = (input: string) => {
+  const possibleWords: string[] = [
+    "Tornado IDSWTD61",
+    "tTornado IDS WTD61",
+    "tTornado IDSWTD61",
+  ];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Tornado IDS WTD61";
+    }
+  }
+
+  return input;
+};
+
+const eliminateFFourError = (input: string) => {
+  const possibleWords: string[] = ["F-4E) ADTW"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "F-4EJ ADTW";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return fixNewMirageErrors(
-    eliminateHarrierError(
-      eliminateK(
-        fixMigError(
-          fixSuError(
-            fixYSerror(
-              fixMirageError(
-                eliminateCross(
-                  convertPossibleSwiss(
-                    convertPossibleBracketError(
-                      convertPossibleWrongName(
-                        eliminateSigns(eliminateO(eliminateP(input)))
+  return eliminateFFourError(
+    eliminateTornadoError(
+      fixNewMirageErrors(
+        eliminateHarrierError(
+          eliminateK(
+            fixMigError(
+              fixSuError(
+                fixYSerror(
+                  fixMirageError(
+                    eliminateCross(
+                      convertPossibleSwiss(
+                        convertPossibleBracketError(
+                          convertPossibleWrongName(
+                            eliminateSigns(eliminateO(eliminateP(input)))
+                          )
+                        )
                       )
                     )
                   )
