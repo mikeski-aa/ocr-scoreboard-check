@@ -229,21 +229,64 @@ const eliminateFFourError = (input: string) => {
   return input;
 };
 
+const formatSU = (input: string) => {
+  const regex = /^SU-/;
+
+  if (input.match(regex)) {
+    const splitInput = input.split("");
+    splitInput[1] = "u";
+    const rejoined = splitInput.join("");
+    return rejoined;
+  }
+
+  return input;
+};
+
+const filterAJ = (input: string) => {
+  const possibleWords: string[] = ["A37", "N37", "A337"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "AJ37";
+    }
+  }
+
+  return input;
+};
+
+const filterAJS = (input: string) => {
+  const possibleWords: string[] = ["NJS37", "AS337"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "AJS37";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return eliminateFFourError(
-    eliminateTornadoError(
-      fixNewMirageErrors(
-        eliminateHarrierError(
-          eliminateK(
-            fixMigError(
-              fixSuError(
-                fixYSerror(
-                  fixMirageError(
-                    eliminateCross(
-                      convertPossibleSwiss(
-                        convertPossibleBracketError(
-                          convertPossibleWrongName(
-                            eliminateSigns(eliminateO(eliminateP(input)))
+  return filterAJS(
+    filterAJ(
+      formatSU(
+        eliminateFFourError(
+          eliminateTornadoError(
+            fixNewMirageErrors(
+              eliminateHarrierError(
+                eliminateK(
+                  fixMigError(
+                    fixSuError(
+                      fixYSerror(
+                        fixMirageError(
+                          eliminateCross(
+                            convertPossibleSwiss(
+                              convertPossibleBracketError(
+                                convertPossibleWrongName(
+                                  eliminateSigns(eliminateO(eliminateP(input)))
+                                )
+                              )
+                            )
                           )
                         )
                       )

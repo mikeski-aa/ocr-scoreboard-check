@@ -36,3 +36,18 @@
   flex-direction: column;
   align-items: center;
 }
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exampleImage {
+  width: 800px;
+  height: 600px;
+}
+
+.text {
+  font-size: 1.2rem;
+}

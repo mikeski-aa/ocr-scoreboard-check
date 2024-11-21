@@ -25,7 +25,7 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
       // the word data we are looking for is at index 6 of the words array within results
       if (input.data.lines[x].words[6].text.length != 1) {
         // we want to filter anything that has one word results - these normally indicate player has not loaded and the OCR has not been able to read the value.
-        arrayText.push(input.data.lines[x].words[6].text);
+
         console.log(input.data.lines[x].words[7].text);
 
         if (
@@ -42,10 +42,10 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
             " " +
             input.data.lines[x].words[8].text;
           arrayText.push(newTripleWord);
+        } else if (checkLongerName(input.data.lines[x]) != "") {
+          arrayText.push(checkLongerName(input.data.lines[x]));
         } else {
-          if (checkLongerName(input.data.lines[x]) != "") {
-            arrayText.push(checkLongerName(input.data.lines[x]));
-          }
+          arrayText.push(input.data.lines[x].words[6].text);
         }
       }
     }
@@ -70,6 +70,16 @@ function testFunc(input: string) {
     "[4",
     "L4",
     "Fy",
+    "44",
+    "Ai",
+    "4:",
+    "A",
+    "-+",
+    "+i",
+    "41",
+    "Ali",
+    `“+`,
+    "i",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 

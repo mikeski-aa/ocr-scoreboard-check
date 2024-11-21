@@ -30,6 +30,7 @@ function App() {
         Upload a picture of the scoreboard at the start of the game to get the
         plane ratings
       </div>
+      <button>How to</button>
       <ImageUploader otherState={setSelected} />
       <TextRecognition selectedImage={selectedImage} />
     </div>
