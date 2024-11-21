@@ -13,7 +13,14 @@ function TutorialModal({
   return (
     <div className="modal">
       <div className="modalContent">
-        <div className="text"></div>
+        <div className="text">
+          How to use:
+          <ul>
+            <li>Take a screenshot at the START of the game</li>
+            <li>Do not crop / change it</li>
+            <li>Pictures taken with a mobile phone will not work</li>
+          </ul>
+        </div>
         <img className="exampleImage" src={pictureExample} />
         <button className="closeBtn" onClick={closeAction}>
           Close

@@ -2,9 +2,11 @@ import { useState } from "react";
 import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
+import TutorialModal from "./components/TutorialModal";
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   // DONE
   // 1. CSV re-parser.
@@ -23,6 +25,10 @@ function App() {
   // Longer plane names - i.e those with spaces will go over that line limit and will not be identified resulting
   // in lower overall place identified %.
 
+  const handleModalDisplay = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="mainContent">
       <h4>Tell me the BR</h4>
@@ -30,7 +36,8 @@ function App() {
         Upload a picture of the scoreboard at the start of the game to get the
         plane ratings
       </div>
-      <button>How to</button>
+      {showModal ? <TutorialModal setModal={setShowModal} /> : null}
+      <button onClick={handleModalDisplay}>How to</button>
       <ImageUploader otherState={setSelected} />
       <TextRecognition selectedImage={selectedImage} />
     </div>

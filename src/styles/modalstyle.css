@@ -38,13 +38,19 @@
 }
 
 .modalContent {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: grey;
+  width: 80vw;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
 }
 
 .exampleImage {
-  width: 800px;
   height: 600px;
 }
 
