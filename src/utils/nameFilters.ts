@@ -65,7 +65,13 @@ const eliminateP = (input: string) => {
 };
 
 const convertPossibleWrongName = (input: string) => {
-  const possibleWords: string[] = ["GI1R/4", "GI1", "GI91R/3", "GI1R/4"];
+  const possibleWords: string[] = [
+    "GI1R/4",
+    "GI1",
+    "GI91R/3",
+    "GI1R/4",
+    "GI1 R/4",
+  ];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
@@ -89,7 +95,12 @@ const convertPossibleBracketError = (input: string) => {
 };
 
 const convertPossibleSwiss = (input: string) => {
-  const possibleWords: string[] = ["QHunter", "Hunter £58"];
+  const possibleWords: string[] = [
+    "QHunter",
+    "Hunter £58",
+    "QHunter £58",
+    "Hunter F58",
+  ];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {

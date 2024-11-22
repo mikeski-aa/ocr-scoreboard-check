@@ -154,6 +154,9 @@ function testFunc(input: string) {
     "?",
     "“-",
     "==0",
+    "AL",
+    "Eo)",
+    "Eo",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
