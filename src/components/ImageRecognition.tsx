@@ -80,6 +80,8 @@ function testFunc(input: string) {
     "Ali",
     `“+`,
     "i",
+    "413",
+    "4)",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 

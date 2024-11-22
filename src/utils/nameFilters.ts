@@ -266,24 +266,40 @@ const filterAJS = (input: string) => {
   return input;
 };
 
+const filterCrossF4F = (input: string) => {
+  const possibleWords: string[] = ["JEF-4F"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "F-4F";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return filterAJS(
-    filterAJ(
-      formatSU(
-        eliminateFFourError(
-          eliminateTornadoError(
-            fixNewMirageErrors(
-              eliminateHarrierError(
-                eliminateK(
-                  fixMigError(
-                    fixSuError(
-                      fixYSerror(
-                        fixMirageError(
-                          eliminateCross(
-                            convertPossibleSwiss(
-                              convertPossibleBracketError(
-                                convertPossibleWrongName(
-                                  eliminateSigns(eliminateO(eliminateP(input)))
+  return filterCrossF4F(
+    filterAJS(
+      filterAJ(
+        formatSU(
+          eliminateFFourError(
+            eliminateTornadoError(
+              fixNewMirageErrors(
+                eliminateHarrierError(
+                  eliminateK(
+                    fixMigError(
+                      fixSuError(
+                        fixYSerror(
+                          fixMirageError(
+                            eliminateCross(
+                              convertPossibleSwiss(
+                                convertPossibleBracketError(
+                                  convertPossibleWrongName(
+                                    eliminateSigns(
+                                      eliminateO(eliminateP(input))
+                                    )
+                                  )
                                 )
                               )
                             )
