@@ -13,11 +13,24 @@ function checkLongerName(input: any) {
   }
 }
 
+function checkForValidFormat(input: any) {
+  if (input.data.lines.length < 7) {
+    alert("error");
+    return false;
+  }
+}
+
 // filter the results
 // might need to move this elsewhere
-const filterParsedResults = (input: Tesseract.RecognizeResult) => {
+// if image is not recognised, we return error
+function filterParsedResults(input: Tesseract.RecognizeResult) {
   let arrayText = [];
   let counter = 0;
+
+  if (input.data.lines.length < 7) {
+    return { arrayText: ["undefined"], itemsCounted: 0, error: false };
+  }
+
   for (let x = 0; x < input.data.lines.length; x++) {
     // all player data starts with 0 0 0 0 0 indicating the player scores at the start of the game
     if (input.data.lines[x].text.includes("0 0")) {
@@ -51,8 +64,8 @@ const filterParsedResults = (input: Tesseract.RecognizeResult) => {
     }
   }
 
-  return { arrayText: arrayText, itemsCounted: counter };
-};
+  return { arrayText: arrayText, itemsCounted: counter, error: false };
+}
 
 // this function tests for common OCR misinterpretations
 function testFunc(input: string) {
@@ -92,12 +105,14 @@ function testFunc(input: string) {
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [recognizedText, setRecognizedText] = useState<any>([
     { NAME: "placeholder", RATING: "0" },
+    { NAME: "placeholder", RATING: "0" },
   ]);
   const [loading, setLoading] = useState<boolean>(false);
   const [display, setDisplay] = useState<boolean>(false);
   const [possibleItems, setPossibleItems] = useState<number>(0);
   const [value, setValue] = useState<number>();
   const [actualParsed, setActualParsed] = useState<number>(0);
+  const [displayError, setDisplayError] = useState<boolean>(false);
 
   useEffect(() => {
     const recognizeText = async () => {
@@ -105,35 +120,40 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         setLoading(true);
         const result = await Tesseract.recognize(selectedImage);
         setLoading(false);
-        setDisplay(true);
+
         console.log(result.data);
+        if (checkForValidFormat(result)) {
+          return;
+        } else {
+          setDisplay(true);
+          const filterParse = filterParsedResults(result);
 
-        const filterParse = filterParsedResults(result);
-        const wordArray = filterParse.arrayText;
-        setPossibleItems(filterParse.itemsCounted);
-        const filteredArray: string[] = [];
+          const wordArray = filterParse.arrayText;
+          setPossibleItems(filterParse.itemsCounted);
+          const filteredArray: string[] = [];
 
-        // filter the words
-        for (let x = 0; x < wordArray.length; x++) {
-          filteredArray.push(stackedElims(wordArray[x]));
+          // filter the words
+          for (let x = 0; x < wordArray.length; x++) {
+            filteredArray.push(stackedElims(wordArray[x]));
+          }
+
+          const checkedWithCSV = await CSVcheck(filteredArray);
+          let sortedArray = checkedWithCSV.wholeArray.sort((a: any, b: any) => {
+            if (+a.RATING < +b.RATING) {
+              return 1;
+            }
+
+            if (+b.RATING < +a.RATING) {
+              return -1;
+            }
+
+            return 0;
+          });
+          setRecognizedText(sortedArray);
+          setActualParsed(checkedWithCSV.wholeArray.length);
+          console.log("CSV CHECKED");
+          console.log(checkedWithCSV);
         }
-
-        const checkedWithCSV = await CSVcheck(filteredArray);
-        let sortedArray = checkedWithCSV.wholeArray.sort((a: any, b: any) => {
-          if (+a.RATING < +b.RATING) {
-            return 1;
-          }
-
-          if (+b.RATING < +a.RATING) {
-            return -1;
-          }
-
-          return 0;
-        });
-        setRecognizedText(sortedArray);
-        setActualParsed(checkedWithCSV.wholeArray.length);
-        console.log("CSV CHECKED");
-        console.log(checkedWithCSV);
       }
     };
     recognizeText();
@@ -187,8 +207,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
           <div className="inputDiv">
             <h4>
-              Rating range: {recognizedText[0].RATING} -{" "}
-              {recognizedText[recognizedText.length - 1].RATING}
+              {/* Rating range: {recognizedText[0].RATING} -
+              {recognizedText[recognizedText.length - 1].RATING} */}
             </h4>
             <label>Input your BR</label>
             <input
