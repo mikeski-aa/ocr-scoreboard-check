@@ -157,6 +157,8 @@ function testFunc(input: string) {
     "AL",
     "Eo)",
     "Eo",
+    "14",
+    "2",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 

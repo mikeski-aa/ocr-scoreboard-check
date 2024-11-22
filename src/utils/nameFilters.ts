@@ -111,6 +111,14 @@ const convertPossibleSwiss = (input: string) => {
   return input;
 };
 
+const covertAlphaJetOneWord = (input: string) => {
+  if (input === "AlphaJetA") {
+    return "Alpha Jet A";
+  } else {
+    return input;
+  }
+};
+
 const eliminateCross = (input: string) => {
   const splitWord = input.split("");
 
@@ -331,29 +339,92 @@ const hornetFilter = (input: string) => {
 
   return input;
 };
+
+const removeStartSpace = (input: string) => {
+  const regex = /^\s/;
+
+  if (input.match(regex)) {
+    const splitWord = input.split("");
+    splitWord.splice(0, 1);
+    const rejoined = splitWord.join("");
+    console.log(rejoined);
+    return rejoined;
+  } else {
+    return input;
+  }
+};
+
+const limFix = (input: string) => {
+  const possibleWords: string[] = ["Lim-5p"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Lim-5P";
+    }
+  }
+
+  return input;
+};
+
+const migTwoOneFix = (input: string) => {
+  const possibleWords: string[] = ["MiG-215 (R-13-300)"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "MiG-21S (R-13-300)";
+    }
+  }
+
+  return input;
+};
+
+const clOneThreeFix = (input: string) => {
+  const possibleWords: string[] = ["CL-13B MK6", "CL-13B Mk6"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "CL-13B Mk.6";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
-  return hornetFilter(
-    migFilter(
-      filterCrossF4F(
-        filterAJS(
-          filterAJ(
-            formatSU(
-              eliminateFFourError(
-                eliminateTornadoError(
-                  fixNewMirageErrors(
-                    eliminateHarrierError(
-                      eliminateK(
-                        fixMigError(
-                          fixSuError(
-                            fixYSerror(
-                              fixMirageError(
-                                eliminateCross(
-                                  convertPossibleSwiss(
-                                    convertPossibleBracketError(
-                                      convertPossibleWrongName(
-                                        eliminateSigns(
-                                          eliminateO(
-                                            eliminateP(fixImisreads(input))
+  return covertAlphaJetOneWord(
+    removeStartSpace(
+      hornetFilter(
+        migFilter(
+          filterCrossF4F(
+            migTwoOneFix(
+              limFix(
+                clOneThreeFix(
+                  filterAJS(
+                    filterAJ(
+                      formatSU(
+                        eliminateFFourError(
+                          eliminateTornadoError(
+                            fixNewMirageErrors(
+                              eliminateHarrierError(
+                                eliminateK(
+                                  fixMigError(
+                                    fixSuError(
+                                      fixYSerror(
+                                        fixMirageError(
+                                          eliminateCross(
+                                            convertPossibleSwiss(
+                                              convertPossibleBracketError(
+                                                convertPossibleWrongName(
+                                                  eliminateSigns(
+                                                    eliminateO(
+                                                      eliminateP(
+                                                        fixImisreads(input)
+                                                      )
+                                                    )
+                                                  )
+                                                )
+                                              )
+                                            )
                                           )
                                         )
                                       )
