@@ -95,6 +95,7 @@ function testFunc(input: string) {
     "i",
     "413",
     "4)",
+    "“+i",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
@@ -239,8 +240,10 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         </div>
       ) : (
         <div className="errMsg">
-          Error parsing the image. Make sure the screenshot is from Air RB at
-          the START of the game. Check the HOW TO if you need more help.
+          <div className="errText">
+            Error parsing the image. Make sure the screenshot is from Air RB at
+            the START of the game. Check the HOW TO if you need more help.
+          </div>
         </div>
       )}
     </div>
