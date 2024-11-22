@@ -151,6 +151,14 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           });
           setRecognizedText(sortedArray);
           setActualParsed(checkedWithCSV.wholeArray.length);
+
+          // if no data is parsed, invalid data was provided
+          if (checkedWithCSV.wholeArray.length === 0) {
+            setDisplayError(true);
+          } else {
+            setDisplayError(false);
+          }
+
           console.log("CSV CHECKED");
           console.log(checkedWithCSV);
         }
@@ -206,10 +214,13 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           </div>
 
           <div className="inputDiv">
-            <h4>
-              {/* Rating range: {recognizedText[0].RATING} -
-              {recognizedText[recognizedText.length - 1].RATING} */}
-            </h4>
+            {recognizedText.length > 3 ? (
+              <h4>
+                Rating range: {recognizedText[0].RATING} -
+                {recognizedText[recognizedText.length - 1].RATING}
+              </h4>
+            ) : null}
+
             <label>Input your BR</label>
             <input
               type="number"
