@@ -97,3 +97,8 @@ button:hover {
   background-color: #b10dff;
   color: white;
 }
+
+.buttonNameWrapper {
+  display: flex;
+  gap: 1rem;
+}
