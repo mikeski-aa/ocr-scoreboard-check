@@ -6,6 +6,39 @@ import CSVcheck from "../utils/CSVcheck";
 
 function checkLongerName(input: any) {
   if (!testFunc(input.words[7].text)) {
+    if (!testFunc(input.words[8].text)) {
+      if (!testFunc(input.words[9].text)) {
+        if (!testFunc(input.words[10].text)) {
+          let newWord =
+            input.words[6].text +
+            " " +
+            input.words[7].text +
+            " " +
+            input.words[8].text +
+            " " +
+            input.words[9].text +
+            " " +
+            input.words[10].text;
+          return newWord;
+        }
+        let newWord =
+          input.words[6].text +
+          " " +
+          input.words[7].text +
+          " " +
+          input.words[8].text +
+          " " +
+          input.words[9].text;
+        return newWord;
+      }
+      let newWord =
+        input.words[6].text +
+        " " +
+        input.words[7].text +
+        " " +
+        input.words[8].text;
+      return newWord;
+    }
     let newWord = input.words[6].text + " " + input.words[7].text;
     return newWord;
   } else {
@@ -41,23 +74,37 @@ function filterParsedResults(input: Tesseract.RecognizeResult) {
 
         console.log(input.data.lines[x].words[7].text);
 
-        if (
-          input.data.lines[x].words[7].text === "109" ||
-          input.data.lines[x].words[7].text === "Phantom" ||
-          input.data.lines[x].words[7].text === "IDS" ||
-          input.data.lines[x].words[7].text === "Harrier" ||
-          input.data.lines[x].words[7].text === "Vautour" ||
-          input.data.lines[x].words[7].text === "262" ||
-          input.data.lines[x].words[7].text === "229"
-        ) {
-          let newTripleWord =
-            input.data.lines[x].words[6].text +
-            " " +
-            input.data.lines[x].words[7].text +
-            " " +
-            input.data.lines[x].words[8].text;
-          arrayText.push(newTripleWord);
-        } else if (checkLongerName(input.data.lines[x]) != "") {
+        // if (
+        //   input.data.lines[x].words[7].text === "109" ||
+        //   input.data.lines[x].words[7].text === "Phantom" ||
+        //   input.data.lines[x].words[7].text === "IDS" ||
+        //   input.data.lines[x].words[7].text === "Harrier" ||
+        //   input.data.lines[x].words[7].text === "Vautour" ||
+        //   input.data.lines[x].words[7].text === "262" ||
+        //   input.data.lines[x].words[7].text === "229"
+        // ) {
+        //   let newTripleWord =
+        //     input.data.lines[x].words[6].text +
+        //     " " +
+        //     input.data.lines[x].words[7].text +
+        //     " " +
+        //     input.data.lines[x].words[8].text;
+        //   arrayText.push(newTripleWord);
+        // } else if (
+        //   input.data.lines[x].words[7].text === "F" &&
+        //   input.data.lines[x].words[8].text === "Mk"
+        // ) {
+        //   let newTripleWord =
+        //     input.data.lines[x].words[6].text +
+        //     " " +
+        //     input.data.lines[x].words[7].text +
+        //     " " +
+        //     input.data.lines[x].words[8].text +
+        //     " " +
+        //     input.data.lines[x].words[9].text;
+        //   arrayText.push(newTripleWord);
+        // } else
+        if (checkLongerName(input.data.lines[x]) != "") {
           arrayText.push(checkLongerName(input.data.lines[x]));
         } else {
           arrayText.push(input.data.lines[x].words[6].text);
@@ -98,6 +145,9 @@ function testFunc(input: string) {
     "413",
     "4)",
     "“+i",
+    "+!",
+    "52",
+    "Se",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
