@@ -46,7 +46,9 @@ function filterParsedResults(input: Tesseract.RecognizeResult) {
           input.data.lines[x].words[7].text === "Phantom" ||
           input.data.lines[x].words[7].text === "IDS" ||
           input.data.lines[x].words[7].text === "Harrier" ||
-          input.data.lines[x].words[7].text === "Vautour"
+          input.data.lines[x].words[7].text === "Vautour" ||
+          input.data.lines[x].words[7].text === "262" ||
+          input.data.lines[x].words[7].text === "229"
         ) {
           let newTripleWord =
             input.data.lines[x].words[6].text +

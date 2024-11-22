@@ -277,27 +277,47 @@ const filterCrossF4F = (input: string) => {
 
   return input;
 };
+("MiG-9 (1)");
+
+const migFilter = (input: string) => {
+  const possibleWords: string[] = [
+    "MiG-9 (1)",
+    "MiG-9 (j)",
+    "MiG-9 (J)",
+    "MiG-9 ())",
+  ];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "MiG-9 (l)";
+    }
+  }
+
+  return input;
+};
 
 function stackedElims(input: string) {
-  return filterCrossF4F(
-    filterAJS(
-      filterAJ(
-        formatSU(
-          eliminateFFourError(
-            eliminateTornadoError(
-              fixNewMirageErrors(
-                eliminateHarrierError(
-                  eliminateK(
-                    fixMigError(
-                      fixSuError(
-                        fixYSerror(
-                          fixMirageError(
-                            eliminateCross(
-                              convertPossibleSwiss(
-                                convertPossibleBracketError(
-                                  convertPossibleWrongName(
-                                    eliminateSigns(
-                                      eliminateO(eliminateP(input))
+  return migFilter(
+    filterCrossF4F(
+      filterAJS(
+        filterAJ(
+          formatSU(
+            eliminateFFourError(
+              eliminateTornadoError(
+                fixNewMirageErrors(
+                  eliminateHarrierError(
+                    eliminateK(
+                      fixMigError(
+                        fixSuError(
+                          fixYSerror(
+                            fixMirageError(
+                              eliminateCross(
+                                convertPossibleSwiss(
+                                  convertPossibleBracketError(
+                                    convertPossibleWrongName(
+                                      eliminateSigns(
+                                        eliminateO(eliminateP(input))
+                                      )
                                     )
                                   )
                                 )
