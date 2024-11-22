@@ -19,6 +19,19 @@ const eliminateSigns = (input: string) => {
   }
 };
 
+const fixImisreads = (input: string) => {
+  const splitWord = input.split("");
+
+  if (splitWord[0] === "1" && splitWord[1] === "-") {
+    splitWord[0] = "I";
+    const rejoined = splitWord.join("");
+    console.log(rejoined);
+    return rejoined;
+  } else {
+    return input;
+  }
+};
+
 // elminates O that OCR can accidentally put when mis-recognising
 const eliminateO = (input: string) => {
   const splitWord = input.split("");
@@ -328,7 +341,9 @@ function stackedElims(input: string) {
                                     convertPossibleBracketError(
                                       convertPossibleWrongName(
                                         eliminateSigns(
-                                          eliminateO(eliminateP(input))
+                                          eliminateO(
+                                            eliminateP(fixImisreads(input))
+                                          )
                                         )
                                       )
                                     )

@@ -148,6 +148,12 @@ function testFunc(input: string) {
     "+!",
     "52",
     "Se",
+    "k4",
+    "$4",
+    "(4",
+    "?",
+    "“-",
+    "==0",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
