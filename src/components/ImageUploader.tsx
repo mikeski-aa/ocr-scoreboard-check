@@ -34,7 +34,7 @@ function ImageUploader({
             onChange={(e) => handleImageUpload(e)}
           />
         </div>
-        <div className="fileName">{activeName}</div>
+        {activeName != "" ? <div className="fileName">{activeName}</div> : null}
       </div>
       {selectedImage && (
         <img src={selectedImage} alt="selected" className="previewImg" />

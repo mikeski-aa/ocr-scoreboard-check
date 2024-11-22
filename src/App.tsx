@@ -38,8 +38,10 @@ function App() {
       </div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
       <button onClick={handleModalDisplay}>How to</button>
-      <ImageUploader otherState={setSelected} />
-      <TextRecognition selectedImage={selectedImage} />
+      <div className="previewResultHolder">
+        <ImageUploader otherState={setSelected} />
+        <TextRecognition selectedImage={selectedImage} />
+      </div>
     </div>
   );
 }

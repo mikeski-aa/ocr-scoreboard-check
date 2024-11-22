@@ -102,3 +102,8 @@ button:hover {
   display: flex;
   gap: 1rem;
 }
+
+.previewResultHolder {
+  display: flex;
+  gap: 1rem;
+}

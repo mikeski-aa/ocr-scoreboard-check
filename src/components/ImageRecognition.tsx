@@ -97,7 +97,6 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [display, setDisplay] = useState<boolean>(false);
   const [possibleItems, setPossibleItems] = useState<number>(0);
   const [value, setValue] = useState<number>();
-  const [numberDetected, setNumberDetected] = useState<number>(0);
   const [actualParsed, setActualParsed] = useState<number>(0);
 
   useEffect(() => {
@@ -119,7 +118,6 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           filteredArray.push(stackedElims(wordArray[x]));
         }
 
-        setNumberDetected(filteredArray.length);
         const checkedWithCSV = await CSVcheck(filteredArray);
         let sortedArray = checkedWithCSV.wholeArray.sort((a: any, b: any) => {
           if (+a.RATING < +b.RATING) {
@@ -163,55 +161,51 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     }
   };
   return (
-    <div>
+    <div className="imgRecogResultDiv">
       <LoadingModal state={loading} />
       {display ? (
-        <>
-          <div className="sideBySide">
-            <div className="detectedPlanes">
-              <h4>Detected planes:</h4>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Rating</th>
+        <div className="sideBySide">
+          <div className="detectedPlanes">
+            <h4>Detected planes:</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recognizedText.map((item: any, index: number) => (
+                  <tr key={index}>
+                    <td>{item.NAME}</td>
+                    <td>{item.RATING}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {recognizedText.map((item: any, index: number) => (
-                    <tr key={index}>
-                      <td>{item.NAME}</td>
-                      <td>{item.RATING}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-            <div className="inputDiv">
-              <h4>
-                Rating range: {recognizedText[0].RATING} -{" "}
-                {recognizedText[recognizedText.length - 1].RATING}
-              </h4>
-              <label>Input your BR</label>
-              <input
-                type="number"
-                className="brInput"
-                onChange={(e) => handleInputChange(e)}
-                value={value}
-              ></input>
-              <div className="relativeBR">{calculateTier()}</div>
-              <div className="parsedCompare">
-                Items detected: {possibleItems}
-              </div>
-              <div>Items parsed: {actualParsed}</div>
-              <div className="parsePercent">
-                {(Math.round((actualParsed / possibleItems) * 100) / 100) * 100}
-                % of items succesfully parsed
-              </div>
+          <div className="inputDiv">
+            <h4>
+              Rating range: {recognizedText[0].RATING} -{" "}
+              {recognizedText[recognizedText.length - 1].RATING}
+            </h4>
+            <label>Input your BR</label>
+            <input
+              type="number"
+              className="brInput"
+              onChange={(e) => handleInputChange(e)}
+              value={value}
+            ></input>
+            <div className="relativeBR">{calculateTier()}</div>
+            <div className="parsedCompare">Items detected: {possibleItems}</div>
+            <div>Items parsed: {actualParsed}</div>
+            <div className="parsePercent">
+              {(Math.round((actualParsed / possibleItems) * 100) / 100) * 100}%
+              of items succesfully parsed
             </div>
           </div>
-        </>
+        </div>
       ) : null}
     </div>
   );
