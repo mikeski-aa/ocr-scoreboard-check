@@ -191,7 +191,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   return (
     <div className="imgRecogResultDiv">
       <LoadingModal state={loading} />
-      {display ? (
+      {display && !displayError ? (
         <div className="sideBySide">
           <div className="detectedPlanes">
             <h4>Detected planes:</h4>
@@ -237,7 +237,12 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             </div>
           </div>
         </div>
-      ) : null}
+      ) : (
+        <div className="errMsg">
+          Error parsing the image. Make sure the screenshot is from Air RB at
+          the START of the game. Check the HOW TO if you need more help.
+        </div>
+      )}
     </div>
   );
 };
