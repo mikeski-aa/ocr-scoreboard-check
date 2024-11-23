@@ -6,7 +6,7 @@ import { createObjectCsvWriter } from "csv-writer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __dirname = dirname(__filename);
 
 const nations = [
   {
