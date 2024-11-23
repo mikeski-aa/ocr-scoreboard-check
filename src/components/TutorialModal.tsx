@@ -14,7 +14,7 @@ function TutorialModal({
     <div className="modal">
       <div className="modalContent">
         <div className="text">
-          How to use:
+          <div className="headingTextModal">How to use the app:</div>
           <ul>
             <li>Take a screenshot at the START of the game</li>
             <li>Do not crop / change it</li>

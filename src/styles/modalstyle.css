@@ -44,10 +44,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: grey;
+  background-color: rgb(41, 41, 41);
   width: 80vw;
   border-radius: 5px;
   box-shadow: 5px 5px 5px grey;
+  top: 2%;
+  border: 2px solid #b10dff;
+  padding: 10px;
 }
 
 .exampleImage {
@@ -56,4 +59,17 @@
 
 .text {
   font-size: 1.2rem;
+}
+
+.exampleImage {
+  border-radius: 5px;
+  border: 2px solid #b10dff;
+}
+
+.closeBtn {
+  margin-top: 15px;
+}
+
+.headingTextModal {
+  text-align: center;
 }
