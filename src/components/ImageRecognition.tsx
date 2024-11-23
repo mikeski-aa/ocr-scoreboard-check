@@ -128,6 +128,7 @@ function testFunc(input: string) {
     "Eo",
     "14",
     "2",
+    `"30s"`,
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 

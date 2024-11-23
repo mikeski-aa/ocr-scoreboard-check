@@ -71,11 +71,36 @@ const convertPossibleWrongName = (input: string) => {
     "GI91R/3",
     "GI1R/4",
     "GI1 R/4",
+    "G91 R/4",
   ];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
       return "G.91 R/4";
+    }
+  }
+
+  return input;
+};
+
+const converGYnameFix = (input: string) => {
+  const possibleWords: string[] = ["G91 YS"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "G.91 YS";
+    }
+  }
+
+  return input;
+};
+
+const converGnameFix = (input: string) => {
+  const possibleWords: string[] = ["G91R/3"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "G.91 R/3";
     }
   }
 
@@ -390,35 +415,55 @@ const clOneThreeFix = (input: string) => {
   return input;
 };
 
+const j34fix = (input: string) => {
+  const possibleWords: string[] = ["134", "l34", ")34"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "J34";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
-    removeStartSpace(
-      hornetFilter(
-        migFilter(
-          filterCrossF4F(
-            migTwoOneFix(
-              limFix(
-                clOneThreeFix(
-                  filterAJS(
-                    filterAJ(
-                      formatSU(
-                        eliminateFFourError(
-                          eliminateTornadoError(
-                            fixNewMirageErrors(
-                              eliminateHarrierError(
-                                eliminateK(
-                                  fixMigError(
-                                    fixSuError(
-                                      fixYSerror(
-                                        fixMirageError(
-                                          eliminateCross(
-                                            convertPossibleSwiss(
-                                              convertPossibleBracketError(
-                                                convertPossibleWrongName(
-                                                  eliminateSigns(
-                                                    eliminateO(
-                                                      eliminateP(
-                                                        fixImisreads(input)
+    converGYnameFix(
+      converGnameFix(
+        removeStartSpace(
+          hornetFilter(
+            migFilter(
+              filterCrossF4F(
+                migTwoOneFix(
+                  limFix(
+                    clOneThreeFix(
+                      filterAJS(
+                        filterAJ(
+                          formatSU(
+                            eliminateFFourError(
+                              eliminateTornadoError(
+                                fixNewMirageErrors(
+                                  eliminateHarrierError(
+                                    eliminateK(
+                                      fixMigError(
+                                        fixSuError(
+                                          fixYSerror(
+                                            fixMirageError(
+                                              eliminateCross(
+                                                convertPossibleSwiss(
+                                                  convertPossibleBracketError(
+                                                    convertPossibleWrongName(
+                                                      eliminateSigns(
+                                                        eliminateO(
+                                                          eliminateP(
+                                                            j34fix(
+                                                              fixImisreads(
+                                                                input
+                                                              )
+                                                            )
+                                                          )
+                                                        )
                                                       )
                                                     )
                                                   )
