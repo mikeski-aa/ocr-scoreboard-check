@@ -114,7 +114,7 @@ To begin the OCR process a user needs to upload an image of the scoreboard at th
 OCR will process the image top to bottom, left to right. Resulting data will be an array of lines.
 In order to identify the specific part of the image we are looking for, my approach was to look for lines that include `"0 0"` as this is the start of the score for each player. The reason why I only chose to go with two 0s instead of `"0 0 0 0 0 0"` as per starting score values of each player was that due to changes in the background (as the scoreboard is transparent), OCR library would sometimes mistakenly identify zeros as other characters.
 
-Example of not correctly identifying 0s:
+Example of how the 0s are sometimes identified:
 
 ![Scoreboard example](./readme_screenshots/error-parse.png)
 
@@ -186,7 +186,7 @@ The next challenge in reading the names came from the symbols preceeding plane n
 
 These would usually be interpreted by the OCR as two symbols - for example `$!`. Hence, every string passed to by the OCR is then broken down, and checked whether the first two characters are both symbols. If they are, that part of the string is taken out.
 
-In fact, there are a number of common and repeated OCR errors that would occur - for example, reading lower case `"i"` as `"I"` or reading `"/"` as `"J"` OR `")"`.
+In fact, there are a number of common and repeated OCR errors that would occur - for example, reading lower case `"i"` as `"I"` or reading `"/"` as `"J"` OR `")"`. However, a simple regex was not sufficient due to the variety of issues with reading names. Some very specific edge cases had to be covered.
 I've tried to counter these errors as best as possible by implementing my custom filtering functions within the `src/utils/nameFilter.ts` file.
 
 The purpose of the file is to clean up the parsed names before they are checked against the vehicle name CSV and to improve the overall parsing accuracy.
