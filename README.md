@@ -14,12 +14,52 @@ A brief overview of the problem
 
 ## Table of Contents
 
+- [Install](#install)
 - [How it works](#how-it-works)
 - [Tools used](#tools-used)
 
 ## Limitations
 
 The OCR process was tested quite thoroughly, although it was done at 1440p. This was an oversight when initially creating the application. The OCR being used here is sensitive to resolution changes. This means that accuracy of the parse is SIGNIFICANTLY decreased when reading a low resolution image. Even a 1080p image will produce a much less accurate result than a 1440p image.
+
+## Install
+
+Follow these simple steps to install and set up the project.
+
+## Prerequisites Before you begin, make sure you have the following installed:
+
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+## Steps
+
+1. Clone the Repository
+
+```sh
+git clone https://github.com/mikeski-aa/ocr-scoreboard-check.git
+```
+
+2. Navigate to repository
+
+```sh
+cd ocr-scoreboard-check
+```
+
+3. Install dependencies
+
+```sh
+npm install
+```
+
+3. Run project
+
+```sh
+npm run dev
+```
+
+3. Open your web browser and navigate to:
+
+   `http://localhost:5173/`
 
 ## How it works
 
@@ -56,8 +96,8 @@ Example:
 This is the page that loads for a specific vehicle. The ONLY item the parser cares about here is the Battle Rating table and specifically the "RB" value highlighted in red.
 
 Selecting this value was achieved by using Cheerio's HTML selectors `$(
-      "#mw-content-text > div.mw-parser-output > div.specs_card_main > div.specs_card_main_info > div.general_info_2 > div.general_info_br > table > tbody > tr:nth-child(2) > td:nth-child(2)"
-    ).html();`
+    "#mw-content-text > div.mw-parser-output > div.specs_card_main > div.specs_card_main_info > div.general_info_2 > div.general_info_br > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+  ).html();`
 
 Now that we had the name and rating, the two items we cared about the most, the data was stored as an array of objects initially in the format of:
 

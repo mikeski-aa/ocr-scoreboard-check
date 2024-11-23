@@ -186,25 +186,25 @@ async function saveToCSV() {
 }
 
 // loaded file parser for testing purposes
-async function parseSavedFile() {
-  const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
-  const csvString = fs.readFileSync(filePath, "utf8");
+// async function parseSavedFile() {
+//   const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
+//   const csvString = fs.readFileSync(filePath, "utf8");
 
-  await Papa.parse(csvString, {
-    header: true,
-    delimiter: ";",
-    complete: (results) => {
-      console.log("parsed successfully");
-      // console.log(results.data);
-      // filteredSavedFile only works on .name and .rating,
-      //needs to be changed to .NAME and .RATING to be used with
-      // parsed data
-      // replaceQuotes(results.data);
+//   await Papa.parse(csvString, {
+//     header: true,
+//     delimiter: ";",
+//     complete: (results) => {
+//       console.log("parsed successfully");
+//       // console.log(results.data);
+//       // filteredSavedFile only works on .name and .rating,
+//       //needs to be changed to .NAME and .RATING to be used with
+//       // parsed data
+//       // replaceQuotes(results.data);
 
-      return results.data;
-    },
-  });
-}
+//       return results.data;
+//     },
+//   });
+// }
 
 // let's think how we can break this down
 // 1. we need to find everything with nations in brackets
