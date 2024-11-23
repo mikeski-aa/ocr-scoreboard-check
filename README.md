@@ -195,7 +195,10 @@ I've tried to counter these errors as best as possible by implementing my custom
 
 The purpose of the file is to clean up the parsed names before they are checked against the vehicle name CSV and to improve the overall parsing accuracy.
 
-Tthe CSV is loaded via Papa Parse and each value is compared against the CSV, returning the plane name and relevant rating to the user, displaying an ordered table of planes along with the possible plane range from detected values.
+The CSV is loaded via Papa Parse and each value is compared against the CSV, returning the plane name and relevant rating to the user, displaying an ordered table of planes along with the possible plane range from detected values.
+
+Example of successfully parsed data:
+![Scoreboard example](./src/assets/examplesaved.png)
 
 ## Tools used
 
