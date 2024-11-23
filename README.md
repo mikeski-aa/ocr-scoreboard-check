@@ -1,6 +1,6 @@
 # Air RB Parser READ ME
 
-A brief overview of the problem before describing the application.
+A brief overview of the problem
 
 - In the MMO game "War Thunder", in the "Air Realistic Battle" mode you are matched with other players based on the rating of your plane. The ratings start at 1.0 and go all the way up to 13.0. The matchmaker can place you against planes around your own plane's rating, up to +-1.0 of your plane's rating.
 
@@ -16,6 +16,10 @@ A brief overview of the problem before describing the application.
 
 - [How it works](#how-it-works)
 - [Tools used](#tools-used)
+
+## Limitations
+
+The OCR process was tested quite thoroughly, although it was done at 1440p. This was an oversight when initially creating the application. The OCR being used here is sensitive to resolution changes. This means that accuracy of the parse is SIGNIFICANTLY decreased when reading a low resolution image. Even a 1080p image will produce a much less accurate result than a 1440p image.
 
 ## How it works
 
@@ -191,7 +195,7 @@ I've tried to counter these errors as best as possible by implementing my custom
 
 The purpose of the file is to clean up the parsed names before they are checked against the vehicle name CSV and to improve the overall parsing accuracy.
 
-Lastly, the CSV is loaded via Papa Parse and each value is compared against the CSV, returning the plane name and relevant rating to the user, displaying an ordered table of planes along with the possible plane range from detected values.
+Tthe CSV is loaded via Papa Parse and each value is compared against the CSV, returning the plane name and relevant rating to the user, displaying an ordered table of planes along with the possible plane range from detected values.
 
 ## Tools used
 
