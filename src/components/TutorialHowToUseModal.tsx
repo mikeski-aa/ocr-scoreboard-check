@@ -46,11 +46,8 @@ function TutorialHowToUseModal({
         </div>
         <img className="exampleImage" src={locationex} />
         <div className="text">
-          <ul>
-            <li>
-              Note that similar set is possible for other screenshot tools
-            </li>
-          </ul>
+          NOTE: If you don't use steam, other 3rd party screenshot apps have
+          similar screenshot folder functionality you can set up
         </div>
         <button className="closeBtn" onClick={closeAction}>
           Close
