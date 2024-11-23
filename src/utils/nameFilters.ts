@@ -6,13 +6,13 @@ const eliminateSigns = (input: string) => {
     if (regex.test(splitWord[1])) {
       splitWord.splice(0, 2);
       const rejoined = splitWord.join("");
-      console.log(rejoined);
+      // console.log(rejoined);
       return rejoined;
     }
 
     splitWord.splice(0, 1);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   } else {
     return input;
@@ -25,7 +25,7 @@ const fixImisreads = (input: string) => {
   if (splitWord[0] === "1" && splitWord[1] === "-") {
     splitWord[0] = "I";
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   } else {
     return input;
@@ -44,7 +44,7 @@ const eliminateO = (input: string) => {
   } else {
     splitWord.splice(0, 1);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   }
 };
@@ -57,7 +57,7 @@ const eliminateP = (input: string) => {
   } else if (splitWord[1] === "M") {
     splitWord.splice(0, 1);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   } else {
     return input;
@@ -152,7 +152,7 @@ const eliminateCross = (input: string) => {
   } else if (splitWord[1] === "E") {
     splitWord.splice(0, 2);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   } else {
     return input;
@@ -237,7 +237,7 @@ const eliminateK = (input: string) => {
   } else {
     splitWord.splice(0, 1);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   }
 };
@@ -372,7 +372,7 @@ const removeStartSpace = (input: string) => {
     const splitWord = input.split("");
     splitWord.splice(0, 1);
     const rejoined = splitWord.join("");
-    console.log(rejoined);
+    // console.log(rejoined);
     return rejoined;
   } else {
     return input;

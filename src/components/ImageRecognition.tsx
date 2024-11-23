@@ -132,7 +132,7 @@ function testFunc(input: string) {
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
-  console.log(containsSymbol);
+  // console.log(containsSymbol);
   return containsSymbol;
 }
 
@@ -155,7 +155,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         const result = await Tesseract.recognize(selectedImage);
         setLoading(false);
 
-        console.log(result.data);
+        // console.log(result.data);
         if (checkForValidFormat(result)) {
           return;
         } else {
@@ -193,8 +193,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             setDisplayError(false);
           }
 
-          console.log("CSV CHECKED");
-          console.log(checkedWithCSV);
+          // console.log("CSV CHECKED");
+          // console.log(checkedWithCSV);
         }
       }
     };
@@ -209,12 +209,12 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const calculateTier = () => {
     if (value) {
       if (+recognizedText[0].RATING > +value) {
-        console.log("uptier detected");
+        // console.log("uptier detected");
         let difference = +recognizedText[0].RATING - +value;
         let rounded = Math.round(difference * 100) / 100;
         return `Uptier detected: +${rounded}`;
       } else {
-        console.log("downtier detected");
+        // console.log("downtier detected");
         let difference =
           +value - +recognizedText[recognizedText.length - 1].RATING;
         let rounded = Math.round(difference * 100) / 100;

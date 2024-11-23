@@ -52,7 +52,7 @@ const nations = [
 ];
 
 // returns array of all vehicles from vehicle list
-async function getVehicleListForNation(targeturl: string, countryname: string) {
+async function getVehicleListForNation(targeturl: string) {
   const url = `https://wiki.warthunder.com/Category:${targeturl}`;
 
   try {

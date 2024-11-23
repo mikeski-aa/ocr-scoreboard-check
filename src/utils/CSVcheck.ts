@@ -12,7 +12,7 @@ async function loadCSV() {
   Papa.parse(txt, {
     header: true,
     complete: (results) => {
-      console.log("parsed CSV:", results.data);
+      // console.log("parsed CSV:", results.data);
 
       result = results.data;
     },
@@ -23,7 +23,7 @@ async function loadCSV() {
 
 async function CSVcheck(inputArray: string[]) {
   const loadedCSV: IVehicleData[] = await loadCSV();
-  console.log(inputArray);
+  // console.log(inputArray);
   let newArray = [];
 
   for (let x = 0; x < inputArray.length; x++) {
