@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     viteStaticCopy({
-      targets: [{ src: "./wiki-parser/vehicleCSV.csv", dest: "assets" }],
+      targets: [{ src: "./public/vehicleCSV.csv", dest: "assets" }],
     }),
   ],
 });
