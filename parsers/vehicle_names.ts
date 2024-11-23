@@ -3,9 +3,9 @@ import { createObjectCsvWriter } from "csv-writer";
 // import fs from "fs";
 // import path from "node:path";
 // import Papa from "papaparse";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url);
+// import { dirname } from "path";
+// import { fileURLToPath } from "url";
+// const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 
 const nations = [
