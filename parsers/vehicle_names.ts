@@ -125,10 +125,7 @@ async function getVehiclesAndRatingsForEachNation() {
   const detailedArray: any = [];
 
   for (let x = 0; x < nations.length; x++) {
-    const vehicles = await getVehicleListForNation(
-      nations[x].urlName,
-      nations[x].country
-    );
+    const vehicles = await getVehicleListForNation(nations[x].urlName);
 
     const promises: any = vehicles?.map(async (item) => {
       if (item === "MQ-1" || item === "Orion" || item === "Wing Loong I") {
