@@ -4,6 +4,8 @@ import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
 
+// the maximum "words" that can be had is 5
+// this function is rather ugly but I am not picturing a simpler way of writing this at this moment
 function checkLongerName(input: any) {
   if (!testFunc(input.words[7].text)) {
     if (!testFunc(input.words[8].text)) {
@@ -71,38 +73,6 @@ function filterParsedResults(input: Tesseract.RecognizeResult) {
       if (input.data.lines[x].words[6].text.length != 1) {
         // we want to filter anything that has one word results - these normally indicate player has not loaded and the OCR has not been able to read the value.
 
-        console.log(input.data.lines[x].words[7].text);
-
-        // if (
-        //   input.data.lines[x].words[7].text === "109" ||
-        //   input.data.lines[x].words[7].text === "Phantom" ||
-        //   input.data.lines[x].words[7].text === "IDS" ||
-        //   input.data.lines[x].words[7].text === "Harrier" ||
-        //   input.data.lines[x].words[7].text === "Vautour" ||
-        //   input.data.lines[x].words[7].text === "262" ||
-        //   input.data.lines[x].words[7].text === "229"
-        // ) {
-        //   let newTripleWord =
-        //     input.data.lines[x].words[6].text +
-        //     " " +
-        //     input.data.lines[x].words[7].text +
-        //     " " +
-        //     input.data.lines[x].words[8].text;
-        //   arrayText.push(newTripleWord);
-        // } else if (
-        //   input.data.lines[x].words[7].text === "F" &&
-        //   input.data.lines[x].words[8].text === "Mk"
-        // ) {
-        //   let newTripleWord =
-        //     input.data.lines[x].words[6].text +
-        //     " " +
-        //     input.data.lines[x].words[7].text +
-        //     " " +
-        //     input.data.lines[x].words[8].text +
-        //     " " +
-        //     input.data.lines[x].words[9].text;
-        //   arrayText.push(newTripleWord);
-        // } else
         if (checkLongerName(input.data.lines[x]) != "") {
           arrayText.push(checkLongerName(input.data.lines[x]));
         } else {
@@ -255,7 +225,9 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const renderedContent = () => {
     if (display == false && displayError == false) {
       return (
-        <div className="initialState">No items have been uploaded yet</div>
+        <div className="initialState">
+          <div className="emptyInfoText">No items have been uploaded yet</div>
+        </div>
       );
     }
 

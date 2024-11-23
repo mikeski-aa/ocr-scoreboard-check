@@ -3,10 +3,12 @@ import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
 import TutorialModal from "./components/TutorialModal";
+import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showTutorial, setShowTutorial] = useState<boolean>(false);
 
   // DONE
   // 1. CSV re-parser.
@@ -25,8 +27,12 @@ function App() {
   // Longer plane names - i.e those with spaces will go over that line limit and will not be identified resulting
   // in lower overall place identified %.
 
-  const handleModalDisplay = () => {
-    setShowModal(true);
+  const handleModalDisplay = (input: boolean) => {
+    if (input) {
+      setShowModal(true);
+    } else {
+      setShowTutorial(true);
+    }
   };
 
   return (
@@ -37,9 +43,18 @@ function App() {
         plane ratings
       </div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
-      <button onClick={handleModalDisplay} className="howtoBtn">
-        How to
-      </button>
+      {showTutorial ? (
+        <TutorialHowToUseModal setModal={setShowTutorial} />
+      ) : null}
+      <div className="tutorialButtonHolder">
+        <button onClick={() => handleModalDisplay(true)} className="howtoBtn">
+          How to use the app
+        </button>
+        <button onClick={() => handleModalDisplay(false)} className="howtoBtn">
+          Easy screenshot tutorial
+        </button>
+      </div>
+
       <div className="previewResultHolder">
         <ImageUploader otherState={setSelected} />
         <TextRecognition selectedImage={selectedImage} />

@@ -51,10 +51,8 @@
   top: 2%;
   border: 2px solid #b10dff;
   padding: 10px;
-}
-
-.exampleImage {
-  height: 600px;
+  max-height: 85vh;
+  overflow-y: scroll;
 }
 
 .text {
@@ -64,6 +62,8 @@
 .exampleImage {
   border-radius: 5px;
   border: 2px solid #b10dff;
+  max-height: 600px;
+  max-width: 80vw;
 }
 
 .closeBtn {
