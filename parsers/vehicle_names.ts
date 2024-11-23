@@ -188,6 +188,7 @@ async function saveToCSV() {
   csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
 }
 
+// loaded file parser for testing purposes
 async function parseSavedFile() {
   const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
   const csvString = fs.readFileSync(filePath, "utf8");
