@@ -48,7 +48,6 @@ function checkLongerName(input: any) {
 
 function checkForValidFormat(input: any) {
   if (input.data.lines.length < 7) {
-    alert("error");
     return false;
   }
 }
@@ -252,10 +251,16 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
       }
     }
   };
-  return (
-    <div className="imgRecogResultDiv">
-      <LoadingModal state={loading} />
-      {display && !displayError ? (
+
+  const renderedContent = () => {
+    if (display == false && displayError == false) {
+      return (
+        <div className="initialState">No items have been uploaded yet</div>
+      );
+    }
+
+    if (display && !displayError) {
+      return (
         <div className="sideBySide">
           <div className="detectedPlanes">
             <h4>Detected planes:</h4>
@@ -301,14 +306,23 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             </div>
           </div>
         </div>
-      ) : (
+      );
+    } else {
+      return (
         <div className="errMsg">
           <div className="errText">
             Error parsing the image. Make sure the screenshot is from Air RB at
             the START of the game. Check the HOW TO if you need more help.
           </div>
         </div>
-      )}
+      );
+    }
+  };
+
+  return (
+    <div className="imgRecogResultDiv">
+      <LoadingModal state={loading} />
+      {renderedContent()}
     </div>
   );
 };

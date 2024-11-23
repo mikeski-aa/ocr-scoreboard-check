@@ -37,7 +37,9 @@ function App() {
         plane ratings
       </div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
-      <button onClick={handleModalDisplay}>How to</button>
+      <button onClick={handleModalDisplay} className="howtoBtn">
+        How to
+      </button>
       <div className="previewResultHolder">
         <ImageUploader otherState={setSelected} />
         <TextRecognition selectedImage={selectedImage} />
