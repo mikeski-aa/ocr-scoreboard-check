@@ -15,7 +15,7 @@ A brief overview of the problem before describing the application.
 ## Table of Contents
 
 - [How it works](#how-it-works)
-- [Installation](#installation)
+- [Tools used](#tools-used)
 
 ## How it works
 
@@ -104,3 +104,109 @@ In the end I've decided to go the with CSV, using Papa Parse https://www.papapar
 ---
 
 ### OCR stage
+
+For OCR tool, I decided to go with Tesseract.js https://tesseract.projectnaptha.com/ as it is able to run in both Node and in-browser, making it well suited for scoreboard reading.
+
+To begin the OCR process a user needs to upload an image of the scoreboard at the start of the match such as this example:
+
+![Scoreboard example](src/assets/censoredpic.png)
+
+OCR will process the image top to bottom, left to right. Resulting data will be an array of lines.
+In order to identify the specific part of the image we are looking for, my approach was to look for lines that include `"0 0"` as this is the start of the score for each player. The reason why I only chose to go with two 0s instead of `"0 0 0 0 0 0"` as per starting score values of each player was that due to changes in the background (as the scoreboard is transparent), OCR library would sometimes mistakenly identify zeros as other characters.
+
+Example of not correctly identifying 0s:
+
+![Scoreboard example](./readme_screenshots/error-parse.png)
+
+The plane name would then end up being the 6th item in the "word" array
+
+![Scoreboard example](./readme_screenshots/planeNameLocation.png)
+
+Hence, the application will take the 6th word every time and use it to search for a plane.
+
+But it isn't as simple as that. What if a plane has a space in the name, or multiple spaces?
+
+The solution required a LOT of manual trial and error, however, it all depends on what the next item in the list is. What I mean by that is, if the plane name is one word, the 7th word in the array will be an icon. The OCR will attempt to "read" the icon as text, and it will fail.
+
+Example of common icons:
+
+![Scoreboard example](./readme_screenshots/iconsforOCR.png)
+
+In order to correctly filter this, a lot of screenshots needed to be processed to create a list of possible OCR results when attempting to read these icons. This is the filter list I created from the data I tried.
+
+```js
+"iil",
+  "+",
+  "A!",
+  "Ai)",
+  "yl",
+  "Al",
+  "+",
+  "Ai)",
+  "4",
+  "®",
+  "[4",
+  "L4",
+  "Fy",
+  "44",
+  "Ai",
+  "4:",
+  "A",
+  "-+",
+  "+i",
+  "41",
+  "Ali",
+  `“+`,
+  "i",
+  "413",
+  "4)",
+  "“+i",
+  "+!",
+  "52",
+  "Se",
+  "k4",
+  "$4",
+  "(4",
+  "?",
+  "“-",
+  "==0",
+  "AL",
+  "Eo)",
+  "Eo",
+  "14",
+  "2",
+  `"30s"`;
+```
+
+This way, if the next item in line is matching the filter list, it is ignored and we do not add a new name to the string. If the item is not present on the filter list, it is assumed to be a correct plane name and it will be added to the search string.
+
+The next challenge in reading the names came from the symbols preceeding plane names:
+
+![Scoreboard example](./readme_screenshots/iconmisread.png)
+
+These would usually be interpreted by the OCR as two symbols - for example `$!`. Hence, every string passed to by the OCR is then broken down, and checked whether the first two characters are both symbols. If they are, that part of the string is taken out.
+
+In fact, there are a number of common and repeated OCR errors that would occur - for example, reading lower case `"i"` as `"I"` or reading `"/"` as `"J"` OR `")"`.
+I've tried to counter these errors as best as possible by implementing my custom filtering functions within the `src/utils/nameFilter.ts` file.
+
+The purpose of the file is to clean up the parsed names before they are checked against the vehicle name CSV and to improve the overall parsing accuracy.
+
+Lastly, the CSV is loaded via Papa Parse and each value is compared against the CSV, returning the plane name and relevant rating to the user, displaying an ordered table of planes along with the possible plane range from detected values.
+
+## Tools used
+
+### Cheerio - HTML Parsing
+
+https://cheerio.js.org/
+
+### Papa Parse - CSV creation and parsing
+
+https://www.papaparse.com/
+
+### Tesseractjs - OCR
+
+https://tesseract.projectnaptha.com/
+
+### Vite
+
+https://vite.dev/
