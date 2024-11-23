@@ -264,7 +264,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
             <label>Input your BR</label>
             <input
-              type="number"
+              type="text"
+              pattern="[0-9]*"
               className="brInput"
               onChange={(e) => handleInputChange(e)}
               value={value}

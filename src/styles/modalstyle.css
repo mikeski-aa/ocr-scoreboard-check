@@ -57,6 +57,7 @@
 
 .text {
   font-size: 1.2rem;
+  max-width: 60vw;
 }
 
 .exampleImage {
@@ -72,4 +73,6 @@
 
 .headingTextModal {
   text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
 }

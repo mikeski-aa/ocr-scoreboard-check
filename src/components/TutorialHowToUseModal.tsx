@@ -14,20 +14,16 @@ function TutorialHowToUseModal({
   return (
     <div className="modal">
       <div className="modalContent">
-        <div className="text">
-          <div className="headingTextModal">
-            How to make screenshots easier to take using Steam
-          </div>
+        <div className="headingTextModal">
+          How to make screenshots easier to take using Steam
         </div>
         <div className="text">
           <ul>
             <li>Open steam overlay - default keybind: Shift + Tab </li>
             <li>Click the cog - label 1.</li>
             <li>Go to In Game - label 2.</li>
-            <li>
-              Set up a preferred easy to access keybind and enable "Save an
-              external copy of screenshots" - label 3
-            </li>
+            <li>Set up a preferred easy to access keybind</li>
+            <li>Enable "Save an external copy of screenshots" - label 3</li>
             <li>
               Select preferred screenshot folder that is easily accessible -
               label 4
@@ -49,6 +45,13 @@ function TutorialHowToUseModal({
           </ul>
         </div>
         <img className="exampleImage" src={locationex} />
+        <div className="text">
+          <ul>
+            <li>
+              Note that similar set is possible for other screenshot tools
+            </li>
+          </ul>
+        </div>
         <button className="closeBtn" onClick={closeAction}>
           Close
         </button>

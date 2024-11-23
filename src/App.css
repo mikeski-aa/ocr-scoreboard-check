@@ -146,3 +146,7 @@ button:hover {
   display: flex;
   gap: 1rem;
 }
+
+.pageHeading {
+  font-size: 5rem;
+}

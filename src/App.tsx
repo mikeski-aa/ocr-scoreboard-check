@@ -37,11 +37,7 @@ function App() {
 
   return (
     <div className="mainContent">
-      <h4>Tell me the BR</h4>
-      <div>
-        Upload a picture of the scoreboard at the start of the game to get the
-        plane ratings
-      </div>
+      <div className="pageHeading">Tell me my BR</div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
       {showTutorial ? (
         <TutorialHowToUseModal setModal={setShowTutorial} />
