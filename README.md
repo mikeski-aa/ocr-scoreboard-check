@@ -15,6 +15,7 @@ A brief overview of the problem
 ## Table of Contents
 
 - [Install](#install)
+- [Limitations](#limitations)
 - [How it works](#how-it-works)
 - [Tools used](#tools-used)
 
@@ -73,13 +74,13 @@ In order to get a list of each plane names, the following url needed to be acces
 `https://wiki.warthunder.com/Category:${CATEGORY_NAME}`
 
 Here is an example of what the page looks like for `USA_aircraft`.
-There are 10 nations in War Thunder, so this had to be done for each.
+There are 10 nations in War Thunder, so this had to be done for each nation.
 
 ![Nation screenshot](readme_screenshots/readme-parser-nation-vehs.png)
 
 In order to parse the data, I used Cheerio https://cheerio.js.org/.
 
-The reason for this choice was that it is a powerful yet relatively simple to use library for static HTML content parsing. And, as the content being loaded and parsed is static it was the perfect choice.
+The reason for this choice was that it is a powerful yet relatively simple to use library for static HTML content parsing, and, as the content being loaded and parsed is static it was the perfect choice.
 
 Each plane name was selected and read this was done using HTML selectors such as `#mw-pages > div > div > div:nth-child(${x}) > ul > li:nth-child(${y}) > a`
 
