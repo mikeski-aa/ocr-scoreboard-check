@@ -225,11 +225,10 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
 
   const renderedContent = () => {
     if (display == false && displayError == false) {
-      return (
-        <div className="initialState">
-          <div className="emptyInfoText">No items have been uploaded yet</div>
-        </div>
-      );
+      return null;
+      // <div className="initialState">
+      //   <div className="emptyInfoText">No items have been uploaded yet</div>
+      // </div>
     }
 
     if (display && !displayError) {
