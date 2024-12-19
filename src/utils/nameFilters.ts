@@ -451,41 +451,55 @@ const jaboFix = (input: string) => {
   return input;
 };
 
+const ilFix = (input: string) => {
+  const possibleWords: string[] = ["¢IL-28"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "IL-28";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
       f84fix(
-        converGnameFix(
-          removeStartSpace(
-            jaboFix(
-              hornetFilter(
-                migFilter(
-                  filterCrossF4F(
-                    migTwoOneFix(
-                      limFix(
-                        clOneThreeFix(
-                          filterAJS(
-                            filterAJ(
-                              formatSU(
-                                eliminateFFourError(
-                                  eliminateTornadoError(
-                                    fixNewMirageErrors(
-                                      eliminateHarrierError(
-                                        eliminateK(
-                                          fixMigError(
-                                            fixSuError(
-                                              fixYSerror(
-                                                fixMirageError(
-                                                  eliminateCross(
-                                                    convertPossibleSwiss(
-                                                      convertPossibleBracketError(
-                                                        convertPossibleWrongName(
-                                                          eliminateSigns(
-                                                            eliminateO(
-                                                              eliminateP(
-                                                                j34fix(
-                                                                  fixImisreads(
-                                                                    input
+        ilFix(
+          converGnameFix(
+            removeStartSpace(
+              jaboFix(
+                hornetFilter(
+                  migFilter(
+                    filterCrossF4F(
+                      migTwoOneFix(
+                        limFix(
+                          clOneThreeFix(
+                            filterAJS(
+                              filterAJ(
+                                formatSU(
+                                  eliminateFFourError(
+                                    eliminateTornadoError(
+                                      fixNewMirageErrors(
+                                        eliminateHarrierError(
+                                          eliminateK(
+                                            fixMigError(
+                                              fixSuError(
+                                                fixYSerror(
+                                                  fixMirageError(
+                                                    eliminateCross(
+                                                      convertPossibleSwiss(
+                                                        convertPossibleBracketError(
+                                                          convertPossibleWrongName(
+                                                            eliminateSigns(
+                                                              eliminateO(
+                                                                eliminateP(
+                                                                  j34fix(
+                                                                    fixImisreads(
+                                                                      input
+                                                                    )
                                                                   )
                                                                 )
                                                               )

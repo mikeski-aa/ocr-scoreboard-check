@@ -16,7 +16,6 @@ body {
 }
 
 .imageUploader {
-  /* margin-top: 25px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,7 +173,7 @@ button:hover {
 .closeModalBtn {
   position: absolute;
   top: 0;
-  right: 20px;
+  right: 25px;
   width: 50px;
   height: 50px;
   font-weight: bolder;
