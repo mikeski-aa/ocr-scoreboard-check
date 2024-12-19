@@ -148,6 +148,12 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [actualParsed, setActualParsed] = useState<number>(0);
   const [displayError, setDisplayError] = useState<boolean>(false);
 
+  const brRange: number[] = [
+    1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 4.3, 4.7, 5.0, 5.3, 5.7,
+    6.0, 6.3, 6.7, 7.0, 7.3, 7.7, 8.0, 8.3, 8.7, 9.0, 9.3, 9.7, 10.0, 10.3,
+    10.7, 11.0, 11.3, 11.7, 12.0, 12.3, 12.7, 13.0, 13.3, 13.7, 14.0,
+  ];
+
   useEffect(() => {
     const recognizeText = async () => {
       if (selectedImage) {
@@ -201,11 +207,6 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     recognizeText();
   }, [selectedImage]);
 
-  const handleInputChange = (e: SyntheticEvent) => {
-    const target = e.target as HTMLInputElement;
-    setValue(+target.value);
-  };
-
   const calculateTier = () => {
     if (value) {
       if (+recognizedText[0].RATING > +value) {
@@ -220,6 +221,14 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         let rounded = Math.round(difference * 100) / 100;
         return `Downtier detected: -${rounded}`;
       }
+    }
+  };
+
+  const handleDropdownSelect = (e: SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+
+    if (+target.value != 0) {
+      setValue(+target.value);
     }
   };
 
@@ -257,18 +266,24 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           <div className="inputDiv">
             {recognizedText.length > 3 ? (
               <h4>
-                Rating range: {recognizedText[0].RATING} -
-                {recognizedText[recognizedText.length - 1].RATING}
+                {recognizedText[0].RATING}-
+                {recognizedText[recognizedText.length - 1].RATING} BR game
+                detected
               </h4>
             ) : null}
 
             <label>Input your BR</label>
-            <input
-              type="number"
-              className="brInput"
-              onChange={(e) => handleInputChange(e)}
-              value={value}
-            ></input>
+            <select
+              className="brSelectDropdown"
+              onChange={(e) => handleDropdownSelect(e)}
+            >
+              <option value={0}>Select your rating</option>
+              {brRange.map((item, index) => (
+                <option value={item} key={index.toFixed(1)}>
+                  {item.toFixed(1)}
+                </option>
+              ))}
+            </select>
             <div className="relativeBR">{calculateTier()}</div>
             <div className="parsedCompare">Items detected: {possibleItems}</div>
             <div>Items parsed: {actualParsed}</div>

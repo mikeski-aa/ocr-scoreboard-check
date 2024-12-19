@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
@@ -34,6 +34,7 @@ function App() {
       setShowTutorial(true);
     }
   };
+
   return (
     <div className="mainContent">
       <div className="pageHeading">Battle Rating Checker</div>
