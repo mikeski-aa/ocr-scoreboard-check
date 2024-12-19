@@ -34,10 +34,9 @@ function App() {
       setShowTutorial(true);
     }
   };
-
   return (
     <div className="mainContent">
-      <div className="pageHeading">Tell me my Air RB Battle Rating</div>
+      <div className="pageHeading">Battle Rating Checker</div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
       {showTutorial ? (
         <TutorialHowToUseModal setModal={setShowTutorial} />
