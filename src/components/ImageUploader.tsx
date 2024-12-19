@@ -6,7 +6,7 @@ function ImageUploader({
   otherState: Dispatch<SetStateAction<string>>;
 }) {
   const [selectedImage, setSelected] = useState<string>("");
-  const [activeName, setActiveName] = useState<string>("image_name.png");
+  const [activeName, setActiveName] = useState<string>("");
 
   const handleImageUpload = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
