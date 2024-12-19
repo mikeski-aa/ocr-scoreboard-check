@@ -439,40 +439,54 @@ const f84fix = (input: string) => {
   return input;
 };
 
+const jaboFix = (input: string) => {
+  const possibleWords: string[] = ["Me 262 A-1a/jabo"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Me 262 A-1a/Jabo";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
       f84fix(
         converGnameFix(
           removeStartSpace(
-            hornetFilter(
-              migFilter(
-                filterCrossF4F(
-                  migTwoOneFix(
-                    limFix(
-                      clOneThreeFix(
-                        filterAJS(
-                          filterAJ(
-                            formatSU(
-                              eliminateFFourError(
-                                eliminateTornadoError(
-                                  fixNewMirageErrors(
-                                    eliminateHarrierError(
-                                      eliminateK(
-                                        fixMigError(
-                                          fixSuError(
-                                            fixYSerror(
-                                              fixMirageError(
-                                                eliminateCross(
-                                                  convertPossibleSwiss(
-                                                    convertPossibleBracketError(
-                                                      convertPossibleWrongName(
-                                                        eliminateSigns(
-                                                          eliminateO(
-                                                            eliminateP(
-                                                              j34fix(
-                                                                fixImisreads(
-                                                                  input
+            jaboFix(
+              hornetFilter(
+                migFilter(
+                  filterCrossF4F(
+                    migTwoOneFix(
+                      limFix(
+                        clOneThreeFix(
+                          filterAJS(
+                            filterAJ(
+                              formatSU(
+                                eliminateFFourError(
+                                  eliminateTornadoError(
+                                    fixNewMirageErrors(
+                                      eliminateHarrierError(
+                                        eliminateK(
+                                          fixMigError(
+                                            fixSuError(
+                                              fixYSerror(
+                                                fixMirageError(
+                                                  eliminateCross(
+                                                    convertPossibleSwiss(
+                                                      convertPossibleBracketError(
+                                                        convertPossibleWrongName(
+                                                          eliminateSigns(
+                                                            eliminateO(
+                                                              eliminateP(
+                                                                j34fix(
+                                                                  fixImisreads(
+                                                                    input
+                                                                  )
                                                                 )
                                                               )
                                                             )

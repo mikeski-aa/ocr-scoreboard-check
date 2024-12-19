@@ -136,6 +136,10 @@ function testFunc(input: string) {
     "(1)",
     "-+i",
     "0)",
+    "~~",
+    "“=",
+    "H={",
+    "=i",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
