@@ -13,6 +13,7 @@
   top: 20%;
   left: 50%;
   transform: translateX(-50%);
+  height: fit-content;
 }
 
 .modalContainer {
@@ -50,6 +51,19 @@
   box-shadow: 5px 5px 5px grey;
   top: 2%;
   border: 2px solid #b10dff;
+  padding: 10px;
+  max-height: 85vh;
+}
+
+.yapText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(41, 41, 41);
+  width: 80vw;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px grey;
+  top: 2%;
   padding: 10px;
   max-height: 85vh;
   overflow-y: scroll;
