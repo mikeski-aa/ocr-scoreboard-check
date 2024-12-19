@@ -129,6 +129,13 @@ function testFunc(input: string) {
     "14",
     "2",
     `"30s"`,
+    "“4",
+    "<+",
+    "=",
+    "A)",
+    "(1)",
+    "-+i",
+    "0)",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
@@ -161,13 +168,13 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         const result = await Tesseract.recognize(selectedImage);
         setLoading(false);
 
-        // console.log(result.data);
+        console.log(result.data);
         if (checkForValidFormat(result)) {
           return;
         } else {
           setDisplay(true);
           const filterParse = filterParsedResults(result);
-
+          console.log(filterParse);
           const wordArray = filterParse.arrayText;
           setPossibleItems(filterParse.itemsCounted);
           const filteredArray: string[] = [];
@@ -199,8 +206,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             setDisplayError(false);
           }
 
-          // console.log("CSV CHECKED");
-          // console.log(checkedWithCSV);
+          console.log("CSV CHECKED");
+          console.log(checkedWithCSV);
         }
       }
     };

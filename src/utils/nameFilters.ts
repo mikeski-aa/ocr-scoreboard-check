@@ -427,39 +427,53 @@ const j34fix = (input: string) => {
   return input;
 };
 
+const f84fix = (input: string) => {
+  const possibleWords: string[] = ["F-848-26"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "F-84B-26";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
-      converGnameFix(
-        removeStartSpace(
-          hornetFilter(
-            migFilter(
-              filterCrossF4F(
-                migTwoOneFix(
-                  limFix(
-                    clOneThreeFix(
-                      filterAJS(
-                        filterAJ(
-                          formatSU(
-                            eliminateFFourError(
-                              eliminateTornadoError(
-                                fixNewMirageErrors(
-                                  eliminateHarrierError(
-                                    eliminateK(
-                                      fixMigError(
-                                        fixSuError(
-                                          fixYSerror(
-                                            fixMirageError(
-                                              eliminateCross(
-                                                convertPossibleSwiss(
-                                                  convertPossibleBracketError(
-                                                    convertPossibleWrongName(
-                                                      eliminateSigns(
-                                                        eliminateO(
-                                                          eliminateP(
-                                                            j34fix(
-                                                              fixImisreads(
-                                                                input
+      f84fix(
+        converGnameFix(
+          removeStartSpace(
+            hornetFilter(
+              migFilter(
+                filterCrossF4F(
+                  migTwoOneFix(
+                    limFix(
+                      clOneThreeFix(
+                        filterAJS(
+                          filterAJ(
+                            formatSU(
+                              eliminateFFourError(
+                                eliminateTornadoError(
+                                  fixNewMirageErrors(
+                                    eliminateHarrierError(
+                                      eliminateK(
+                                        fixMigError(
+                                          fixSuError(
+                                            fixYSerror(
+                                              fixMirageError(
+                                                eliminateCross(
+                                                  convertPossibleSwiss(
+                                                    convertPossibleBracketError(
+                                                      convertPossibleWrongName(
+                                                        eliminateSigns(
+                                                          eliminateO(
+                                                            eliminateP(
+                                                              j34fix(
+                                                                fixImisreads(
+                                                                  input
+                                                                )
                                                               )
                                                             )
                                                           )
