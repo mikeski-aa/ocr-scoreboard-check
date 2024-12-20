@@ -325,48 +325,48 @@ function replaceQuotes(vehicles: any) {
 // parseSavedFile();
 // saveToCSV();
 
-async function scrapeDynamicContent(targetUrl: string): Promise<string[]> {
-  const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targetUrl}`;
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+// async function scrapeDynamicContent(targetUrl: string): Promise<string[]> {
+//   const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targetUrl}`;
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
 
-  // Navigate to the URL
-  await page.goto(url, { waitUntil: "networkidle2" });
+//   // Navigate to the URL
+//   await page.goto(url, { waitUntil: "networkidle2" });
 
-  // Wait for the necessary DOM to be rendered
-  await page.waitForSelector("#wt-unit-list");
+//   // Wait for the necessary DOM to be rendered
+//   await page.waitForSelector("#wt-unit-list");
 
-  // Get the HTML content of the page
-  const htmlContent = await page.content();
-  await browser.close();
+//   // Get the HTML content of the page
+//   const htmlContent = await page.content();
+//   await browser.close();
 
-  // Load the HTML into Cheerio
-  const $ = cheerio.load(htmlContent);
+//   // Load the HTML into Cheerio
+//   const $ = cheerio.load(htmlContent);
 
-  // Parse the HTML to extract the required information
-  const aircraftNames: string[] = [];
-  $("tr.wt-ulist_unit").each((index, element) => {
-    const name = $(element)
-      .find(".wt-ulist_unit-name > a > span")
-      .text()
-      .trim();
-    if (name) {
-      aircraftNames.push(name);
-    }
-  });
+//   // Parse the HTML to extract the required information
+//   const aircraftNames: string[] = [];
+//   $("tr.wt-ulist_unit").each((index, element) => {
+//     const name = $(element)
+//       .find(".wt-ulist_unit-name > a > span")
+//       .text()
+//       .trim();
+//     if (name) {
+//       aircraftNames.push(name);
+//     }
+//   });
 
-  console.log("Total number of aircraft to parse:", aircraftNames.length);
-  console.log(aircraftNames);
+//   console.log("Total number of aircraft to parse:", aircraftNames.length);
+//   console.log(aircraftNames);
 
-  return aircraftNames;
-}
+//   return aircraftNames;
+// }
 
 // Example usage
-const targetUrl = "USA";
-scrapeDynamicContent(targetUrl)
-  .then((data) => {
-    // console.log(data);
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+// const targetUrl = "USA";
+// scrapeDynamicContent(targetUrl)
+//   .then((data) => {
+//     // console.log(data);
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });
