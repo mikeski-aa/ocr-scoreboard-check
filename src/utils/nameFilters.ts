@@ -463,42 +463,70 @@ const ilFix = (input: string) => {
   return input;
 };
 
+const bMigMLAFix = (input: string) => {
+  const possibleWords: string[] = ["BMIG-23MLA"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "MIG-23MLA";
+    }
+  }
+
+  return input;
+};
+
+const f89bfix = (input: string) => {
+  const possibleWords: string[] = ["F-898"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "F-89B";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
       f84fix(
         ilFix(
           converGnameFix(
-            removeStartSpace(
-              jaboFix(
-                hornetFilter(
-                  migFilter(
-                    filterCrossF4F(
-                      migTwoOneFix(
-                        limFix(
-                          clOneThreeFix(
-                            filterAJS(
-                              filterAJ(
-                                formatSU(
-                                  eliminateFFourError(
-                                    eliminateTornadoError(
-                                      fixNewMirageErrors(
-                                        eliminateHarrierError(
-                                          eliminateK(
-                                            fixMigError(
-                                              fixSuError(
-                                                fixYSerror(
-                                                  fixMirageError(
-                                                    eliminateCross(
-                                                      convertPossibleSwiss(
-                                                        convertPossibleBracketError(
-                                                          convertPossibleWrongName(
-                                                            eliminateSigns(
-                                                              eliminateO(
-                                                                eliminateP(
-                                                                  j34fix(
-                                                                    fixImisreads(
-                                                                      input
+            bMigMLAFix(
+              f89bfix(
+                removeStartSpace(
+                  jaboFix(
+                    hornetFilter(
+                      migFilter(
+                        filterCrossF4F(
+                          migTwoOneFix(
+                            limFix(
+                              clOneThreeFix(
+                                filterAJS(
+                                  filterAJ(
+                                    formatSU(
+                                      eliminateFFourError(
+                                        eliminateTornadoError(
+                                          fixNewMirageErrors(
+                                            eliminateHarrierError(
+                                              eliminateK(
+                                                fixMigError(
+                                                  fixSuError(
+                                                    fixYSerror(
+                                                      fixMirageError(
+                                                        eliminateCross(
+                                                          convertPossibleSwiss(
+                                                            convertPossibleBracketError(
+                                                              convertPossibleWrongName(
+                                                                eliminateSigns(
+                                                                  eliminateO(
+                                                                    eliminateP(
+                                                                      j34fix(
+                                                                        fixImisreads(
+                                                                          input
+                                                                        )
+                                                                      )
                                                                     )
                                                                   )
                                                                 )

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
 import TutorialModal from "./components/TutorialModal";
 import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
+import * as cheerio from "cheerio";
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
@@ -34,6 +35,47 @@ function App() {
       setShowTutorial(true);
     }
   };
+
+  async function XD(targeturl: string) {
+    const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targeturl}`;
+
+    try {
+      const response: any = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        mode: "cors",
+      });
+      const text = await response.text();
+
+      const $ = cheerio.load(text);
+      console.log($);
+
+      const array: string[] = [];
+
+      for (let x = 1; x < 200; x++) {
+        const model = $(
+          `#wt-unit-list > div > table > tbody > tr:nth-child(6)`
+        ).text();
+
+        console.log(model);
+        if (model === "") {
+          break;
+        } else {
+          array.push(model);
+        }
+      }
+      console.log("Total number of aircrafts to parse: " + array.length);
+      console.log(array);
+      return array;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  XD("USA");
 
   return (
     <div className="mainContent">

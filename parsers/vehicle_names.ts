@@ -1,5 +1,6 @@
 import * as cheerio from "cheerio";
 import { createObjectCsvWriter } from "csv-writer";
+import puppeteer from "puppeteer";
 // import fs from "fs";
 // import path from "node:path";
 // import Papa from "papaparse";
@@ -53,7 +54,7 @@ const nations = [
 
 // returns array of all vehicles from vehicle list
 async function getVehicleListForNation(targeturl: string) {
-  const url = `https://wiki.warthunder.com/Category:${targeturl}`;
+  const url = `https://old-wiki.warthunder.com/Category:${targeturl}`;
 
   try {
     const response: any = await fetch(url, { method: "GET" });
@@ -97,7 +98,7 @@ function urlNameConvert(name: string) {
 async function getSpecificDetails(vehicleName: string) {
   const formattedName = urlNameConvert(vehicleName);
 
-  const url = `https://wiki.warthunder.com/${formattedName}`;
+  const url = `https://old-wiki.warthunder.com/${formattedName}`;
 
   try {
     const response = await fetch(url, { method: "GET" });
@@ -322,4 +323,50 @@ function replaceQuotes(vehicles: any) {
 }
 
 // parseSavedFile();
-saveToCSV();
+// saveToCSV();
+
+async function scrapeDynamicContent(targetUrl: string): Promise<string[]> {
+  const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targetUrl}`;
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Navigate to the URL
+  await page.goto(url, { waitUntil: "networkidle2" });
+
+  // Wait for the necessary DOM to be rendered
+  await page.waitForSelector("#wt-unit-list");
+
+  // Get the HTML content of the page
+  const htmlContent = await page.content();
+  await browser.close();
+
+  // Load the HTML into Cheerio
+  const $ = cheerio.load(htmlContent);
+
+  // Parse the HTML to extract the required information
+  const aircraftNames: string[] = [];
+  $("tr.wt-ulist_unit").each((index, element) => {
+    const name = $(element)
+      .find(".wt-ulist_unit-name > a > span")
+      .text()
+      .trim();
+    if (name) {
+      aircraftNames.push(name);
+    }
+  });
+
+  console.log("Total number of aircraft to parse:", aircraftNames.length);
+  console.log(aircraftNames);
+
+  return aircraftNames;
+}
+
+// Example usage
+const targetUrl = "USA";
+scrapeDynamicContent(targetUrl)
+  .then((data) => {
+    // console.log(data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });

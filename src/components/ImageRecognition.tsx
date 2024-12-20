@@ -145,6 +145,8 @@ function testFunc(input: string) {
     "eat}",
     "+i)",
     "PS",
+    "Ly",
+    `“+!`,
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
