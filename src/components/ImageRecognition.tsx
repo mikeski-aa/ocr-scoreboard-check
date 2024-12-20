@@ -147,6 +147,8 @@ function testFunc(input: string) {
     "PS",
     "Ly",
     `“+!`,
+    "“p-",
+    "=~",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
