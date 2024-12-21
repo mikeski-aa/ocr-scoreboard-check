@@ -390,7 +390,7 @@ function cleanArray(input: Iplanedata[]) {
   return input;
 }
 
-// Example usage
+// Example usage ;— is something that neesd to be filtered for
 const targetUrl = "USA";
 scrapeDynamicContent(targetUrl)
   .then((data) => {
