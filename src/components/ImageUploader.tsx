@@ -24,7 +24,7 @@ function ImageUploader({
       <div className="buttonNameWrapper">
         <div className="buttonWrapper">
           <label htmlFor="uploadBtn" className="UploadFakeBtn">
-            Upload
+            UPLOAD
           </label>
           <input
             id="uploadBtn"

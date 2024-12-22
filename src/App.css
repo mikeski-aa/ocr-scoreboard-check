@@ -185,3 +185,9 @@ button:hover {
   justify-content: center;
   margin-top: 5px;
 }
+
+.startSessionButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

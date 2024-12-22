@@ -452,7 +452,7 @@ const jaboFix = (input: string) => {
 };
 
 const ilFix = (input: string) => {
-  const possibleWords: string[] = ["¢IL-28"];
+  const possibleWords: string[] = ["¢IL-28", "1-28"];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
@@ -487,6 +487,42 @@ const f89bfix = (input: string) => {
   return input;
 };
 
+const il28sh = (input: string) => {
+  const possibleWords: string[] = ["1L-285h"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "IL-28Sh";
+    }
+  }
+
+  return input;
+};
+
+const saabFix = (input: string) => {
+  const possibleWords: string[] = ["SAAB-1050E", "SAAB-1050F"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "SAAB-1050G";
+    }
+  }
+
+  return input;
+};
+
+const j35bFix = (input: string) => {
+  const possibleWords: string[] = ["J328"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "J32B";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
@@ -494,37 +530,43 @@ function stackedElims(input: string) {
         ilFix(
           converGnameFix(
             bMigMLAFix(
-              f89bfix(
-                removeStartSpace(
-                  jaboFix(
-                    hornetFilter(
-                      migFilter(
-                        filterCrossF4F(
-                          migTwoOneFix(
-                            limFix(
-                              clOneThreeFix(
-                                filterAJS(
-                                  filterAJ(
-                                    formatSU(
-                                      eliminateFFourError(
-                                        eliminateTornadoError(
-                                          fixNewMirageErrors(
-                                            eliminateHarrierError(
-                                              eliminateK(
-                                                fixMigError(
-                                                  fixSuError(
-                                                    fixYSerror(
-                                                      fixMirageError(
-                                                        eliminateCross(
-                                                          convertPossibleSwiss(
-                                                            convertPossibleBracketError(
-                                                              convertPossibleWrongName(
-                                                                eliminateSigns(
-                                                                  eliminateO(
-                                                                    eliminateP(
-                                                                      j34fix(
-                                                                        fixImisreads(
-                                                                          input
+              j35bFix(
+                saabFix(
+                  il28sh(
+                    f89bfix(
+                      removeStartSpace(
+                        jaboFix(
+                          hornetFilter(
+                            migFilter(
+                              filterCrossF4F(
+                                migTwoOneFix(
+                                  limFix(
+                                    clOneThreeFix(
+                                      filterAJS(
+                                        filterAJ(
+                                          formatSU(
+                                            eliminateFFourError(
+                                              eliminateTornadoError(
+                                                fixNewMirageErrors(
+                                                  eliminateHarrierError(
+                                                    eliminateK(
+                                                      fixMigError(
+                                                        fixSuError(
+                                                          fixYSerror(
+                                                            fixMirageError(
+                                                              eliminateCross(
+                                                                convertPossibleSwiss(
+                                                                  convertPossibleBracketError(
+                                                                    convertPossibleWrongName(
+                                                                      eliminateSigns(
+                                                                        eliminateO(
+                                                                          eliminateP(
+                                                                            j34fix(
+                                                                              fixImisreads(
+                                                                                input
+                                                                              )
+                                                                            )
+                                                                          )
                                                                         )
                                                                       )
                                                                     )

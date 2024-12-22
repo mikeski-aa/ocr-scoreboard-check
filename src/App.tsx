@@ -44,12 +44,13 @@ function App() {
       ) : null}
       <div className="tutorialButtonHolder">
         <button onClick={() => handleModalDisplay(true)} className="howtoBtn">
-          How to use the app
+          HOW TO USE THE APP
         </button>
         <button onClick={() => handleModalDisplay(false)} className="howtoBtn">
-          Easy screenshot tutorial
+          EASY SCREENSHOT TUTORIAL
         </button>
       </div>
+      <button className="startSessionButton">START SESSION</button>
 
       <div className="previewResultHolder">
         <ImageUploader otherState={setSelected} />
