@@ -4,7 +4,6 @@ import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
 import TutorialModal from "./components/TutorialModal";
 import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
-import * as cheerio from "cheerio";
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");

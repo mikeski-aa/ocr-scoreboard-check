@@ -1,418 +1,418 @@
-import * as cheerio from "cheerio";
-// import { stringStream } from "cheerio";
-import { createObjectCsvWriter } from "csv-writer";
-import puppeteer from "puppeteer";
-// import fs from "fs";
-// import path from "node:path";
-// import Papa from "papaparse";
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = dirname(__filename);
+// import * as cheerio from "cheerio";
+// // import { stringStream } from "cheerio";
+// import { createObjectCsvWriter } from "csv-writer";
+// import puppeteer from "puppeteer";
+// // import fs from "fs";
+// // import path from "node:path";
+// // import Papa from "papaparse";
+// // import { dirname } from "path";
+// // import { fileURLToPath } from "url";
+// // const __filename = fileURLToPath(import.meta.url);
+// // const __dirname = dirname(__filename);
 
-const nations = [
-  {
-    urlName: "USA_aircraft",
-    country: "USA",
-  },
-  {
-    urlName: "Britain_aircraft",
-    country: "Britain",
-  },
-  {
-    urlName: "Germany_aircraft",
-    country: "Germany",
-  },
-  {
-    urlName: "USSR_aircraft",
-    country: "USSR",
-  },
-  {
-    urlName: "China_aircraft",
-    country: "China",
-  },
-  {
-    urlName: "Japan_aircraft",
-    country: "Japan",
-  },
-  {
-    urlName: "Italy_aircraft",
-    country: "Italy",
-  },
-  {
-    urlName: "France_aircraft",
-    country: "France",
-  },
-  {
-    urlName: "Sweden_aircraft",
-    country: "Sweden",
-  },
-  {
-    urlName: "Israel_aircraft",
-    country: "Israel",
-  },
-];
+// const nations = [
+//   {
+//     urlName: "USA_aircraft",
+//     country: "USA",
+//   },
+//   {
+//     urlName: "Britain_aircraft",
+//     country: "Britain",
+//   },
+//   {
+//     urlName: "Germany_aircraft",
+//     country: "Germany",
+//   },
+//   {
+//     urlName: "USSR_aircraft",
+//     country: "USSR",
+//   },
+//   {
+//     urlName: "China_aircraft",
+//     country: "China",
+//   },
+//   {
+//     urlName: "Japan_aircraft",
+//     country: "Japan",
+//   },
+//   {
+//     urlName: "Italy_aircraft",
+//     country: "Italy",
+//   },
+//   {
+//     urlName: "France_aircraft",
+//     country: "France",
+//   },
+//   {
+//     urlName: "Sweden_aircraft",
+//     country: "Sweden",
+//   },
+//   {
+//     urlName: "Israel_aircraft",
+//     country: "Israel",
+//   },
+// ];
 
-// returns array of all vehicles from vehicle list
-async function getVehicleListForNation(targeturl: string) {
-  const url = `https://old-wiki.warthunder.com/Category:${targeturl}`;
+// // returns array of all vehicles from vehicle list
+// async function getVehicleListForNation(targeturl: string) {
+//   const url = `https://old-wiki.warthunder.com/Category:${targeturl}`;
 
-  try {
-    const response: any = await fetch(url, { method: "GET" });
-    const text = await response.text();
-    const $ = cheerio.load(text);
+//   try {
+//     const response: any = await fetch(url, { method: "GET" });
+//     const text = await response.text();
+//     const $ = cheerio.load(text);
 
-    const array: string[] = [];
+//     const array: string[] = [];
 
-    for (let x = 1; x < 200; x++) {
-      for (let y = 1; y < 200; y++) {
-        const model = $(
-          `#mw-pages > div > div > div:nth-child(${x}) > ul > li:nth-child(${y}) > a`
-        )
-          .text()
-          .trim();
+//     for (let x = 1; x < 200; x++) {
+//       for (let y = 1; y < 200; y++) {
+//         const model = $(
+//           `#mw-pages > div > div > div:nth-child(${x}) > ul > li:nth-child(${y}) > a`
+//         )
+//           .text()
+//           .trim();
 
-        if (model === "") {
-          break;
-        } else {
-          array.push(model);
-        }
-      }
-    }
-    console.log("Total number of aircrafts to parse: " + array.length);
-    console.log(array);
-    return array;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-// converts empty spaces to underscores
-function urlNameConvert(name: string) {
-  const splitName = name.split(" ");
-  let joinName = splitName.join("_");
-
-  return joinName;
-}
-
-// get specific plane battle rating
-async function getSpecificDetails(vehicleName: string) {
-  const formattedName = urlNameConvert(vehicleName);
-
-  const url = `https://old-wiki.warthunder.com/${formattedName}`;
-
-  try {
-    const response = await fetch(url, { method: "GET" });
-    const text: any = await response.text();
-
-    const $ = cheerio.load(text, { decodeEntities: false });
-
-    const rating = $(
-      "#mw-content-text > div.mw-parser-output > div.specs_card_main > div.specs_card_main_info > div.general_info_2 > div.general_info_br > table > tbody > tr:nth-child(2) > td:nth-child(2)"
-    ).html();
-
-    const vehicle = {
-      name: vehicleName,
-      rating: rating,
-    };
-
-    console.log(vehicle);
-    return vehicle;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-async function getVehiclesAndRatingsForEachNation() {
-  const detailedArray: any = [];
-
-  for (let x = 0; x < nations.length; x++) {
-    const vehicles = await getVehicleListForNation(nations[x].urlName);
-
-    const promises: any = vehicles?.map(async (item) => {
-      if (item === "MQ-1" || item === "Orion" || item === "Wing Loong I") {
-        let newItem = {
-          name: item,
-          rating: "10.7",
-        };
-        return newItem;
-      }
-
-      const newItem = await getSpecificDetails(item);
-      return newItem;
-    });
-
-    const results = await Promise.all(promises);
-
-    let counter = 0;
-    for (let x = 0; x < results.length; x++) {
-      detailedArray.push(results[x]);
-      counter += 1;
-      console.log(counter);
-    }
-  }
-
-  return detailedArray;
-}
-
-// save to csv
-async function saveToCSV() {
-  let detailedArray: any = await getVehiclesAndRatingsForEachNation();
-  console.log("detaield array is ");
-  console.log(detailedArray);
-  detailedArray = filterSavedFile(detailedArray);
-  detailedArray = await checkDuplicateWithDifferentNations(detailedArray);
-  detailedArray = replaceQuotes(detailedArray);
-  detailedArray = detailedArray.sort((a: any, b: any) => {
-    if (a.name < b.name) {
-      return -1;
-    }
-
-    if (b.name < a.name) {
-      return 1;
-    }
-
-    return 0;
-  });
-  const csvWriter = createObjectCsvWriter({
-    path: "./public/vehicleCSVnew.csv",
-    header: [
-      { id: "name", title: "NAME" },
-      { id: "rating", title: "RATING" },
-    ],
-    headerIdDelimiter: ";",
-    fieldDelimiter: ";",
-  });
-
-  csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
-}
-
-// loaded file parser for testing purposes
-// async function parseSavedFile() {
-//   const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
-//   const csvString = fs.readFileSync(filePath, "utf8");
-
-//   await Papa.parse(csvString, {
-//     header: true,
-//     delimiter: ";",
-//     complete: (results) => {
-//       console.log("parsed successfully");
-//       // console.log(results.data);
-//       // filteredSavedFile only works on .name and .rating,
-//       //needs to be changed to .NAME and .RATING to be used with
-//       // parsed data
-//       // replaceQuotes(results.data);
-
-//       return results.data;
-//     },
-//   });
+//         if (model === "") {
+//           break;
+//         } else {
+//           array.push(model);
+//         }
+//       }
+//     }
+//     console.log("Total number of aircrafts to parse: " + array.length);
+//     console.log(array);
+//     return array;
+//   } catch (error) {
+//     console.log(error);
+//   }
 // }
 
-// let's think how we can break this down
-// 1. we need to find everything with nations in brackets
-// 2. we should check if there are any duplicates in the bracket results i.e A6M2 (USA) and A6M2 (CHINA)
-// 3. need to check duplicates vs original list and fix it there too.
+// // converts empty spaces to underscores
+// function urlNameConvert(name: string) {
+//   const splitName = name.split(" ");
+//   let joinName = splitName.join("_");
 
-// this function can be used when parsing the file directly after getting all info.
-// what this function does is it checks for redundant bracketed names and removes them.
-function filterSavedFile(vehicles: any) {
-  let currentVehicles = [...vehicles];
-  const regex =
-    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy|Romania)\)/g;
+//   return joinName;
+// }
 
-  const filteredBracket = currentVehicles.filter((item: any) =>
-    item.name.match(regex)
-  );
+// // get specific plane battle rating
+// async function getSpecificDetails(vehicleName: string) {
+//   const formattedName = urlNameConvert(vehicleName);
 
-  console.log(filteredBracket);
+//   const url = `https://old-wiki.warthunder.com/${formattedName}`;
 
-  // what I want to do next is split the ().
-  // then let's go through original array and find every item that has a bracket, but only exists once.
-  // we can then edit and remove the pointless bracket.
+//   try {
+//     const response = await fetch(url, { method: "GET" });
+//     const text: any = await response.text();
 
-  for (let x = 0; x < filteredBracket.length; x++) {
-    const splitName = filteredBracket[x].name.split(" (");
+//     const $ = cheerio.load(text, { decodeEntities: false });
 
-    const singleMatch: any = currentVehicles.filter(
-      (item: any) =>
-        item.name.includes(splitName[0]) &&
-        item.rating === filteredBracket[x].rating
-    );
+//     const rating = $(
+//       "#mw-content-text > div.mw-parser-output > div.specs_card_main > div.specs_card_main_info > div.general_info_2 > div.general_info_br > table > tbody > tr:nth-child(2) > td:nth-child(2)"
+//     ).html();
 
-    console.log("single match format");
-    console.log(singleMatch);
+//     const vehicle = {
+//       name: vehicleName,
+//       rating: rating,
+//     };
 
-    // if filteres length is 1, it means that no other instance of this exists and the brackets are redundant.
-    if (singleMatch.length === 1) {
-      // console.log(singleMatch);
-      currentVehicles = currentVehicles.filter(
-        (item) => item.name != singleMatch[0].name
-      );
-      currentVehicles.push({
-        name: splitName[0],
-        rating: filteredBracket[x].rating,
-      });
-    }
-  }
+//     console.log(vehicle);
+//     return vehicle;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
 
-  // purely for logging purposes
+// async function getVehiclesAndRatingsForEachNation() {
+//   const detailedArray: any = [];
 
-  for (let y = 0; y < currentVehicles.length; y++) {
-    console.log(currentVehicles[y]);
-  }
+//   for (let x = 0; x < nations.length; x++) {
+//     const vehicles = await getVehicleListForNation(nations[x].urlName);
 
-  console.log("current vehicles & original length compare");
-  console.log(currentVehicles.length);
-  console.log(vehicles.length);
+//     const promises: any = vehicles?.map(async (item) => {
+//       if (item === "MQ-1" || item === "Orion" || item === "Wing Loong I") {
+//         let newItem = {
+//           name: item,
+//           rating: "10.7",
+//         };
+//         return newItem;
+//       }
 
-  return currentVehicles;
-}
+//       const newItem = await getSpecificDetails(item);
+//       return newItem;
+//     });
 
-function checkDuplicateWithDifferentNations(vehicles: any) {
-  let currentVehicles = [...vehicles];
-  const regex =
-    /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
+//     const results = await Promise.all(promises);
 
-  const findBracket = currentVehicles.filter((item: any) =>
-    item.name.match(regex)
-  );
+//     let counter = 0;
+//     for (let x = 0; x < results.length; x++) {
+//       detailedArray.push(results[x]);
+//       counter += 1;
+//       console.log(counter);
+//     }
+//   }
 
-  // now for each item we want to find uniques:
-  for (let x = 0; x < findBracket.length; x++) {
-    const splitName = findBracket[x].name.split(" (");
-    const duplicates = currentVehicles.filter(
-      (item: any) =>
-        !(
-          item.name.split(" (")[0] === splitName[0] &&
-          item.rating === findBracket[x].rating
-        )
-    );
-    const replacementItem = {
-      name: splitName[0],
-      rating: findBracket[x].rating,
-    };
+//   return detailedArray;
+// }
 
-    duplicates.push(replacementItem);
-    currentVehicles = duplicates;
-  }
+// // save to csv
+// async function saveToCSV() {
+//   let detailedArray: any = await getVehiclesAndRatingsForEachNation();
+//   console.log("detaield array is ");
+//   console.log(detailedArray);
+//   detailedArray = filterSavedFile(detailedArray);
+//   detailedArray = await checkDuplicateWithDifferentNations(detailedArray);
+//   detailedArray = replaceQuotes(detailedArray);
+//   detailedArray = detailedArray.sort((a: any, b: any) => {
+//     if (a.name < b.name) {
+//       return -1;
+//     }
 
-  // purely for logging to see diff
-  console.log("current vehicles & original length compare");
-  console.log(currentVehicles.length);
-  console.log(vehicles.length);
+//     if (b.name < a.name) {
+//       return 1;
+//     }
 
-  return currentVehicles;
-}
+//     return 0;
+//   });
+//   const csvWriter = createObjectCsvWriter({
+//     path: "./public/vehicleCSVnew.csv",
+//     header: [
+//       { id: "name", title: "NAME" },
+//       { id: "rating", title: "RATING" },
+//     ],
+//     headerIdDelimiter: ";",
+//     fieldDelimiter: ";",
+//   });
 
-function replaceQuotes(vehicles: any) {
-  const currentVehicles = vehicles;
+//   csvWriter.writeRecords(detailedArray).then(() => console.log("Done writing"));
+// }
 
-  const filtered = currentVehicles.filter((item: any) =>
-    item.name.includes('"')
-  );
+// // loaded file parser for testing purposes
+// // async function parseSavedFile() {
+// //   const filePath = path.resolve(__dirname, "../public/vehicleCSV.csv");
+// //   const csvString = fs.readFileSync(filePath, "utf8");
 
-  const quotelessList = currentVehicles.filter(
-    (item: any) => !item.name.includes('"')
-  );
+// //   await Papa.parse(csvString, {
+// //     header: true,
+// //     delimiter: ";",
+// //     complete: (results) => {
+// //       console.log("parsed successfully");
+// //       // console.log(results.data);
+// //       // filteredSavedFile only works on .name and .rating,
+// //       //needs to be changed to .NAME and .RATING to be used with
+// //       // parsed data
+// //       // replaceQuotes(results.data);
 
-  for (let x = 0; x < filtered.length; x++) {
-    filtered[x].name = filtered[x].name.replace(/"/g, "");
-    quotelessList.push(filtered[x]);
-  }
+// //       return results.data;
+// //     },
+// //   });
+// // }
 
-  return quotelessList;
-}
+// // let's think how we can break this down
+// // 1. we need to find everything with nations in brackets
+// // 2. we should check if there are any duplicates in the bracket results i.e A6M2 (USA) and A6M2 (CHINA)
+// // 3. need to check duplicates vs original list and fix it there too.
 
-// parseSavedFile();
-// saveToCSV();
+// // this function can be used when parsing the file directly after getting all info.
+// // what this function does is it checks for redundant bracketed names and removes them.
+// function filterSavedFile(vehicles: any) {
+//   let currentVehicles = [...vehicles];
+//   const regex =
+//     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy|Romania)\)/g;
 
-interface Iplanedata {
-  name: string;
-  rating: string;
-}
+//   const filteredBracket = currentVehicles.filter((item: any) =>
+//     item.name.match(regex)
+//   );
 
-async function scrapeDynamicContent(targetUrl: string): Promise<Iplanedata[]> {
-  const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targetUrl}`;
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+//   console.log(filteredBracket);
 
-  // Navigate to the URL
-  await page.goto(url, { waitUntil: "networkidle2" });
+//   // what I want to do next is split the ().
+//   // then let's go through original array and find every item that has a bracket, but only exists once.
+//   // we can then edit and remove the pointless bracket.
 
-  // Wait for the necessary DOM to be rendered
-  await page.waitForSelector("#wt-unit-list");
+//   for (let x = 0; x < filteredBracket.length; x++) {
+//     const splitName = filteredBracket[x].name.split(" (");
 
-  // Get the HTML content of the page
-  const htmlContent = await page.content();
-  await browser.close();
+//     const singleMatch: any = currentVehicles.filter(
+//       (item: any) =>
+//         item.name.includes(splitName[0]) &&
+//         item.rating === filteredBracket[x].rating
+//     );
 
-  // Load the HTML into Cheerio
-  const $ = cheerio.load(htmlContent);
+//     console.log("single match format");
+//     console.log(singleMatch);
 
-  // Parse the HTML to extract the required information
-  const aircraftNames: Iplanedata[] = [];
-  $("tr.wt-ulist_unit").each((index, element) => {
-    const name = $(element)
-      .find(".wt-ulist_unit-name > a > span")
-      .text()
-      .trim();
+//     // if filteres length is 1, it means that no other instance of this exists and the brackets are redundant.
+//     if (singleMatch.length === 1) {
+//       // console.log(singleMatch);
+//       currentVehicles = currentVehicles.filter(
+//         (item) => item.name != singleMatch[0].name
+//       );
+//       currentVehicles.push({
+//         name: splitName[0],
+//         rating: filteredBracket[x].rating,
+//       });
+//     }
+//   }
 
-    const rating = $(element).find("td.br").text().trim();
-    if (name && rating) {
-      aircraftNames.push({ name: name, rating: rating });
-    }
-  });
+//   // purely for logging purposes
 
-  console.log("Total number of aircraft to parse:", aircraftNames.length);
-  console.log(aircraftNames);
+//   for (let y = 0; y < currentVehicles.length; y++) {
+//     console.log(currentVehicles[y]);
+//   }
 
-  return aircraftNames;
-}
+//   console.log("current vehicles & original length compare");
+//   console.log(currentVehicles.length);
+//   console.log(vehicles.length);
 
-let test: Iplanedata[] = [
-  { name: "Bf 109 E-3", rating: "2.3" },
-  { name: "▅Bf 109 E-7", rating: "3.0" },
-];
+//   return currentVehicles;
+// }
 
-function cleanArray(input: Iplanedata[]) {
-  input.forEach((item) => {
-    let splitName = item.name.split("");
-    console.log(splitName);
-    let regex = /^[a-zA-Z0-9]+$/;
+// function checkDuplicateWithDifferentNations(vehicles: any) {
+//   let currentVehicles = [...vehicles];
+//   const regex =
+//     /\((Sweden|France|Japan|USSR|IAF|Germany|China|USA|USMC|Great Britain|Israel|Italy)\)/g;
 
-    if (!regex.test(splitName[0])) {
-      let newName = splitName.splice(1).join("");
-      console.log(newName);
-      item.name = newName;
-    }
-  });
+//   const findBracket = currentVehicles.filter((item: any) =>
+//     item.name.match(regex)
+//   );
 
-  return input;
-}
+//   // now for each item we want to find uniques:
+//   for (let x = 0; x < findBracket.length; x++) {
+//     const splitName = findBracket[x].name.split(" (");
+//     const duplicates = currentVehicles.filter(
+//       (item: any) =>
+//         !(
+//           item.name.split(" (")[0] === splitName[0] &&
+//           item.rating === findBracket[x].rating
+//         )
+//     );
+//     const replacementItem = {
+//       name: splitName[0],
+//       rating: findBracket[x].rating,
+//     };
 
-// Example usage ;— is something that neesd to be filtered for
-const targetUrl = "USA";
-scrapeDynamicContent(targetUrl)
-  .then((data) => {
-    let x = cleanArray(data);
-    console.log(x);
+//     duplicates.push(replacementItem);
+//     currentVehicles = duplicates;
+//   }
 
-    x = filterSavedFile(x);
-    x = checkDuplicateWithDifferentNations(x);
-    x = replaceQuotes(x);
+//   // purely for logging to see diff
+//   console.log("current vehicles & original length compare");
+//   console.log(currentVehicles.length);
+//   console.log(vehicles.length);
 
-    const csvWriter = createObjectCsvWriter({
-      path: "./public/vehicleCSVnew.csv",
-      header: [
-        { id: "name", title: "NAME" },
-        { id: "rating", title: "RATING" },
-      ],
-      headerIdDelimiter: ";",
-      fieldDelimiter: ";",
-    });
+//   return currentVehicles;
+// }
 
-    csvWriter.writeRecords(x).then(() => console.log("Done writing"));
-  })
-  .catch((error) => {
-    console.error("Error:", error);
-  });
+// function replaceQuotes(vehicles: any) {
+//   const currentVehicles = vehicles;
+
+//   const filtered = currentVehicles.filter((item: any) =>
+//     item.name.includes('"')
+//   );
+
+//   const quotelessList = currentVehicles.filter(
+//     (item: any) => !item.name.includes('"')
+//   );
+
+//   for (let x = 0; x < filtered.length; x++) {
+//     filtered[x].name = filtered[x].name.replace(/"/g, "");
+//     quotelessList.push(filtered[x]);
+//   }
+
+//   return quotelessList;
+// }
+
+// // parseSavedFile();
+// // saveToCSV();
+
+// interface Iplanedata {
+//   name: string;
+//   rating: string;
+// }
+
+// async function scrapeDynamicContent(targetUrl: string): Promise<Iplanedata[]> {
+//   const url = `https://wiki.warthunder.com/aviation?v=l&t_c=${targetUrl}`;
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+
+//   // Navigate to the URL
+//   await page.goto(url, { waitUntil: "networkidle2" });
+
+//   // Wait for the necessary DOM to be rendered
+//   await page.waitForSelector("#wt-unit-list");
+
+//   // Get the HTML content of the page
+//   const htmlContent = await page.content();
+//   await browser.close();
+
+//   // Load the HTML into Cheerio
+//   const $ = cheerio.load(htmlContent);
+
+//   // Parse the HTML to extract the required information
+//   const aircraftNames: Iplanedata[] = [];
+//   $("tr.wt-ulist_unit").each((index, element) => {
+//     const name = $(element)
+//       .find(".wt-ulist_unit-name > a > span")
+//       .text()
+//       .trim();
+
+//     const rating = $(element).find("td.br").text().trim();
+//     if (name && rating) {
+//       aircraftNames.push({ name: name, rating: rating });
+//     }
+//   });
+
+//   console.log("Total number of aircraft to parse:", aircraftNames.length);
+//   console.log(aircraftNames);
+
+//   return aircraftNames;
+// }
+
+// let test: Iplanedata[] = [
+//   { name: "Bf 109 E-3", rating: "2.3" },
+//   { name: "▅Bf 109 E-7", rating: "3.0" },
+// ];
+
+// function cleanArray(input: Iplanedata[]) {
+//   input.forEach((item) => {
+//     let splitName = item.name.split("");
+//     console.log(splitName);
+//     let regex = /^[a-zA-Z0-9]+$/;
+
+//     if (!regex.test(splitName[0])) {
+//       let newName = splitName.splice(1).join("");
+//       console.log(newName);
+//       item.name = newName;
+//     }
+//   });
+
+//   return input;
+// }
+
+// // Example usage ;— is something that neesd to be filtered for
+// const targetUrl = "USA";
+// scrapeDynamicContent(targetUrl)
+//   .then((data) => {
+//     let x = cleanArray(data);
+//     console.log(x);
+
+//     x = filterSavedFile(x);
+//     x = checkDuplicateWithDifferentNations(x);
+//     x = replaceQuotes(x);
+
+//     const csvWriter = createObjectCsvWriter({
+//       path: "./public/vehicleCSVnew.csv",
+//       header: [
+//         { id: "name", title: "NAME" },
+//         { id: "rating", title: "RATING" },
+//       ],
+//       headerIdDelimiter: ";",
+//       fieldDelimiter: ";",
+//     });
+
+//     csvWriter.writeRecords(x).then(() => console.log("Done writing"));
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//   });

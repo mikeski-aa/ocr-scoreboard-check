@@ -149,6 +149,8 @@ function testFunc(input: string) {
     `“+!`,
     "“p-",
     "=~",
+    "4!",
+    "F21",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
