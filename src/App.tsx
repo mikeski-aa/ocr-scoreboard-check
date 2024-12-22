@@ -9,6 +9,7 @@ function App() {
   const [selectedImage, setSelected] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
+  const [sessionActive, setSessionActive] = useState<boolean>(false);
 
   // DONE
   // 1. CSV re-parser.
@@ -35,6 +36,10 @@ function App() {
     }
   };
 
+  const handleSessionStart = () => {
+    setSessionActive(true);
+  };
+
   return (
     <div className="mainContent">
       <div className="pageHeading">Battle Rating Checker</div>
@@ -50,7 +55,24 @@ function App() {
           EASY SCREENSHOT TUTORIAL
         </button>
       </div>
-      <button className="startSessionButton">START SESSION</button>
+      <div
+        className={
+          sessionActive
+            ? "sessionContainer active"
+            : "sessionContainer inactive"
+        }
+      >
+        <button
+          className={
+            sessionActive
+              ? "startSessionButton active"
+              : "startSessionButton inactive"
+          }
+          onClick={handleSessionStart}
+        >
+          START SESSION
+        </button>
+      </div>
 
       <div className="previewResultHolder">
         <ImageUploader otherState={setSelected} />

@@ -523,6 +523,18 @@ const j35bFix = (input: string) => {
   return input;
 };
 
+const mirageFix = (input: string) => {
+  const possibleWords: string[] = ["Mirage 2000C-54"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Mirage 2000C-S4";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
@@ -531,39 +543,41 @@ function stackedElims(input: string) {
           converGnameFix(
             bMigMLAFix(
               j35bFix(
-                saabFix(
-                  il28sh(
-                    f89bfix(
-                      removeStartSpace(
-                        jaboFix(
-                          hornetFilter(
-                            migFilter(
-                              filterCrossF4F(
-                                migTwoOneFix(
-                                  limFix(
-                                    clOneThreeFix(
-                                      filterAJS(
-                                        filterAJ(
-                                          formatSU(
-                                            eliminateFFourError(
-                                              eliminateTornadoError(
-                                                fixNewMirageErrors(
-                                                  eliminateHarrierError(
-                                                    eliminateK(
-                                                      fixMigError(
-                                                        fixSuError(
-                                                          fixYSerror(
-                                                            fixMirageError(
-                                                              eliminateCross(
-                                                                convertPossibleSwiss(
-                                                                  convertPossibleBracketError(
-                                                                    convertPossibleWrongName(
-                                                                      eliminateSigns(
-                                                                        eliminateO(
-                                                                          eliminateP(
-                                                                            j34fix(
-                                                                              fixImisreads(
-                                                                                input
+                mirageFix(
+                  saabFix(
+                    il28sh(
+                      f89bfix(
+                        removeStartSpace(
+                          jaboFix(
+                            hornetFilter(
+                              migFilter(
+                                filterCrossF4F(
+                                  migTwoOneFix(
+                                    limFix(
+                                      clOneThreeFix(
+                                        filterAJS(
+                                          filterAJ(
+                                            formatSU(
+                                              eliminateFFourError(
+                                                eliminateTornadoError(
+                                                  fixNewMirageErrors(
+                                                    eliminateHarrierError(
+                                                      eliminateK(
+                                                        fixMigError(
+                                                          fixSuError(
+                                                            fixYSerror(
+                                                              fixMirageError(
+                                                                eliminateCross(
+                                                                  convertPossibleSwiss(
+                                                                    convertPossibleBracketError(
+                                                                      convertPossibleWrongName(
+                                                                        eliminateSigns(
+                                                                          eliminateO(
+                                                                            eliminateP(
+                                                                              j34fix(
+                                                                                fixImisreads(
+                                                                                  input
+                                                                                )
                                                                               )
                                                                             )
                                                                           )

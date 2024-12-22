@@ -186,8 +186,15 @@ button:hover {
   margin-top: 5px;
 }
 
-.startSessionButton {
+.sessionContainer {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.sessionContainer.active {
+  border: 2px solid #b10dff;
+}
+.startSessionButton.active {
+  display: none;
 }
