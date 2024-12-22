@@ -89,6 +89,9 @@ function filterParsedResults(input: Tesseract.RecognizeResult) {
 function testFunc(input: string) {
   let symbols = [
     "iil",
+    "P'S",
+    "Py",
+    "-",
     "+",
     "A!",
     "Ai)",
