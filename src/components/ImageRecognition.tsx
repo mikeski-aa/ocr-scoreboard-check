@@ -92,6 +92,7 @@ function testFunc(input: string) {
     "P'S",
     "Py",
     "-",
+    "El",
     "+",
     "A!",
     "Ai)",
