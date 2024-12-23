@@ -3,7 +3,7 @@ import Tesseract from "tesseract.js";
 import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
-import { SessionContext } from "../App";
+import { defaultSessionState, SessionContext } from "../App";
 
 // the maximum "words" that can be had is 5
 // this function is rather ugly but I am not picturing a simpler way of writing this at this moment
@@ -201,6 +201,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         { NAME: "placeholder", RATING: "0" },
       ]);
       sessionContext.setMidReset(false);
+      sessionContext.setSessionInfo(defaultSessionState);
     }
   }, [sessionContext.midReset]);
 

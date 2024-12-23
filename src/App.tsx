@@ -27,7 +27,7 @@ export interface ISessionContextInit {
   setMidReset: Dispatch<SetStateAction<boolean>>;
 }
 
-const defaultSessionState: ISessionData = {
+export const defaultSessionState: ISessionData = {
   gamesPlayed: 0,
   uptierCount: 0,
   downtierCount: 0,
