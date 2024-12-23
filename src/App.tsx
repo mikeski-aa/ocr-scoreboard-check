@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import "./App.css";
 import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
@@ -6,17 +6,30 @@ import TutorialModal from "./components/TutorialModal";
 import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
 import Snowfall from "react-snowfall";
 
-export interface ISessionDate {
+export interface ISessionData {
   gamesPlayed: number;
   uptierCount: number;
   downtierCount: number;
 }
+
+export interface ISessionContextInit {
+  sessionInfo: ISessionData | null;
+  setSessionInfo: Dispatch<SetStateAction<ISessionData>>;
+  sessionActive: boolean;
+}
+
+export const SessionContext = createContext<ISessionContextInit>({
+  sessionInfo: null,
+  setSessionInfo: () => {},
+  sessionActive: false,
+});
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const [sessionActive, setSessionActive] = useState<boolean>(false);
+  const [sessionInfo, setSessionInfo] = useState<ISessionData | null>(null);
 
   // DONE
   // 1. CSV re-parser.
@@ -50,48 +63,55 @@ function App() {
   return (
     <div className="mainContent">
       <Snowfall />
-      <div className="pageHeading">Battle Rating Checker</div>
-      {showModal ? <TutorialModal setModal={setShowModal} /> : null}
-      {showTutorial ? (
-        <TutorialHowToUseModal setModal={setShowTutorial} />
-      ) : null}
-      <div className="tutorialButtonHolder">
-        <button onClick={() => handleModalDisplay(true)} className="howtoBtn">
-          HOW TO USE THE APP
-        </button>
-        <button onClick={() => handleModalDisplay(false)} className="howtoBtn">
-          EASY SCREENSHOT TUTORIAL
-        </button>
-      </div>
-      <div
-        className={
-          sessionActive
-            ? "sessionContainer active"
-            : "sessionContainer inactive"
-        }
+      <SessionContext.Provider
+        value={{ sessionActive, sessionInfo, setSessionInfo }}
       >
-        <button
+        <div className="pageHeading">Battle Rating Checker</div>
+        {showModal ? <TutorialModal setModal={setShowModal} /> : null}
+        {showTutorial ? (
+          <TutorialHowToUseModal setModal={setShowTutorial} />
+        ) : null}
+        <div className="tutorialButtonHolder">
+          <button onClick={() => handleModalDisplay(true)} className="howtoBtn">
+            HOW TO USE THE APP
+          </button>
+          <button
+            onClick={() => handleModalDisplay(false)}
+            className="howtoBtn"
+          >
+            EASY SCREENSHOT TUTORIAL
+          </button>
+        </div>
+        <div
           className={
             sessionActive
-              ? "startSessionButton active"
-              : "startSessionButton inactive"
+              ? "sessionContainer active"
+              : "sessionContainer inactive"
           }
-          onClick={handleSessionStart}
         >
-          START SESSION
-        </button>
-        <div className="sessionItems">
-          <div className="sessionHeading">Session started</div>
-          <div className="sessionGames"></div>
-          <div className="sessionGames"></div>
-          <div className="sessionGames"></div>
+          <button
+            className={
+              sessionActive
+                ? "startSessionButton active"
+                : "startSessionButton inactive"
+            }
+            onClick={handleSessionStart}
+          >
+            START SESSION
+          </button>
+          <div className="sessionItems">
+            <div className="sessionHeading">Session started</div>
+            <div className="sessionGames"></div>
+            <div className="sessionGames"></div>
+            <div className="sessionGames"></div>
+          </div>
         </div>
-      </div>
 
-      <div className="previewResultHolder">
-        <ImageUploader otherState={setSelected} />
-        <TextRecognition selectedImage={selectedImage} />
-      </div>
+        <div className="previewResultHolder">
+          <ImageUploader otherState={setSelected} />
+          <TextRecognition selectedImage={selectedImage} />
+        </div>
+      </SessionContext.Provider>
     </div>
   );
 }
