@@ -4,10 +4,18 @@ import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
 import { defaultSessionState, SessionContext } from "../App";
+import { excpNames, symbols } from "../utils/utilValues";
 
 // the maximum "words" that can be had is 5
 // this function is rather ugly but I am not picturing a simpler way of writing this at this moment
 function checkLongerName(input: any) {
+  if (
+    excpNames.some((name) => name === input.words[6].text) &&
+    input.words[7].text === "A"
+  ) {
+    return `${input.words[6].text} A`;
+  }
+
   if (!testFunc(input.words[7].text)) {
     if (!testFunc(input.words[8].text)) {
       if (!testFunc(input.words[9].text)) {
@@ -88,85 +96,6 @@ function filterParsedResults(input: Tesseract.RecognizeResult) {
 
 // this function tests for common OCR misinterpretations
 function testFunc(input: string) {
-  let symbols = [
-    "iil",
-    "Ail",
-    "49",
-    "<1",
-    "P'S",
-    "Py",
-    "-",
-    "El",
-    "+",
-    "A!",
-    "Ai)",
-    "yl",
-    "Al",
-    "+",
-    "Ai)",
-    "4",
-    "®",
-    "[4",
-    "L4",
-    "Fy",
-    "44",
-    "Ai",
-    "4:",
-    "A",
-    "-+",
-    "+i",
-    "41",
-    "Ali",
-    `“+`,
-    "i",
-    "413",
-    "4)",
-    "“+i",
-    "+!",
-    "52",
-    "Se",
-    "k4",
-    "$4",
-    "(4",
-    "?",
-    "“-",
-    "==0",
-    "AL",
-    "Eo)",
-    "Eo",
-    "14",
-    "2",
-    `"30s"`,
-    "“4",
-    "<+",
-    "=",
-    "A)",
-    "(1)",
-    "-+i",
-    "0)",
-    "~~",
-    "“=",
-    "H={",
-    "=i",
-    "eS",
-    "ES",
-    "eat}",
-    "+i)",
-    "PS",
-    "Ly",
-    `“+!`,
-    "“p-",
-    "=~",
-    "4!",
-    "F21",
-    "4A)",
-    "4K)",
-    "ry",
-    "—--",
-    "Ad",
-    "441",
-    "—-",
-  ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
   // console.log(containsSymbol);
@@ -390,8 +319,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             <div className="parsedCompare">Items detected: {possibleItems}</div>
             <div>Items parsed: {actualParsed}</div>
             <div className="parsePercent">
-              {(Math.round((actualParsed / possibleItems) * 100) / 100) * 100}%
-              of items succesfully parsed
+              {(
+                (Math.round((actualParsed / possibleItems) * 100) / 100) *
+                100
+              ).toFixed(1)}
+              % of items succesfully parsed
             </div>
           </div>
         </div>
