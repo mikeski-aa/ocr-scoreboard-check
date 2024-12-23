@@ -4,6 +4,7 @@ import ImageUploader from "./components/ImageUploader";
 import TextRecognition from "./components/ImageRecognition";
 import TutorialModal from "./components/TutorialModal";
 import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
+import Snowfall from "react-snowfall";
 
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <div className="mainContent">
+      <Snowfall />
       <div className="pageHeading">Battle Rating Checker</div>
       {showModal ? <TutorialModal setModal={setShowModal} /> : null}
       {showTutorial ? (
