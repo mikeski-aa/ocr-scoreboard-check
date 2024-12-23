@@ -194,7 +194,21 @@ button:hover {
 
 .sessionContainer.active {
   border: 2px solid #b10dff;
+  padding: 10px;
+  border-radius: 5px;
 }
 .startSessionButton.active {
+  display: none;
+}
+
+.sessionItems.inactive {
+  display: none;
+}
+
+.sessionDetailsContainer.inactive {
+  display: none;
+}
+
+.brSelectDropdown.inactive {
   display: none;
 }
