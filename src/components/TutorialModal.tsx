@@ -56,6 +56,20 @@ function TutorialModal({
             </ul>
           </div>
           <img className="exampleImage" src={examplePic} />
+          <div className="text">
+            <div className="headingTextModal">Sessions</div>
+            <ul>
+              <li>
+                If you want to play multiple sessions at the same Battle Rating,
+                you can use the Session button in the top right corner.
+              </li>
+              <li>
+                Sessions will track how many games you've played, as well as
+                total count of uptiers and downtiers
+              </li>
+              <li>If you do not have any any screenshots on hand</li>
+            </ul>
+          </div>
           <button className="closeBtn" onClick={closeAction}>
             Close
           </button>

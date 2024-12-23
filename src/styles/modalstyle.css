@@ -16,6 +16,15 @@
   height: fit-content;
 }
 
+.modalContainer.processing {
+  width: 20vw;
+}
+
+.processingImageHeader {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
 .modalContainer {
   display: flex;
   flex-direction: column;
@@ -69,7 +78,7 @@
 
 .text {
   font-size: 1.2rem;
-  max-width: 60vw;
+  width: 640px;
 }
 
 .exampleImage {

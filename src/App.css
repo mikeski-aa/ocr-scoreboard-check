@@ -212,3 +212,26 @@ button:hover {
 .brSelectDropdown.inactive {
   display: none;
 }
+
+.sessionHeading {
+  font-size: 1.5rem;
+}
+
+.sessionGames {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sessionDetailsContainer {
+  text-align: center;
+}
+
+.sessionTierHolder {
+  text-align: center;
+}
+
+.sessionItems.active {
+  display: flex;
+  flex-direction: column;
+}

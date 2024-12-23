@@ -158,17 +158,20 @@ function App() {
                   : "sessionDetailsContainer inactive"
               }
             >
-              <div className="sessionGames">
+              <div className="sessionTierHolder">
                 Tier selected: {sessionTier.toFixed(1)}
               </div>
               <div className="sessionGames">
-                Games played: {sessionInfo.gamesPlayed}
+                <div className="leftText">Games played: </div>
+                <div className="rightText">{sessionInfo.gamesPlayed}</div>
               </div>
               <div className="sessionGames">
-                Uptier count: {sessionInfo.uptierCount}
+                <div className="leftText">Uptier count: </div>
+                <div className="rightText">{sessionInfo.uptierCount}</div>
               </div>
               <div className="sessionGames">
-                Downtier count:{sessionInfo.downtierCount}
+                <div className="leftText">Downtier count:</div>
+                <div className="rightText">{sessionInfo.downtierCount}</div>
               </div>
             </div>
           </div>

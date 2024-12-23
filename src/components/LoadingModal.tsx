@@ -9,9 +9,9 @@ function LoadingModal({ state }: { state: boolean }) {
 
   return (
     <div className="modal">
-      <div className="modalContainer">
+      <div className="modalContainer processing">
         <div className="heading">
-          <h4>Processing Image</h4>
+          <div className="processingImageHeader">Processing Image</div>
           <img className="loadingImg" src={spinner}></img>
         </div>
       </div>
