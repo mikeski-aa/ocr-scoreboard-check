@@ -74,6 +74,8 @@ const convertPossibleWrongName = (input: string) => {
     "G91 R/4",
     "3£G.91R/4",
     "3£G.91 R/4",
+    "GI91R/4",
+    "91 R/4",
   ];
 
   for (let x = 0; x < possibleWords.length; x++) {
@@ -561,6 +563,18 @@ const fixf9f = (input: string) => {
   return input;
 };
 
+const seaVixenFix = (input: string) => {
+  const possibleWords: string[] = ["Sea Vixen FAW. Mk.2", "Sea Vixen FAW. Mk2"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Sea Vixen F.A.W. Mk.2";
+    }
+  }
+
+  return input;
+};
+
 const fixF86f = (input: string) => {
   const possibleWords: string[] = ["F-86F-40 JASDFAL"];
 
@@ -572,6 +586,71 @@ const fixF86f = (input: string) => {
 
   return input;
 };
+
+const g91preserieFix = (input: string) => {
+  const possibleWords: string[] = ["91 pre-serie"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "G.91 pre-serie";
+    }
+  }
+
+  return input;
+};
+
+const f84FFix = (input: string) => {
+  const possibleWords: string[] = ["EF-84F"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "F-84F";
+    }
+  }
+
+  return input;
+};
+
+const mirageIIICFix = (input: string) => {
+  const possibleWords: string[] = ["Mirage I1IC"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Mirage IIIC";
+    }
+  }
+
+  return input;
+};
+
+const hunterF6fix = (input: string) => {
+  const possibleWords: string[] = ["Hunter £6"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Hunter F.6";
+    }
+  }
+
+  return input;
+};
+
+const rodAdamFix = (input: string) => {
+  const possibleWords: string[] = [
+    "A32ARGd Adam",
+    "A32A Rod Adam",
+    "A32ARSd Adam",
+  ];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "A32A Röd Adam";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
@@ -580,43 +659,57 @@ function stackedElims(input: string) {
           converGnameFix(
             bMigMLAFix(
               j35bFix(
-                mirageFix(
-                  saabFix(
-                    il28sh(
-                      fixF86f(
-                        fixf9f(
-                          f89bfix(
-                            removeStartSpace(
-                              jaboFix(
-                                hornetFilter(
-                                  saabFixNew(
-                                    migFilter(
-                                      filterCrossF4F(
-                                        migTwoOneFix(
-                                          limFix(
-                                            clOneThreeFix(
-                                              filterAJS(
-                                                filterAJ(
-                                                  formatSU(
-                                                    eliminateFFourError(
-                                                      eliminateTornadoError(
-                                                        fixNewMirageErrors(
-                                                          eliminateHarrierError(
-                                                            eliminateK(
-                                                              fixMigError(
-                                                                fixSuError(
-                                                                  fixYSerror(
-                                                                    fixMirageError(
-                                                                      eliminateCross(
-                                                                        convertPossibleSwiss(
-                                                                          convertPossibleBracketError(
-                                                                            convertPossibleWrongName(
-                                                                              eliminateSigns(
-                                                                                eliminateO(
-                                                                                  eliminateP(
-                                                                                    j34fix(
-                                                                                      fixImisreads(
-                                                                                        input
+                g91preserieFix(
+                  mirageFix(
+                    mirageIIICFix(
+                      seaVixenFix(
+                        f84fix(
+                          saabFix(
+                            hunterF6fix(
+                              f84FFix(
+                                il28sh(
+                                  rodAdamFix(
+                                    fixF86f(
+                                      fixf9f(
+                                        f89bfix(
+                                          removeStartSpace(
+                                            jaboFix(
+                                              hornetFilter(
+                                                saabFixNew(
+                                                  migFilter(
+                                                    filterCrossF4F(
+                                                      migTwoOneFix(
+                                                        limFix(
+                                                          clOneThreeFix(
+                                                            filterAJS(
+                                                              filterAJ(
+                                                                formatSU(
+                                                                  eliminateFFourError(
+                                                                    eliminateTornadoError(
+                                                                      fixNewMirageErrors(
+                                                                        eliminateHarrierError(
+                                                                          eliminateK(
+                                                                            fixMigError(
+                                                                              fixSuError(
+                                                                                fixYSerror(
+                                                                                  fixMirageError(
+                                                                                    eliminateCross(
+                                                                                      convertPossibleSwiss(
+                                                                                        convertPossibleBracketError(
+                                                                                          convertPossibleWrongName(
+                                                                                            eliminateSigns(
+                                                                                              eliminateO(
+                                                                                                eliminateP(
+                                                                                                  j34fix(
+                                                                                                    fixImisreads(
+                                                                                                      input
+                                                                                                    )
+                                                                                                  )
+                                                                                                )
+                                                                                              )
+                                                                                            )
+                                                                                          )
+                                                                                        )
                                                                                       )
                                                                                     )
                                                                                   )

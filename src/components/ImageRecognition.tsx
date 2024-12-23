@@ -159,6 +159,13 @@ function testFunc(input: string) {
     "=~",
     "4!",
     "F21",
+    "4A)",
+    "4K)",
+    "ry",
+    "—--",
+    "Ad",
+    "441",
+    "—-",
   ];
   const containsSymbol = symbols.some((symbol) => input === symbol);
 
@@ -228,6 +235,8 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
             filteredArray.push(stackedElims(wordArray[x]));
           }
 
+          console.log("filtered array");
+          console.log(filteredArray);
           const checkedWithCSV = await CSVcheck(filteredArray);
           let sortedArray = checkedWithCSV.wholeArray.sort((a: any, b: any) => {
             if (+a.RATING < +b.RATING) {
