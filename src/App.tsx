@@ -23,6 +23,8 @@ export interface ISessionContextInit {
   setSessionInfo: Dispatch<SetStateAction<ISessionData>>;
   sessionActive: boolean;
   sessionTier: number;
+  midReset: boolean;
+  setMidReset: Dispatch<SetStateAction<boolean>>;
 }
 
 const defaultSessionState: ISessionData = {
@@ -36,6 +38,8 @@ export const SessionContext = createContext<ISessionContextInit>({
   setSessionInfo: () => {},
   sessionActive: false,
   sessionTier: 0,
+  midReset: false,
+  setMidReset: () => {},
 });
 
 function App() {
@@ -44,6 +48,7 @@ function App() {
   const [showTutorial, setShowTutorial] = useState<boolean>(false);
   const [sessionActive, setSessionActive] = useState<boolean>(false);
   const [sessionTier, setSessionTier] = useState<number>(0);
+  const [midReset, setMidReset] = useState<boolean>(false);
 
   const [sessionInfo, setSessionInfo] =
     useState<ISessionData>(defaultSessionState);
@@ -81,6 +86,7 @@ function App() {
 
   const handleSessionStart = () => {
     setSessionActive(true);
+    setMidReset(true);
   };
 
   const handleDropdownSelect = (e: SyntheticEvent) => {
@@ -95,7 +101,14 @@ function App() {
     <div className="mainContent">
       <Snowfall />
       <SessionContext.Provider
-        value={{ sessionActive, sessionInfo, setSessionInfo, sessionTier }}
+        value={{
+          sessionActive,
+          sessionInfo,
+          setSessionInfo,
+          sessionTier,
+          midReset,
+          setMidReset,
+        }}
       >
         <div className="pageHeading">Battle Rating Checker</div>
         {showModal ? <TutorialModal setModal={setShowModal} /> : null}

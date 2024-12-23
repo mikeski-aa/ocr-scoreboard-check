@@ -3,6 +3,7 @@ import {
   SetStateAction,
   SyntheticEvent,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { SessionContext } from "../App";
@@ -26,6 +27,13 @@ function ImageUploader({
       otherState(URL.createObjectURL(image));
     }
   };
+
+  useEffect(() => {
+    if (sessionContext.midReset) {
+      setSelected("");
+      setActiveName("");
+    }
+  }, [sessionContext.midReset]);
 
   return (
     <div className="imageUploader">

@@ -186,6 +186,24 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     10.7, 11.0, 11.3, 11.7, 12.0, 12.3, 12.7, 13.0, 13.3, 13.7, 14.0,
   ];
 
+  // reset image test
+  useEffect(() => {
+    if (sessionContext.midReset) {
+      setDisplayTierText("");
+      setDisplayError(false);
+      setActualParsed(0);
+      setValue(0);
+      setPossibleItems(0);
+      setDisplay(false);
+      setLoading(false);
+      setRecognizedText([
+        { NAME: "placeholder", RATING: "0" },
+        { NAME: "placeholder", RATING: "0" },
+      ]);
+      sessionContext.setMidReset(false);
+    }
+  }, [sessionContext.midReset]);
+
   useEffect(() => {
     const recognizeText = async () => {
       if (selectedImage) {
