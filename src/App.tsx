@@ -6,6 +6,12 @@ import TutorialModal from "./components/TutorialModal";
 import TutorialHowToUseModal from "./components/TutorialHowToUseModal";
 import Snowfall from "react-snowfall";
 
+export interface ISessionDate {
+  gamesPlayed: number;
+  uptierCount: number;
+  downtierCount: number;
+}
+
 function App() {
   const [selectedImage, setSelected] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -74,6 +80,12 @@ function App() {
         >
           START SESSION
         </button>
+        <div className="sessionItems">
+          <div className="sessionHeading">Session started</div>
+          <div className="sessionGames"></div>
+          <div className="sessionGames"></div>
+          <div className="sessionGames"></div>
+        </div>
       </div>
 
       <div className="previewResultHolder">
