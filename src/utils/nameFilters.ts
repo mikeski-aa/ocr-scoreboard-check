@@ -76,6 +76,7 @@ const convertPossibleWrongName = (input: string) => {
     "3£G.91 R/4",
     "GI91R/4",
     "91 R/4",
+    "G91R/4",
   ];
 
   for (let x = 0; x < possibleWords.length; x++) {
@@ -576,7 +577,7 @@ const seaVixenFix = (input: string) => {
 };
 
 const fixF86f = (input: string) => {
-  const possibleWords: string[] = ["F-86F-40 JASDFAL"];
+  const possibleWords: string[] = ["F-86F-40 JASDFAL", "F-86F-40 JASDFALL"];
 
   for (let x = 0; x < possibleWords.length; x++) {
     if (input === possibleWords[x]) {
@@ -651,6 +652,30 @@ const rodAdamFix = (input: string) => {
   return input;
 };
 
+const iarFix = (input: string) => {
+  const possibleWords: string[] = ["IAR-938"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "IAR-93B";
+    }
+  }
+
+  return input;
+};
+
+const canberraFix = (input: string) => {
+  const possibleWords: string[] = ["Canberra B Mk"];
+
+  for (let x = 0; x < possibleWords.length; x++) {
+    if (input === possibleWords[x]) {
+      return "Canberra B Mk 2";
+    }
+  }
+
+  return input;
+};
+
 function stackedElims(input: string) {
   return covertAlphaJetOneWord(
     converGYnameFix(
@@ -664,45 +689,49 @@ function stackedElims(input: string) {
                     mirageIIICFix(
                       seaVixenFix(
                         f84fix(
-                          saabFix(
-                            hunterF6fix(
-                              f84FFix(
-                                il28sh(
-                                  rodAdamFix(
-                                    fixF86f(
-                                      fixf9f(
-                                        f89bfix(
-                                          removeStartSpace(
-                                            jaboFix(
-                                              hornetFilter(
-                                                saabFixNew(
-                                                  migFilter(
-                                                    filterCrossF4F(
-                                                      migTwoOneFix(
-                                                        limFix(
-                                                          clOneThreeFix(
-                                                            filterAJS(
-                                                              filterAJ(
-                                                                formatSU(
-                                                                  eliminateFFourError(
-                                                                    eliminateTornadoError(
-                                                                      fixNewMirageErrors(
-                                                                        eliminateHarrierError(
-                                                                          eliminateK(
-                                                                            fixMigError(
-                                                                              fixSuError(
-                                                                                fixYSerror(
-                                                                                  fixMirageError(
-                                                                                    eliminateCross(
-                                                                                      convertPossibleSwiss(
-                                                                                        convertPossibleBracketError(
-                                                                                          convertPossibleWrongName(
-                                                                                            eliminateSigns(
-                                                                                              eliminateO(
-                                                                                                eliminateP(
-                                                                                                  j34fix(
-                                                                                                    fixImisreads(
-                                                                                                      input
+                          iarFix(
+                            saabFix(
+                              canberraFix(
+                                hunterF6fix(
+                                  f84FFix(
+                                    il28sh(
+                                      rodAdamFix(
+                                        fixF86f(
+                                          fixf9f(
+                                            f89bfix(
+                                              removeStartSpace(
+                                                jaboFix(
+                                                  hornetFilter(
+                                                    saabFixNew(
+                                                      migFilter(
+                                                        filterCrossF4F(
+                                                          migTwoOneFix(
+                                                            limFix(
+                                                              clOneThreeFix(
+                                                                filterAJS(
+                                                                  filterAJ(
+                                                                    formatSU(
+                                                                      eliminateFFourError(
+                                                                        eliminateTornadoError(
+                                                                          fixNewMirageErrors(
+                                                                            eliminateHarrierError(
+                                                                              eliminateK(
+                                                                                fixMigError(
+                                                                                  fixSuError(
+                                                                                    fixYSerror(
+                                                                                      fixMirageError(
+                                                                                        eliminateCross(
+                                                                                          convertPossibleSwiss(
+                                                                                            convertPossibleBracketError(
+                                                                                              convertPossibleWrongName(
+                                                                                                eliminateSigns(
+                                                                                                  eliminateO(
+                                                                                                    eliminateP(
+                                                                                                      j34fix(
+                                                                                                        fixImisreads(
+                                                                                                          input
+                                                                                                        )
+                                                                                                      )
                                                                                                     )
                                                                                                   )
                                                                                                 )

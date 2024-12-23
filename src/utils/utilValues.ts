@@ -76,6 +76,10 @@ export const symbols: string[] = [
   "441",
   "—-",
   "A",
+  "PL]",
+  "PY]",
+  "AN)",
+  "Aid",
 ];
 
 export const excpNames: string[] = ["Jaguar", "Alpha Jet"];
