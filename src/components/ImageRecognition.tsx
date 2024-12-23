@@ -1,8 +1,9 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import Tesseract from "tesseract.js";
 import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
+import { SessionContext } from "../App";
 
 // the maximum "words" that can be had is 5
 // this function is rather ugly but I am not picturing a simpler way of writing this at this moment
@@ -166,6 +167,7 @@ function testFunc(input: string) {
 }
 
 const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
+  const sessionContext = useContext(SessionContext);
   const [recognizedText, setRecognizedText] = useState<any>([
     { NAME: "placeholder", RATING: "0" },
     { NAME: "placeholder", RATING: "0" },
@@ -176,6 +178,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
   const [value, setValue] = useState<number>();
   const [actualParsed, setActualParsed] = useState<number>(0);
   const [displayError, setDisplayError] = useState<boolean>(false);
+  const [displayTierText, setDisplayTierText] = useState<string>("");
 
   const brRange: number[] = [
     1.0, 1.3, 1.7, 2.0, 2.3, 2.7, 3.0, 3.3, 3.7, 4.0, 4.3, 4.7, 5.0, 5.3, 5.7,
@@ -220,6 +223,11 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           });
           setRecognizedText(sortedArray);
           setActualParsed(checkedWithCSV.wholeArray.length);
+          let newVal: number = sessionContext.sessionInfo.gamesPlayed + 1;
+          sessionContext.setSessionInfo({
+            ...sessionContext.sessionInfo,
+            gamesPlayed: newVal,
+          });
 
           // if no data is parsed, invalid data was provided
           if (checkedWithCSV.wholeArray.length === 0) {
@@ -236,6 +244,37 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
     recognizeText();
   }, [selectedImage]);
 
+  useEffect(() => {
+    setValue(sessionContext.sessionTier);
+  }, [sessionContext.sessionTier]);
+
+  useEffect(() => {
+    if (value) {
+      if (+recognizedText[0].RATING > +value) {
+        // console.log("uptier detected");
+        let difference = +recognizedText[0].RATING - +value;
+        let rounded = Math.round(difference * 100) / 100;
+        let newUptier: number = sessionContext.sessionInfo.uptierCount + 1;
+        sessionContext.setSessionInfo({
+          ...sessionContext.sessionInfo,
+          uptierCount: newUptier,
+        });
+        setDisplayTierText(`Uptier detected: +${rounded}`);
+      } else {
+        // console.log("downtier detected");
+        let difference =
+          +value - +recognizedText[recognizedText.length - 1].RATING;
+        let rounded = Math.round(difference * 100) / 100;
+        let newUptier: number = sessionContext.sessionInfo.downtierCount + 1;
+        sessionContext.setSessionInfo({
+          ...sessionContext.sessionInfo,
+          downtierCount: newUptier,
+        });
+        setDisplayTierText(`Downtier detected: -${rounded}`);
+      }
+    }
+  }, [recognizedText]);
+
   const calculateTier = () => {
     if (value) {
       if (+recognizedText[0].RATING > +value) {
@@ -248,6 +287,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         let difference =
           +value - +recognizedText[recognizedText.length - 1].RATING;
         let rounded = Math.round(difference * 100) / 100;
+
         return `Downtier detected: -${rounded}`;
       }
     }
@@ -300,19 +340,24 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
                 detected
               </h4>
             ) : null}
+            {!sessionContext.sessionActive ? (
+              <>
+                <label>Input your BR</label>
+                <select
+                  className="brSelectDropdown"
+                  onChange={(e) => handleDropdownSelect(e)}
+                >
+                  <option value={0}>Select your rating</option>
+                  {brRange.map((item, index) => (
+                    <option value={item} key={index.toFixed(1)}>
+                      {item.toFixed(1)}
+                    </option>
+                  ))}
+                </select>
+                <div className="relativeBR">{displayTierText}</div>
+              </>
+            ) : null}
 
-            <label>Input your BR</label>
-            <select
-              className="brSelectDropdown"
-              onChange={(e) => handleDropdownSelect(e)}
-            >
-              <option value={0}>Select your rating</option>
-              {brRange.map((item, index) => (
-                <option value={item} key={index.toFixed(1)}>
-                  {item.toFixed(1)}
-                </option>
-              ))}
-            </select>
             <div className="relativeBR">{calculateTier()}</div>
             <div className="parsedCompare">Items detected: {possibleItems}</div>
             <div>Items parsed: {actualParsed}</div>

@@ -19,9 +19,10 @@ export interface ISessionData {
 }
 
 export interface ISessionContextInit {
-  sessionInfo: ISessionData | null;
+  sessionInfo: ISessionData;
   setSessionInfo: Dispatch<SetStateAction<ISessionData>>;
   sessionActive: boolean;
+  sessionTier: number;
 }
 
 const defaultSessionState: ISessionData = {
@@ -34,6 +35,7 @@ export const SessionContext = createContext<ISessionContextInit>({
   sessionInfo: defaultSessionState,
   setSessionInfo: () => {},
   sessionActive: false,
+  sessionTier: 0,
 });
 
 function App() {
@@ -93,7 +95,7 @@ function App() {
     <div className="mainContent">
       <Snowfall />
       <SessionContext.Provider
-        value={{ sessionActive, sessionInfo, setSessionInfo }}
+        value={{ sessionActive, sessionInfo, setSessionInfo, sessionTier }}
       >
         <div className="pageHeading">Battle Rating Checker</div>
         {showModal ? <TutorialModal setModal={setShowModal} /> : null}
