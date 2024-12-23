@@ -1,10 +1,18 @@
-import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  SyntheticEvent,
+  useContext,
+  useState,
+} from "react";
+import { SessionContext } from "../App";
 
 function ImageUploader({
   otherState,
 }: {
   otherState: Dispatch<SetStateAction<string>>;
 }) {
+  const sessionContext = useContext(SessionContext);
   const [selectedImage, setSelected] = useState<string>("");
   const [activeName, setActiveName] = useState<string>("");
 
@@ -21,23 +29,34 @@ function ImageUploader({
 
   return (
     <div className="imageUploader">
-      <div className="buttonNameWrapper">
-        <div className="buttonWrapper">
-          <label htmlFor="uploadBtn" className="UploadFakeBtn">
-            UPLOAD
-          </label>
-          <input
-            id="uploadBtn"
-            className="hiddenInput"
-            type="file"
-            accept="image/*"
-            onChange={(e) => handleImageUpload(e)}
-          />
+      {sessionContext.sessionActive && sessionContext.sessionTier === 0 ? (
+        <div className="sessionWarning">
+          You've started a new session, make sure to pick your plane's tier (top
+          right) to continue!
         </div>
-        {activeName != "" ? <div className="fileName">{activeName}</div> : null}
-      </div>
-      {selectedImage && (
-        <img src={selectedImage} alt="selected" className="previewImg" />
+      ) : (
+        <>
+          <div className="buttonNameWrapper">
+            <div className="buttonWrapper">
+              <label htmlFor="uploadBtn" className="UploadFakeBtn">
+                UPLOAD
+              </label>
+              <input
+                id="uploadBtn"
+                className="hiddenInput"
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e)}
+              />
+            </div>
+            {activeName != "" ? (
+              <div className="fileName">{activeName}</div>
+            ) : null}
+          </div>
+          {selectedImage && (
+            <img src={selectedImage} alt="selected" className="previewImg" />
+          )}
+        </>
       )}
     </div>
   );
