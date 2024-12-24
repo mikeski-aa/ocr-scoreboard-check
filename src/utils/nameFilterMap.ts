@@ -91,4 +91,11 @@ export const corrections: { [key: string]: string } = {
   "Vampire FB52A": "Vampire FB 52A",
   "SAAB-1050G": "SAAB-105G",
   "Tornado IDS ASSTAL": "Tornado IDS ASSTA1",
+  "-28": "IL-28",
+  "L-285h": "IL-28Sh",
+  "I-28": "IL-28",
+  "iL-28Sh": "IL-28Sh",
+  "SMiG-15bis": "MiG-15bis",
+  'MiG-21 "Lazur-M*': "MiG-21 Lazur-M",
+  "F-4E Phantom Il": "F-4E Phantom II",
 };

@@ -19,6 +19,7 @@ export const symbols: string[] = [
   "®",
   "[4",
   "L4",
+  "FP",
   "$1",
   "—+",
   "+1",
