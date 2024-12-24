@@ -3,6 +3,7 @@ export const symbols: string[] = [
   "Ail",
   "49",
   "<1",
+  "[RDG]",
   "P'S",
   "Py",
   "-",
