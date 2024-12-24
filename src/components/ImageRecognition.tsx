@@ -1,10 +1,11 @@
 import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import Tesseract from "tesseract.js";
-import { stackedElims } from "../utils/nameFilters";
 import LoadingModal from "./LoadingModal";
 import CSVcheck from "../utils/CSVcheck";
 import { defaultSessionState, SessionContext } from "../App";
 import { excpNames, symbols } from "../utils/utilValues";
+import { newStackedElims } from "../utils/newNameFilters";
+import { clear } from "console";
 
 // the maximum "words" that can be had is 5
 // this function is rather ugly but I am not picturing a simpler way of writing this at this moment
@@ -147,7 +148,7 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
         setLoading(true);
         const result = await Tesseract.recognize(selectedImage);
         setLoading(false);
-
+        console.clear();
         console.log(result.data);
         if (checkForValidFormat(result)) {
           return;
@@ -160,8 +161,12 @@ const TextRecognition = ({ selectedImage }: { selectedImage: string }) => {
           const filteredArray: string[] = [];
 
           // filter the words
+          // for (let x = 0; x < wordArray.length; x++) {
+          //   filteredArray.push(stackedElims(wordArray[x]));
+          // }
+
           for (let x = 0; x < wordArray.length; x++) {
-            filteredArray.push(stackedElims(wordArray[x]));
+            filteredArray.push(newStackedElims(wordArray[x]));
           }
 
           console.log("filtered array");
