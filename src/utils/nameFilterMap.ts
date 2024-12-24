@@ -102,4 +102,9 @@ export const corrections: { [key: string]: string } = {
   T2: "T-2",
   J6A: "J-6A",
   "F-86F-40 JASDFAL.": "F-86F-40 JASDF",
+  J2: "J-2",
+  " AlphaJetA": "Alpha Jet A",
+  "EF-4F": "F-4F",
+  "J5F-4F Early": "F-4F Early",
+  "F-104)": "F-104J",
 };
