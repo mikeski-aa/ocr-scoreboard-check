@@ -8,6 +8,10 @@ const eliminateSigns = (input: string) => {
     return "J35D";
   }
 
+  if (input === "134") {
+    return "J34";
+  }
+
   if (regex.test(splitWord[0])) {
     if (regex.test(splitWord[1])) {
       splitWord.splice(0, 2);
