@@ -5,7 +5,6 @@ import CSVcheck from "../utils/CSVcheck";
 import { defaultSessionState, SessionContext } from "../App";
 import { excpNames, symbols } from "../utils/utilValues";
 import { newStackedElims } from "../utils/newNameFilters";
-import { clear } from "console";
 
 // the maximum "words" that can be had is 5
 // this function is rather ugly but I am not picturing a simpler way of writing this at this moment
