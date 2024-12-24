@@ -83,4 +83,6 @@ export const corrections: { [key: string]: string } = {
   "EMiG-21 SPS-K": "MiG-21 SPS-K",
   "04050 Vautour IIA": "S.O.4050 Vautour IIA",
   "F-86F-40 AL.": "F-86F-40",
+  "MiG-195": "MiG-19S",
+  "Harrier GR 3": "Harrier GR.3",
 };

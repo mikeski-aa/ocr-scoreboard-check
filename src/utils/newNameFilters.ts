@@ -4,6 +4,10 @@ const eliminateSigns = (input: string) => {
   const regex: RegExp = /^[^a-zA-Z]$/;
   const splitWord = input.split("");
 
+  if (input === ")35D") {
+    return "J35D";
+  }
+
   if (regex.test(splitWord[0])) {
     if (regex.test(splitWord[1])) {
       splitWord.splice(0, 2);
