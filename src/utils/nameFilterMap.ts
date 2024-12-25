@@ -113,4 +113,7 @@ export const corrections: { [key: string]: string } = {
   "F-4) Phantom II": "F-4J Phantom II",
   "MiG-21bisSAU": "MiG-21bis-SAU",
   "BMiG-23MF": "MiG-23MF",
+  "EF-4F Early": "F-4F Early",
+  "F-4)(UK) Phantom Il": "F-4J(UK) Phantom II",
+  "F-45 Phantom Il": "F-45 Phantom II",
 };
