@@ -45,6 +45,8 @@ export const symbols: string[] = [
   "at]",
   "a0",
   "4)",
+  "Ald",
+  "FY",
   "“+i",
   "+!",
   "52",
