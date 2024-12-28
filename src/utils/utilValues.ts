@@ -44,6 +44,7 @@ export const symbols: string[] = [
   "413",
   "at]",
   "a0",
+  "PUT]",
   "4)",
   "Ald",
   "FY",
