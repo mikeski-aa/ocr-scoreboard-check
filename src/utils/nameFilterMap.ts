@@ -139,4 +139,8 @@ export const corrections: { [key: string]: string } = {
   "XEF-2000": "EF-2000",
   "EMiG-29G": "MiG-29G",
   "Sea Harrier FA": "Sea Harrier FA 2",
+  "F-16D Barak Il": "F-16D Barak II",
+  "F-15)": "F-15J",
+  "Halifax B Mk Illa": "Halifax B Mk IIIa",
+  "JEF-4F KWS LV": "F-4F KWS LV",
 };
