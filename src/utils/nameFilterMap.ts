@@ -144,6 +144,6 @@ export const corrections: { [key: string]: string } = {
   "Halifax B Mk Illa": "Halifax B Mk IIIa",
   "JEF-4F KWS LV": "F-4F KWS LV",
   "Mirage 2000D-RMV.": "Mirage 2000D-RMV",
-  "EF-4F KWS Lv": "EF-4F KWS LV",
+  "EF-4F KWS Lv": "F-4F KWS LV",
   "J-88": "J-8B",
 };
