@@ -148,7 +148,7 @@ function App() {
               sessionActive ? "sessionItems active" : "sessionItems inactive"
             }
           >
-            <div className="sessionHeading">Session started</div>
+            <div className="sessionHeading">Session startedd</div>
             <select
               className={
                 sessionTier != 0
